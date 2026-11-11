@@ -9,6 +9,10 @@ on:
       - ".github/workflows/build-exam-006-aligned.yml"
   workflow_dispatch:
 
+concurrency:
+  group: servo-audio-publication-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -37,6 +41,19 @@ jobs:
           for f in output/audio/*.mp3; do
             ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\.[0-9]+)?$'
           done
+      - name: Publish validated MP3 tracks to the audio repository
+        run: |
+          mkdir -p audio/exam-006
+          cp output/audio/*.mp3 audio/exam-006/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$GITHUB_REF_NAME"
+          git rebase "origin/$GITHUB_REF_NAME"
+          git add audio/exam-006/*.mp3
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish validated audio tracks for exam 006"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
       - name: Upload validated build artifact
         uses: actions/upload-artifact@v4
         with:
