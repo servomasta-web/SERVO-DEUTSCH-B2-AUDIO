@@ -1,4 +1,4 @@
-name: Build and audit aligned audio — exam 004
+name: Build synthetic TTS audio — exam 004
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Audit distinct content against existing packs
+      - name: Audit distinct content against all existing packs
         run: python audit_audio_duplicates.py
       - name: Install audio tools
         run: |
@@ -33,10 +33,22 @@ jobs:
         run: |
           mkdir -p output
           python build_exam_004_aligned.py
-          test "$(unzip -Z1 output/exam-004.zip | grep -c '\\.mp3$')" -eq 8
-      - name: Upload validated test artifact
+          test "$(unzip -Z1 output/exam-004.zip | grep -c '\.mp3$')" -eq 8
+          for f in output/audio/*.mp3; do
+            ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\.[0-9]+)?$'
+          done
+      - name: Upload validated build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SERVO-DEUTSCH-B2-EXAMEN-004-ALIGNED-TEST
+          name: SERVO-DEUTSCH-B2-EXAMEN-004-ALIGNED
           path: output/exam-004.zip
           retention-days: 30
+      - name: Publish exam 004 as a permanent audio release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: audio-v1
+          name: SERVO DEUTSCH B2 — Packs audio
+          files: output/exam-004.zip
+          overwrite_files: true
+          make_latest: false
+          fail_on_unmatched_files: true
