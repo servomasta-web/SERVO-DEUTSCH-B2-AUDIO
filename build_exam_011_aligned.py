@@ -8,8 +8,8 @@ ROOT=Path("output")
 AUDIO=ROOT/"audio"
 AUDIO.mkdir(parents=True,exist_ok=True)
 
-# Prüfung 006 — Ehrenamtliches Engagement in der Gemeinde.
-# Inhaltlich an GoetheExam06Audio.java ausgerichtet.
+# Prüfung 011 — Öffentliche Verkehrsmittel und Klimaschutz.
+# Acht eigenständige Hörtexte, passend zu exam-011.json.
 tracks={
 "teil1_01.mp3":[("de-DE-KatjaNeural","Information des Verkehrsverbunds: Wegen einer Baustelle fährt die Straßenbahnlinie 4 ab Montag nicht bis zum Rathaus. Fahrgäste steigen bitte an der Haltestelle Markt aus und nutzen dort den Ersatzbus. Die übrigen Linien verkehren nach Plan.")],
 "teil1_02.mp3":[("de-DE-KatjaNeural","Ich überlege, ob ich für den Arbeitsweg ein Monatsticket kaufen soll."),("de-DE-ConradNeural","Wie oft fährst du ins Büro?"),("de-DE-KatjaNeural","Vier Tage pro Woche."),("de-DE-ConradNeural","Dann lohnt sich vielleicht ein Abo. Prüfe aber, ob dein Arbeitgeber einen Zuschuss anbietet.")],
