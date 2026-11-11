@@ -8,8 +8,8 @@ ROOT=Path("output")
 AUDIO=ROOT/"audio"
 AUDIO.mkdir(parents=True,exist_ok=True)
 
-# Prüfung 006 — Ehrenamtliches Engagement in der Gemeinde.
-# Inhaltlich an GoetheExam06Audio.java ausgerichtet.
+# Prüfung 013 — Sportangebote für Jugendliche.
+# Acht Hörtracks mit vier Prüfungsteilen und abwechslungsreichen Stimmen.
 tracks={
 "teil1_01.mp3":[("de-DE-KatjaNeural","Mitteilung des Sportvereins: Das Schwimmtraining für Jugendliche beginnt am kommenden Montag nicht um 17 Uhr, sondern um 17.30 Uhr. Die Trainingsdauer bleibt unverändert. Teilnehmende sollen ihre Schwimmkarten am Eingang vorzeigen.")],
 "teil1_02.mp3":[("de-DE-KatjaNeural","Ich möchte nach der Schule mehr Sport machen, aber der Fußballverein passt zeitlich nicht."),("de-DE-ConradNeural","Im Jugendzentrum gibt es dienstags einen offenen Klettertreff."),("de-DE-KatjaNeural","Muss man dafür schon Erfahrung haben?"),("de-DE-ConradNeural","Nein, die ersten Termine werden von einer Trainerin begleitet.")],
