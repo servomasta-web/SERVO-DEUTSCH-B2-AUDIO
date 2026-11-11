@@ -33,81 +33,9 @@ jobs:
         run: |
           mkdir -p output
           python build_exam_005_aligned.py
-          test "$(unzip -Z1 output/exam-005.zip | grep -c '\.mp3)" -eq 8
+          test "$(unzip -Z1 output/exam-005.zip | grep -c '\.mp3$')" -eq 8
           for f in output/audio/*.mp3; do
-            ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\.[0-9]+)?
-          done
-      - name: Upload validated build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: SERVO-DEUTSCH-B2-EXAMEN-005-ALIGNED
-          path: output/exam-005.zip
-          retention-days: 30
-      - name: Publish exam 005 as a permanent audio release asset
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: audio-v1
-          name: SERVO DEUTSCH B2 — Packs audio
-          files: output/exam-005.zip
-          overwrite_files: true
-          make_latest: false
-          fail_on_unmatched_files: true
-)" -eq 8
-          for f in output/audio/*.mp3; do
-            ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\\.[0-9]+)?$'
-          done
-      - name: Upload validated build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: SERVO-DEUTSCH-B2-EXAMEN-005-ALIGNED
-          path: output/exam-005.zip
-          retention-days: 30
-      - name: Publish exam 005 as a permanent audio release asset
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: audio-v1
-          name: SERVO DEUTSCH B2 — Packs audio
-          files: output/exam-005.zip
-          overwrite_files: true
-          make_latest: false
-          fail_on_unmatched_files: true
-
-          done
-      - name: Upload validated build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: SERVO-DEUTSCH-B2-EXAMEN-005-ALIGNED
-          path: output/exam-005.zip
-          retention-days: 30
-      - name: Publish exam 005 as a permanent audio release asset
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: audio-v1
-          name: SERVO DEUTSCH B2 — Packs audio
-          files: output/exam-005.zip
-          overwrite_files: true
-          make_latest: false
-          fail_on_unmatched_files: true
-)" -eq 8
-          for f in output/audio/*.mp3; do
-            ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\.[0-9]+)?
-          done
-      - name: Upload validated build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: SERVO-DEUTSCH-B2-EXAMEN-005-ALIGNED
-          path: output/exam-005.zip
-          retention-days: 30
-      - name: Publish exam 005 as a permanent audio release asset
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: audio-v1
-          name: SERVO DEUTSCH B2 — Packs audio
-          files: output/exam-005.zip
-          overwrite_files: true
-          make_latest: false
-          fail_on_unmatched_files: true
-
+            ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\.[0-9]+)?$'
           done
       - name: Upload validated build artifact
         uses: actions/upload-artifact@v4
