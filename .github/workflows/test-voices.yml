@@ -1,0 +1,70 @@
+name: Test gratuit des voix allemandes
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-voice-samples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Installer Python et FFmpeg
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Installer Edge TTS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install edge-tts
+      - name: Générer les deux voix allemandes
+        run: |
+          mkdir -p samples
+          cat > generate_samples.py <<'PY'
+          import asyncio
+          import subprocess
+          from pathlib import Path
+          import edge_tts
+
+          OUT = Path("samples")
+          OUT.mkdir(exist_ok=True)
+
+          dialogue = [
+              ("de-DE-KatjaNeural", "Guten Tag, Herr Schneider. Haben Sie schon eine Entscheidung wegen des Freiwilligenprojekts getroffen?"),
+              ("de-DE-ConradNeural", "Guten Tag, Frau Weber. Ja, ich finde die Idee interessant, aber ich habe noch einige Fragen zum zeitlichen Aufwand."),
+              ("de-DE-KatjaNeural", "Das kann ich gut verstehen. Die Treffen finden normalerweise zweimal pro Monat statt, meistens am Samstagvormittag."),
+              ("de-DE-ConradNeural", "Das wäre für mich machbar. Welche Aufgaben übernehmen die Freiwilligen denn genau?"),
+              ("de-DE-KatjaNeural", "Wir unterstützen ältere Menschen im Alltag, begleiten sie zum Arzt oder erledigen kleine Einkäufe."),
+              ("de-DE-ConradNeural", "Das klingt sinnvoll. Ich würde gern an einem Probetermin teilnehmen, bevor ich mich endgültig entscheide."),
+          ]
+
+          async def main():
+              files = []
+              for i, (voice, text) in enumerate(dialogue, start=1):
+                  path = OUT / f"line_{i:02d}.mp3"
+                  await edge_tts.Communicate(text, voice, rate="-5%").save(str(path))
+                  files.append(path)
+                  print(f"Créé : {path} ({voice})")
+
+              concat = OUT / "concat.txt"
+              concat.write_text("".join(f"file '{p.resolve()}'\n" for p in files), encoding="utf-8")
+              subprocess.run([
+                  "ffmpeg", "-y", "-f", "concat", "-safe", "0",
+                  "-i", str(concat), "-c", "copy",
+                  str(OUT / "dialogue-test.mp3")
+              ], check=True)
+
+          asyncio.run(main())
+          PY
+          python generate_samples.py
+      - name: Publier les échantillons à écouter
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-voix-allemandes
+          path: samples/*.mp3
+          retention-days: 14
