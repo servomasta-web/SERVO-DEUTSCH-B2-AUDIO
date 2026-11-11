@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "build_exam_002_aligned.py"
+      - "build_exam_003_aligned.py"
       - ".github/workflows/build-exam-003-aligned.yml"
   workflow_dispatch:
 
@@ -29,7 +29,7 @@ jobs:
       - name: Generate and validate the eight aligned tracks
         run: |
           mkdir -p output
-          python build_exam_002_aligned.py
+          python build_exam_003_aligned.py
           test "$(unzip -Z1 output/exam-003.zip | grep -c '\.mp3$')" -eq 8
       - name: Upload temporary build artifact
         uses: actions/upload-artifact@v4
