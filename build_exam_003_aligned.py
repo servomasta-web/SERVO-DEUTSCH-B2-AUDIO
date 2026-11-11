@@ -49,29 +49,6 @@ async def make_track(name, utterances):
         raise RuntimeError(f"Piste finale invalide : {name}")
     print(f"OK {name}: {target.stat().st_size} octets", flush=True)
 
-async def main():
-    expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
-                "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
-    if set(tracks) != set(expected):
-        raise RuntimeError(f"Liste de pistes incorrecte: {sorted(tracks)}")
-    for name in expected:
-        await make_track(name, tracks[name])
-
-asyncio.run(main())
-
-archive = ROOT / "exam-003.zip"
-expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
-            "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
-with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
-    for name in expected:
-        z.write(AUDIO / name, arcname=name)
-with zipfile.ZipFile(archive) as z:
-    if sorted(z.namelist()) != sorted(expected):
-        raise RuntimeError(f"Contenu ZIP inattendu : {z.namelist()}")
-    for info in z.infolist():
-        if info.file_size < 1024:
-            raise RuntimeError(f"Piste ZIP invalide : {info.filename}")
-print(f"Archive validée : {archive} ({archive.stat().st_size} octets)", flush=True)
 # Prüfung 003 — Digitale Medien im Schulunterricht.
 # Audioinhalte stimmen mit GoetheExam03Audio.java in der App überein.
 tracks = {
@@ -102,3 +79,27 @@ tracks = {
 ],
 "teil4_01.mp3": [("de-DE-ConradNeural", "Guten Tag. In meinem Vortrag geht es um den sinnvollen Umgang mit digitalen Lernmaterialien. Zunächst sollte man zwischen Informationssuche und tatsächlichem Lernen unterscheiden. Eine Suchmaschine liefert in Sekunden zahlreiche Ergebnisse, aber nicht jede gefundene Seite ist fachlich zuverlässig. Lernende müssen deshalb Autorenschaft, Aktualität und Absicht einer Veröffentlichung prüfen. Ein zweiter Punkt betrifft die Zusammenarbeit. Gemeinsame digitale Dokumente ermöglichen es, Ideen gleichzeitig zu sammeln und zu überarbeiten. Damit diese Arbeit gelingt, braucht die Gruppe klare Aufgaben und Regeln. Sonst besteht die Gefahr, dass einzelne Personen den größten Teil übernehmen, während andere kaum beteiligt werden. Auch der Datenschutz verdient Aufmerksamkeit. Kostenlose Angebote finanzieren sich teilweise durch die Auswertung persönlicher Daten. Schulen sollten daher prüfen, welche Informationen gespeichert werden und ob ein Dienst den geltenden Datenschutzanforderungen entspricht. Private Konten der Kinder dürfen nicht ohne sorgfältige Prüfung vorausgesetzt werden. Schließlich ist die technische Ausstattung nicht mit pädagogischer Qualität gleichzusetzen. Ein stabiler Internetzugang und funktionierende Geräte sind wichtige Voraussetzungen, ersetzen aber keine gute Unterrichtsplanung. Lehrkräfte benötigen Zeit, um Materialien auszuwählen, Aufgaben anzupassen und Erfahrungen miteinander auszutauschen. Mein Fazit lautet: Digitale Medien können Unterricht bereichern, wenn sie bewusst, kritisch und altersgerecht eingesetzt werden. Ihr Wert zeigt sich nicht an der Zahl der Geräte, sondern daran, was die Lernenden damit verstehen und selbstständig leisten können.")]
 }
+
+async def main():
+    expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
+                "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
+    if set(tracks) != set(expected):
+        raise RuntimeError(f"Liste de pistes incorrecte: {sorted(tracks)}")
+    for name in expected:
+        await make_track(name, tracks[name])
+
+asyncio.run(main())
+
+archive = ROOT / "exam-003.zip"
+expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
+            "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
+with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
+    for name in expected:
+        z.write(AUDIO / name, arcname=name)
+with zipfile.ZipFile(archive) as z:
+    if sorted(z.namelist()) != sorted(expected):
+        raise RuntimeError(f"Contenu ZIP inattendu : {z.namelist()}")
+    for info in z.infolist():
+        if info.file_size < 1024:
+            raise RuntimeError(f"Piste ZIP invalide : {info.filename}")
+print(f"Archive validée : {archive} ({archive.stat().st_size} octets)", flush=True)
