@@ -86,3 +86,5 @@ with zipfile.ZipFile(archive) as z:
     if sorted(z.namelist())!=sorted(expected): raise RuntimeError("Contenu ZIP incorrect")
     if any(x.file_size<1024 for x in z.infolist()): raise RuntimeError("Piste vide ou trop petite")
 print(f"Archive validée: {archive} ({archive.stat().st_size} octets)",flush=True)
+
+# Re-run generation after workflow registration.
