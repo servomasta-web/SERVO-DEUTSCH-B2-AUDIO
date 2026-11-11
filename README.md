@@ -4,23 +4,31 @@ Dépôt public réservé aux packs audio de l'application **SERVO DEUTSCH B2**.
 
 Le code source de l'application reste dans le dépôt privé `SERVO-DEUTSCH-B2`.
 
-## Organisation prévue
+## Format des packs
 
-Les packs seront publiés comme pièces jointes d'une GitHub Release, et non stockés dans l'historique Git.
+Les packs sont publiés comme pièces jointes d'une GitHub Release, et non stockés dans l'historique Git.
 
 - Tag de release : `audio-v1`
-- Noms des archives : `exam-001.zip` à `exam-100.zip`
+- Nom des archives : `exam-001.zip` à `exam-030.zip` pour le module Hören actuellement pris en charge.
 
-Chaque archive doit contenir les huit pistes MP3 attendues par l'application :
-
+Chaque archive doit contenir huit pistes MP3 :
 - `teil1_01.mp3` à `teil1_05.mp3`
 - `teil2_01.mp3`
 - `teil3_01.mp3`
 - `teil4_01.mp3`
 
-## État actuel
+## État de publication vérifié
 
-Aucun enregistrement audio ni aucune archive d'examen n'a encore été fourni ou publié. Les archives seront ajoutées uniquement après réception et vérification des véritables fichiers audio.
+La release `audio-v1` contient actuellement les trois archives suivantes :
+- `exam-001.zip`
+- `exam-002.zip`
+- `exam-003.zip`
+
+Les packs `exam-004.zip` à `exam-030.zip` ne sont pas encore publiés. L'application peut utiliser provisoirement la synthèse vocale locale pour ces examens.
+
+**Nature des voix :** les packs actuellement générés utilisent des voix allemandes neuronales de synthèse vocale. Il ne faut pas les présenter comme des enregistrements réalisés par des comédiens humains.
+
+Chaque nouveau pack doit être contrôlé (huit pistes présentes, MP3 lisibles, contenu distinct et cohérent avec les questions) avant publication.
 
 ## Confidentialité
 
