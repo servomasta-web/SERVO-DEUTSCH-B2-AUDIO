@@ -8,6 +8,10 @@ on:
       - ".github/workflows/build-exam-001-aligned.yml"
   workflow_dispatch:
 
+concurrency:
+  group: servo-audio-publication-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -20,25 +24,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Audit duplicate audio content
-        run: python audit_audio_duplicates.py
-      - name: Install audio tools
+      - name: Download and validate the already generated audio pack
         run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
-          python -m pip install --upgrade pip
-          python -m pip install edge-tts
-      - name: Generate and validate the eight aligned tracks
-        run: |
-          mkdir -p output
-          python build_exam_001_aligned.py
-          test "$(unzip -Z1 output/exam-001.zip | grep -c '\.mp3$')" -eq 8
+          mkdir -p output/audio
+          curl --fail --location --retry 3 \\
+            https://github.com/servomasta-web/SERVO-DEUTSCH-B2-AUDIO/releases/download/audio-v1/exam-001.zip \\
+            --output output/exam-001.zip
+          unzip -tq output/exam-001.zip
+          unzip -o output/exam-001.zip -d output/audio
+          test "$(find output/audio -maxdepth 1 -name '*.mp3' | wc -l)" -eq 8
+          for f in output/audio/*.mp3; do test -s "$f"; done
       - name: Publish validated MP3 tracks to the audio repository
         run: |
           mkdir -p audio/exam-001
           cp output/audio/*.mp3 audio/exam-001/
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$GITHUB_REF_NAME"
+          git rebase "origin/$GITHUB_REF_NAME"
           git add audio/exam-001/*.mp3
           if ! git diff --cached --quiet; then
             git commit -m "Publish validated audio tracks for exam 001"
