@@ -42,7 +42,7 @@ async def make_track(name,utterances):
         if error: raise RuntimeError(f"Track fehlgeschlagen: {name}") from error
         parts.append(part)
     listing=AUDIO/f".{name}.txt"
-    listing.write_text("".join(f"file '{p.resolve()}'\\n" for p in parts),encoding="utf-8")
+    listing.write_text("".join(f"file '{p.resolve()}'\n" for p in parts),encoding="utf-8")
     target=AUDIO/name
     subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(listing),"-codec:a","libmp3lame","-b:a","128k",str(target)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
     for p in parts+[listing]: p.unlink(missing_ok=True)
