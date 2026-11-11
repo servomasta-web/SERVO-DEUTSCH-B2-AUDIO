@@ -7,7 +7,7 @@ on:
       - ".github/workflows/build-exam-001.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build-exam-001:
@@ -358,3 +358,12 @@ jobs:
             output/exam-001.zip
             output/docs/*.md
           retention-days: 30
+      - name: Publier le pack audio dans une GitHub Release permanente
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: audio-v1
+          name: SERVO DEUTSCH B2 — Packs audio
+          files: output/exam-001.zip
+          overwrite_files: true
+          make_latest: false
+          fail_on_unmatched_files: true
