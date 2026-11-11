@@ -1,10 +1,10 @@
 # DRAFT — Volunteer German Voice Casting Call (Pilot 001)
 
-> **Not approved for publication yet.** Publish this unpaid call only if the project owner has confirmed that the project qualifies as a genuinely non-commercial hobby/passion project under the target community's rules. If the app is intended to generate revenue, do not use this unpaid call; arrange paid work or another compliant production route.
+> **Not approved for publication yet.** The project has chosen to retain the possibility of future commercialization: a generous free tier and potential paid Premium features. The current budget is €0 and no payment is presently available. This unpaid call may be used only in communities whose written rules explicitly permit unpaid volunteer contributions for a project with this disclosed possibility of future monetization. Do not post it in Voice Acting Club's unpaid casting channels: its creator guidance prohibits unpaid volunteer calls for projects intended to generate revenue. If a community does not clearly permit this arrangement, do not recruit there.
 
 ## Project
 
-**SERVO DEUTSCH B2** is an Android learning app for people preparing for the Goethe-Zertifikat B2. We are preparing a small listening-audio pilot: exam 001, consisting of eight short audio tracks across the four listening sections.
+**SERVO DEUTSCH B2** is an Android learning app for people preparing for the Goethe-Zertifikat B2. We are preparing a small listening-audio pilot: exam 001, consisting of eight short audio tracks across the four listening sections. The project currently has a €0 budget. We are considering a generous free version and possible paid Premium features in the future; contributors will be told this before auditioning, and any permitted use of their recordings in future paid app features must be covered by their written consent.
 
 ## Roles sought
 
@@ -22,7 +22,7 @@ You may audition for one or more roles. Native speakers are welcome, but clear a
 - Speak naturally and at a moderate, exam-appropriate pace.
 - Follow the supplied pronunciation and file-naming notes.
 - The pilot contains eight tracks in total; the exact number of lines per volunteer will be agreed in advance.
-- There is no payment and no obligation to continue beyond the agreed pilot contribution.
+- No payment is currently available, and there is no obligation to continue beyond the agreed pilot contribution. This unpaid arrangement will be offered only where the relevant community's rules explicitly allow it despite the disclosed possibility of future monetization.
 
 ## Audio and permissions
 
@@ -51,7 +51,7 @@ Please submit a short, unprocessed sample using the audition text and submission
 
 ## Important conditions
 
-- This is an unpaid volunteer opportunity for a small pilot.
+- This is currently unpaid because the project budget is €0. The app may introduce paid Premium features in the future; this is not represented as a permanently non-commercial project.
 - Do not apply if you are uncomfortable with the written usage terms.
 - No fees, purchases, or paid equipment are required.
 - Please do not send unsolicited private messages; use only the approved application channel.
