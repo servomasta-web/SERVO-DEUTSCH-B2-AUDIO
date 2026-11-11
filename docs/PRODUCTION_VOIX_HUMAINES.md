@@ -4,7 +4,7 @@
 
 Remplacer progressivement les 240 pistes synthétiques des 30 examens Hören par des enregistrements réalisés par de véritables personnes germanophones. Une voix traitée, convertie ou clonée à partir d'une synthèse vocale ne sera jamais présentée comme une voix humaine enregistrée.
 
-**État : préparation de production.** Aucun enregistrement humain n'est encore disponible dans ce dépôt. Les packs actuels restent en place tant que les nouveaux enregistrements n'ont pas été reçus, contrôlés et validés.
+**État : préparation de production.** Aucun enregistrement humain n'est encore disponible dans ce dépôt. Les packs actuels restent en place tant que les nouveaux enregistrements n'ont pas été reçus, contrôlés et validés.\n\n**Transparence économique :** le budget actuel est de 0 €. Le projet a choisi de conserver la possibilité d'une commercialisation future, avec une version gratuite généreuse et d'éventuelles fonctions Premium payantes. Toute personne qui enregistre une voix doit recevoir cette information avant de contribuer ; les droits accordés doivent couvrir explicitement les usages acceptés, y compris une éventuelle distribution dans une offre Premium. Les appels non rémunérés ne seront diffusés que dans les communautés dont les règles les autorisent clairement dans ce contexte. Si une communauté interdit les contributions bénévoles pour les projets susceptibles de générer des revenus, aucun appel non rémunéré n'y sera publié.
 
 ## Périmètre
 
