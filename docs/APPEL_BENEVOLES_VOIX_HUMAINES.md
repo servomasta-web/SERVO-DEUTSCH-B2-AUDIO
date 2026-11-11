@@ -28,7 +28,7 @@ Nous souhaitons commencer par une audition courte, puis un seul examen pilote (8
 
 Si vous aimez les langues, l'éducation et les projets collaboratifs, votre aide serait précieuse. Merci !
 
-Contact : [ajouter ici une adresse de contact dédiée au projet]
+Contact : servomasta@gmail.com
 
 ## Deutsche Fassung
 
@@ -57,7 +57,7 @@ Die Aufnahmen werden ausschließlich von echten Menschen eingesprochen, nicht sy
 
 Wenn ihr Bildung, Sprachen und gemeinschaftliche Projekte mögt, freuen wir uns über eure Nachricht. Vielen Dank!
 
-Kontakt: [hier eine Projektkontaktadresse einfügen]
+Kontakt: servomasta@gmail.com
 
 ## Transparence sur le modèle économique envisagé\n\nLe projet a retenu l'option de conserver une possibilité de commercialisation future : une offre gratuite généreuse et, éventuellement, une offre Premium. Le budget actuel reste de 0 €. Cette perspective doit être communiquée avant toute contribution et inscrite dans les autorisations d'utilisation. Une contribution non rémunérée ne sera sollicitée que si les règles du canal de recrutement l'autorisent explicitement ; à défaut, aucun appel bénévole ne sera publié dans ce canal. En particulier, ne pas publier cet appel non rémunéré dans une communauté qui interdit les contributions gratuites pour les projets susceptibles de générer des revenus.\n\n## Before publishing this call
 
