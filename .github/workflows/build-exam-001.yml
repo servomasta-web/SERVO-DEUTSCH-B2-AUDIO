@@ -25,7 +25,7 @@ jobs:
         run: |
           mkdir -p output/audio output/docs
           cat > build_exam.py <<'PY'
-          import asyncio, subprocess, zipfile
+          import asyncio, subprocess, zipfile, textwrap
           from pathlib import Path
           import edge_tts
 
@@ -151,142 +151,142 @@ jobs:
               ]:
                   z.write(AUDIO / name, arcname=name)
 
-          booklet = """# SERVO DEUTSCH B2 — Goethe B2 Hören — Examen 001
+          booklet = textwrap.dedent("""# SERVO DEUTSCH B2 — Goethe B2 Hören — Examen 001
 
-**Durée indicative :** environ 40 minutes, transfert des réponses compris.  
-**Consigne :** écoutez les textes et répondez aux 30 questions. Les parties 1 et 3 sont écoutées une fois ; les parties 2 et 4 deux fois.
+          **Durée indicative :** environ 40 minutes, transfert des réponses compris.  
+          **Consigne :** écoutez les textes et répondez aux 30 questions. Les parties 1 et 3 sont écoutées une fois ; les parties 2 et 4 deux fois.
 
-## Teil 1 — Kurze Gespräche (10 Punkte)
-Pour chaque texte, indiquez si l'affirmation est richtig (R) ou falsch (F), puis choisissez A, B ou C.
+          ## Teil 1 — Kurze Gespräche (10 Punkte)
+          Pour chaque texte, indiquez si l'affirmation est richtig (R) ou falsch (F), puis choisissez A, B ou C.
 
-**Text 1**
-1. Der Sprachkurs findet ab Januar nur noch online statt. (R/F)
-2. Die Prüfungsvorbereitung am Samstag …
-   A. findet weiterhin vor Ort statt.  
-   B. wird auf Dienstag verlegt.  
-   C. ist für alle Teilnehmenden freiwillig.
+          **Text 1**
+          1. Der Sprachkurs findet ab Januar nur noch online statt. (R/F)
+          2. Die Prüfungsvorbereitung am Samstag …
+             A. findet weiterhin vor Ort statt.  
+             B. wird auf Dienstag verlegt.  
+             C. ist für alle Teilnehmenden freiwillig.
 
-**Text 2**
-3. Der Bus fährt heute bis zum Hauptbahnhof. (R/F)
-4. Für den Ersatzbus …
-   A. braucht man ein neues Ticket.  
-   B. gilt der normale Fahrschein.  
-   C. muss man am Rathaus umsteigen und bezahlen.
+          **Text 2**
+          3. Der Bus fährt heute bis zum Hauptbahnhof. (R/F)
+          4. Für den Ersatzbus …
+             A. braucht man ein neues Ticket.  
+             B. gilt der normale Fahrschein.  
+             C. muss man am Rathaus umsteigen und bezahlen.
 
-**Text 3**
-5. Das Praktikum beginnt später als ursprünglich angekündigt. (R/F)
-6. Das Praktikum …
-   A. dauert jetzt länger.  
-   B. findet nicht mehr im Museum statt.  
-   C. dauert jetzt sechs Wochen.
+          **Text 3**
+          5. Das Praktikum beginnt später als ursprünglich angekündigt. (R/F)
+          6. Das Praktikum …
+             A. dauert jetzt länger.  
+             B. findet nicht mehr im Museum statt.  
+             C. dauert jetzt sechs Wochen.
 
-**Text 4**
-7. Eine Waschmaschine gehört zur Wohnungsausstattung. (R/F)
-8. Die Besichtigung …
-   A. ist am Samstag möglich.  
-   B. findet am Donnerstagabend statt.  
-   C. ist nur nach vorheriger Zahlung der Kaution möglich.
+          **Text 4**
+          7. Eine Waschmaschine gehört zur Wohnungsausstattung. (R/F)
+          8. Die Besichtigung …
+             A. ist am Samstag möglich.  
+             B. findet am Donnerstagabend statt.  
+             C. ist nur nach vorheriger Zahlung der Kaution möglich.
 
-**Text 5**
-9. Für die Zehn-Kilometer-Strecke gibt es noch freie Plätze. (R/F)
-10. Studierende erhalten eine Ermäßigung, wenn sie …
-    A. sich als Gruppe anmelden.  
-    B. den Studierendenausweis bei der Startnummernausgabe zeigen.  
-    C. die Gebühr erst am Veranstaltungstag bezahlen.
+          **Text 5**
+          9. Für die Zehn-Kilometer-Strecke gibt es noch freie Plätze. (R/F)
+          10. Studierende erhalten eine Ermäßigung, wenn sie …
+              A. sich als Gruppe anmelden.  
+              B. den Studierendenausweis bei der Startnummernausgabe zeigen.  
+              C. die Gebühr erst am Veranstaltungstag bezahlen.
 
-## Teil 2 — Radiointerview (6 Punkte)
-Wählen Sie jeweils die richtige Antwort A, B oder C.
+          ## Teil 2 — Radiointerview (6 Punkte)
+          Wählen Sie jeweils die richtige Antwort A, B oder C.
 
-11. Warum zog Daniel Krüger in eine größere Stadt?
-    A. Wegen eines Studiums. B. Aus beruflichen Gründen. C. Wegen seiner Familie.
-12. Wie sind die privaten Wohnungen organisiert?
-    A. Jede Person hat ein eigenes Zimmer mit Gemeinschaftsküche. B. Alle teilen eine Wohnung. C. Jede Partei hat eine abgeschlossene Wohnung.
-13. Welche Aufgabe übernimmt Daniel?
-    A. Er betreut die Internetseite. B. Er verwaltet die Mieten. C. Er organisiert die Pflege.
-14. Wie lösten die Bewohner den Konflikt wegen des Gartens?
-    A. Sie schlossen den Garten. B. Sie vereinbarten Ruhezeiten. C. Sie bauten eine Schallschutzwand.
-15. Was ist laut Daniel der größte Vorteil?
-    A. Niedrigere Mieten. B. Eine zentrale Lage. C. Soziale Unterstützung im Alltag.
-16. Für wen ist diese Wohnform eher ungeeignet?
-    A. Für Menschen, die keinerlei Absprachen möchten. B. Für Menschen mit Kindern. C. Für Menschen, die gelegentlich Hilfe brauchen.
+          11. Warum zog Daniel Krüger in eine größere Stadt?
+              A. Wegen eines Studiums. B. Aus beruflichen Gründen. C. Wegen seiner Familie.
+          12. Wie sind die privaten Wohnungen organisiert?
+              A. Jede Person hat ein eigenes Zimmer mit Gemeinschaftsküche. B. Alle teilen eine Wohnung. C. Jede Partei hat eine abgeschlossene Wohnung.
+          13. Welche Aufgabe übernimmt Daniel?
+              A. Er betreut die Internetseite. B. Er verwaltet die Mieten. C. Er organisiert die Pflege.
+          14. Wie lösten die Bewohner den Konflikt wegen des Gartens?
+              A. Sie schlossen den Garten. B. Sie vereinbarten Ruhezeiten. C. Sie bauten eine Schallschutzwand.
+          15. Was ist laut Daniel der größte Vorteil?
+              A. Niedrigere Mieten. B. Eine zentrale Lage. C. Soziale Unterstützung im Alltag.
+          16. Für wen ist diese Wohnform eher ungeeignet?
+              A. Für Menschen, die keinerlei Absprachen möchten. B. Für Menschen mit Kindern. C. Für Menschen, die gelegentlich Hilfe brauchen.
 
-## Teil 3 — Diskussion (6 Punkte)
-Ordnen Sie jeder Aussage die passende Person zu: A Frau Neumann, B Herr Yilmaz, C Frau Roth, D Herr Berger.
+          ## Teil 3 — Diskussion (6 Punkte)
+          Ordnen Sie jeder Aussage die passende Person zu: A Frau Neumann, B Herr Yilmaz, C Frau Roth, D Herr Berger.
 
-17. Die Arbeitszeit sollte nicht einfach auf längere tägliche Schichten verteilt werden.
-18. Die Ergebnisse eines neuen Arbeitszeitmodells sollten wissenschaftlich untersucht werden.
-19. Ein wechselnder Bereitschaftsdienst hilft, trotz eines freien Tages erreichbar zu bleiben.
-20. Ohne zusätzliches Personal könnte die Arbeitsbelastung in der Pflege steigen.
-21. Eine Vier-Tage-Woche allein beseitigt den Fachkräftemangel nicht.
-22. Unternehmen sollten vor allem kurze und gut vorbereitete Besprechungen fördern.
+          17. Die Arbeitszeit sollte nicht einfach auf längere tägliche Schichten verteilt werden.
+          18. Die Ergebnisse eines neuen Arbeitszeitmodells sollten wissenschaftlich untersucht werden.
+          19. Ein wechselnder Bereitschaftsdienst hilft, trotz eines freien Tages erreichbar zu bleiben.
+          20. Ohne zusätzliches Personal könnte die Arbeitsbelastung in der Pflege steigen.
+          21. Eine Vier-Tage-Woche allein beseitigt den Fachkräftemangel nicht.
+          22. Unternehmen sollten vor allem kurze und gut vorbereitete Besprechungen fördern.
 
-## Teil 4 — Vortrag (8 Punkte)
-Wählen Sie jeweils die richtige Antwort A, B oder C.
+          ## Teil 4 — Vortrag (8 Punkte)
+          Wählen Sie jeweils die richtige Antwort A, B oder C.
 
-23. Was versteht man im Vortrag unter Wärmeinseln?
-    A. Besonders windige Stadtteile. B. Bereiche, die Wärme speichern. C. Orte mit vielen Brunnen.
-24. Wer ist durch große Hitze besonders gefährdet?
-    A. Ältere Menschen und kleine Kinder. B. Ausschließlich Sportler. C. Vor allem Berufspendler.
-25. Was ist bei neuen Stadtbäumen wichtig?
-    A. Sie müssen schnell wachsen. B. Sie dürfen kein Wasser benötigen. C. Sie müssen passend ausgewählt und gepflegt werden.
-26. Was bewirken entsiegelte Flächen?
-    A. Regenwasser kann versickern. B. Straßen werden breiter. C. Die Kanalisation wird vergrößert.
-27. Warum werden helle Dächer empfohlen?
-    A. Sie sind immer billiger. B. Sie reflektieren mehr Sonnenstrahlung. C. Sie speichern mehr Wärme.
-28. Welche soziale Maßnahme wird vorgeschlagen?
-    A. Alle Parks kostenpflichtig machen. B. Private Gärten öffnen. C. Öffentliche Gebäude zeitweise als Aufenthaltsorte nutzen.
-29. Wann sollten Klimaanpassungsmaßnahmen eingeplant werden?
-    A. Bei ohnehin geplanten Sanierungen. B. Erst nach einer Katastrophe. C. Nur bei Neubauten.
-30. Was ist die Hauptaussage des Vortrags?
-    A. Eine einzige technische Lösung genügt. B. Verschiedene Maßnahmen müssen kombiniert werden. C. Klimaanpassung betrifft nur die Stadtverwaltung.
-"""
-          answer_key = """# Corrigé — Examen 001
+          23. Was versteht man im Vortrag unter Wärmeinseln?
+              A. Besonders windige Stadtteile. B. Bereiche, die Wärme speichern. C. Orte mit vielen Brunnen.
+          24. Wer ist durch große Hitze besonders gefährdet?
+              A. Ältere Menschen und kleine Kinder. B. Ausschließlich Sportler. C. Vor allem Berufspendler.
+          25. Was ist bei neuen Stadtbäumen wichtig?
+              A. Sie müssen schnell wachsen. B. Sie dürfen kein Wasser benötigen. C. Sie müssen passend ausgewählt und gepflegt werden.
+          26. Was bewirken entsiegelte Flächen?
+              A. Regenwasser kann versickern. B. Straßen werden breiter. C. Die Kanalisation wird vergrößert.
+          27. Warum werden helle Dächer empfohlen?
+              A. Sie sind immer billiger. B. Sie reflektieren mehr Sonnenstrahlung. C. Sie speichern mehr Wärme.
+          28. Welche soziale Maßnahme wird vorgeschlagen?
+              A. Alle Parks kostenpflichtig machen. B. Private Gärten öffnen. C. Öffentliche Gebäude zeitweise als Aufenthaltsorte nutzen.
+          29. Wann sollten Klimaanpassungsmaßnahmen eingeplant werden?
+              A. Bei ohnehin geplanten Sanierungen. B. Erst nach einer Katastrophe. C. Nur bei Neubauten.
+          30. Was ist die Hauptaussage des Vortrags?
+              A. Eine einzige technische Lösung genügt. B. Verschiedene Maßnahmen müssen kombiniert werden. C. Klimaanpassung betrifft nur die Stadtverwaltung.
+""")
+          answer_key = textwrap.dedent("""# Corrigé — Examen 001
 
-1 F · 2 A · 3 F · 4 B · 5 R · 6 C · 7 F · 8 B · 9 F · 10 B  
-11 B · 12 C · 13 A · 14 B · 15 C · 16 A  
-17 D · 18 C · 19 A · 20 B · 21 B · 22 A  
-23 B · 24 A · 25 C · 26 A · 27 B · 28 C · 29 A · 30 B
+          1 F · 2 A · 3 F · 4 B · 5 R · 6 C · 7 F · 8 B · 9 F · 10 B  
+          11 B · 12 C · 13 A · 14 B · 15 C · 16 A  
+          17 D · 18 C · 19 A · 20 B · 21 B · 22 A  
+          23 B · 24 A · 25 C · 26 A · 27 B · 28 C · 29 A · 30 B
 
-## Barème
-30 questions, 1 point par réponse correcte.
-"""
-          transcripts = """# Transcriptions — Examen 001
+          ## Barème
+          30 questions, 1 point par réponse correcte.
+""")
+          transcripts = textwrap.dedent("""# Transcriptions — Examen 001
 
-## Teil 1
-### Text 1
-Katja: Guten Morgen, Herr Weber. Sie wollten doch wissen, ob unser Sprachkurs im Januar auch online stattfindet.
-Conrad: Genau. Ich bin beruflich oft unterwegs und kann nicht jede Woche zum Unterricht kommen.
-Katja: Kein Problem. Der Kurs findet weiterhin dienstags im Bildungszentrum statt. Wer nicht vor Ort sein kann, bekommt einen Zugangslink und kann live teilnehmen.
-Conrad: Sehr gut. Und die Prüfungsvorbereitung am Samstag?
-Katja: Die bleibt ausschließlich in Präsenz, weil wir dort mündliche Prüfungssituationen simulieren.
+          ## Teil 1
+          ### Text 1
+          Katja: Guten Morgen, Herr Weber. Sie wollten doch wissen, ob unser Sprachkurs im Januar auch online stattfindet.
+          Conrad: Genau. Ich bin beruflich oft unterwegs und kann nicht jede Woche zum Unterricht kommen.
+          Katja: Kein Problem. Der Kurs findet weiterhin dienstags im Bildungszentrum statt. Wer nicht vor Ort sein kann, bekommt einen Zugangslink und kann live teilnehmen.
+          Conrad: Sehr gut. Und die Prüfungsvorbereitung am Samstag?
+          Katja: Die bleibt ausschließlich in Präsenz, weil wir dort mündliche Prüfungssituationen simulieren.
 
-### Text 2
-Conrad: Entschuldigung, fährt dieser Bus noch zum Hauptbahnhof? Auf der Anzeige steht eine andere Strecke.
-Katja: Heute leider nicht. Wegen einer Baustelle endet die Linie am Rathaus. Von dort fährt ein Ersatzbus alle zehn Minuten zum Bahnhof.
-Conrad: Dann steige ich lieber hier aus. Muss ich für den Ersatzbus ein neues Ticket kaufen?
-Katja: Nein, Ihr Fahrschein gilt auch im Ersatzverkehr. Achten Sie nur auf die Haltestelle gegenüber der Apotheke.
+          ### Text 2
+          Conrad: Entschuldigung, fährt dieser Bus noch zum Hauptbahnhof? Auf der Anzeige steht eine andere Strecke.
+          Katja: Heute leider nicht. Wegen einer Baustelle endet die Linie am Rathaus. Von dort fährt ein Ersatzbus alle zehn Minuten zum Bahnhof.
+          Conrad: Dann steige ich lieber hier aus. Muss ich für den Ersatzbus ein neues Ticket kaufen?
+          Katja: Nein, Ihr Fahrschein gilt auch im Ersatzverkehr. Achten Sie nur auf die Haltestelle gegenüber der Apotheke.
 
-### Text 3
-Katja: Ich habe gesehen, dass du dich für das Praktikum im Stadtmuseum beworben hast. Hast du schon eine Antwort bekommen?
-Conrad: Ja, sie haben mich genommen. Allerdings beginnt das Praktikum nicht wie angekündigt im April, sondern erst Mitte Mai.
-Katja: Ist das für dich ein Problem?
-Conrad: Eigentlich nicht. So kann ich vorher meine Abschlussarbeit abgeben. Dafür dauert das Praktikum jetzt sechs statt acht Wochen.
+          ### Text 3
+          Katja: Ich habe gesehen, dass du dich für das Praktikum im Stadtmuseum beworben hast. Hast du schon eine Antwort bekommen?
+          Conrad: Ja, sie haben mich genommen. Allerdings beginnt das Praktikum nicht wie angekündigt im April, sondern erst Mitte Mai.
+          Katja: Ist das für dich ein Problem?
+          Conrad: Eigentlich nicht. So kann ich vorher meine Abschlussarbeit abgeben. Dafür dauert das Praktikum jetzt sechs statt acht Wochen.
 
-### Text 4
-Conrad: Guten Tag. Ich möchte mich nach Ihrer Wohnungsanzeige erkundigen. Ist die Küche bereits eingerichtet?
-Katja: Die Einbauküche bleibt in der Wohnung. Kühlschrank und Herd sind ebenfalls vorhanden. Eine Waschmaschine gehört allerdings nicht zur Ausstattung.
-Conrad: Und wie hoch ist die Kaution?
-Katja: Zwei Monatskaltmieten. Besichtigungen sind am Donnerstag ab siebzehn Uhr möglich, nicht am Wochenende.
+          ### Text 4
+          Conrad: Guten Tag. Ich möchte mich nach Ihrer Wohnungsanzeige erkundigen. Ist die Küche bereits eingerichtet?
+          Katja: Die Einbauküche bleibt in der Wohnung. Kühlschrank und Herd sind ebenfalls vorhanden. Eine Waschmaschine gehört allerdings nicht zur Ausstattung.
+          Conrad: Und wie hoch ist die Kaution?
+          Katja: Zwei Monatskaltmieten. Besichtigungen sind am Donnerstag ab siebzehn Uhr möglich, nicht am Wochenende.
 
-### Text 5
-Katja: Du wolltest doch beim Stadtlauf mitmachen. Ich habe gerade die Anmeldung geöffnet.
-Conrad: Ich auch, aber die Zehn-Kilometer-Strecke ist schon ausgebucht. Für fünf Kilometer gibt es noch Plätze.
-Katja: Dann nehmen wir die kurze Strecke?
-Conrad: Gern. Übrigens ist die Startgebühr für Studierende ermäßigt, wenn man den Ausweis bei der Abholung der Startnummer vorzeigt.
+          ### Text 5
+          Katja: Du wolltest doch beim Stadtlauf mitmachen. Ich habe gerade die Anmeldung geöffnet.
+          Conrad: Ich auch, aber die Zehn-Kilometer-Strecke ist schon ausgebucht. Für fünf Kilometer gibt es noch Plätze.
+          Katja: Dann nehmen wir die kurze Strecke?
+          Conrad: Gern. Übrigens ist die Startgebühr für Studierende ermäßigt, wenn man den Ausweis bei der Abholung der Startnummer vorzeigt.
 
-## Teil 2, Teil 3 und Teil 4
-Les textes audio correspondants sont fournis dans les pistes MP3. Cette première édition inclut ici les consignes et le corrigé ; la transcription intégrale de ces trois textes sera ajoutée à la prochaine révision éditoriale.
-"""
+          ## Teil 2, Teil 3 und Teil 4
+          Les textes audio correspondants sont fournis dans les pistes MP3. Cette première édition inclut ici les consignes et le corrigé ; la transcription intégrale de ces trois textes sera ajoutée à la prochaine révision éditoriale.
+""")
           (DOCS / "sujet-examen-001.md").write_text(booklet, encoding="utf-8")
           (DOCS / "corrige-examen-001.md").write_text(answer_key, encoding="utf-8")
           (DOCS / "transcriptions-examen-001.md").write_text(transcripts, encoding="utf-8")
