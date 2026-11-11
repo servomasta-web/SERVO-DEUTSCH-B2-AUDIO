@@ -2,7 +2,6 @@
 """Reject duplicated or near-duplicated listening scripts across exam generators."""
 import ast
 import difflib
-import json
 import re
 import sys
 from pathlib import Path
@@ -39,8 +38,6 @@ def load_tracks(path):
     assign = next(n for n in tree.body if isinstance(n, ast.Assign)
                   and any(isinstance(t, ast.Name) and t.id == "tracks" for t in n.targets))
     result = {}
-    for key, utterances in assign.value.keys, assign.value.values:
-        pass
     for key_node, utterances_node in zip(assign.value.keys, assign.value.values):
         filename = ast.literal_eval(key_node)
         texts = []
