@@ -91,7 +91,7 @@ jobs:
               ("de-DE-KatjaNeural", "In unserer heutigen Diskussionsrunde geht es um die Frage, ob Unternehmen eine Vier-Tage-Woche einführen sollten. Ich begrüße vier Gäste. Frau Neumann, Sie leiten ein kleines Architekturbüro. Wie sehen Sie das?"),
               ("de-DE-AmalaNeural", "Wir haben das Modell ein halbes Jahr getestet. Die Beschäftigten arbeiten jetzt an vier Tagen jeweils etwas länger. Die Produktivität ist nicht gesunken, im Gegenteil: Besprechungen sind kürzer geworden, weil alle besser vorbereitet sind. Allerdings funktioniert das nur, wenn die Aufgaben realistisch verteilt werden."),
               ("de-DE-KatjaNeural", "Herr Yilmaz, Sie vertreten einen Pflegeverband. Ist das Modell auch in Ihrer Branche denkbar?"),
-              ("de-DE-BerndNeural", "Grundsätzlich ja, aber nicht ohne zusätzliches Personal. Pflegebedürftige Menschen brauchen jeden Tag Unterstützung. Wenn eine Schicht weniger arbeitet, müssen andere einspringen. Ohne ausreichende Finanzierung würde die Belastung nur auf die Kolleginnen und Kollegen übertragen."),
+              ("de-DE-KillianNeural", "Grundsätzlich ja, aber nicht ohne zusätzliches Personal. Pflegebedürftige Menschen brauchen jeden Tag Unterstützung. Wenn eine Schicht weniger arbeitet, müssen andere einspringen. Ohne ausreichende Finanzierung würde die Belastung nur auf die Kolleginnen und Kollegen übertragen."),
               ("de-DE-KatjaNeural", "Frau Roth, Sie forschen an einer Universität zu Arbeitsorganisation."),
               ("de-DE-SeraphinaMultilingualNeural", "Ich würde davor warnen, die Vier-Tage-Woche als allgemeingültige Lösung zu betrachten. Entscheidend sind Branche, Arbeitsaufgaben und individuelle Lebenssituation. In manchen Bereichen lässt sich Arbeitszeit flexibel gestalten, in anderen ist die persönliche Anwesenheit unverzichtbar. Unternehmen sollten deshalb verschiedene Modelle erproben und die Ergebnisse wissenschaftlich begleiten."),
               ("de-DE-KatjaNeural", "Herr Berger, Sie sind Betriebsrat in einem Logistikzentrum. Was sagen die Beschäftigten?"),
@@ -99,7 +99,7 @@ jobs:
               ("de-DE-KatjaNeural", "Frau Neumann, wie reagieren Ihre Kundinnen und Kunden auf einen geschlossenen Freitag?"),
               ("de-DE-AmalaNeural", "Wir haben zunächst befürchtet, schlechter erreichbar zu sein. Deshalb gibt es einen wechselnden Bereitschaftsdienst für dringende Anliegen. Die meisten Kunden akzeptieren das, wenn sie rechtzeitig informiert werden. Für spontane Termine ist es manchmal schwieriger."),
               ("de-DE-KatjaNeural", "Herr Yilmaz, könnte eine Vier-Tage-Woche den Pflegeberuf attraktiver machen?"),
-              ("de-DE-BerndNeural", "Ja, sie könnte ein Baustein sein. Aber bessere Dienstpläne, verlässliche Pausen und eine angemessene Bezahlung sind mindestens genauso wichtig. Eine neue Wochenstruktur allein löst den Personalmangel nicht."),
+              ("de-DE-KillianNeural", "Ja, sie könnte ein Baustein sein. Aber bessere Dienstpläne, verlässliche Pausen und eine angemessene Bezahlung sind mindestens genauso wichtig. Eine neue Wochenstruktur allein löst den Personalmangel nicht."),
               ("de-DE-KatjaNeural", "Frau Roth, was wäre Ihr Rat an die Politik?"),
               ("de-DE-AmalaNeural", "Sie sollte Modellversuche unterstützen und dafür sorgen, dass auch kleine Betriebe teilnehmen können. Außerdem brauchen wir klare Regeln, damit flexible Arbeitszeiten nicht zu ständiger Erreichbarkeit führen."),
               ("de-DE-KatjaNeural", "Vielen Dank an alle Gäste für diese differenzierte Diskussion.")
@@ -319,7 +319,7 @@ jobs:
               "teil3_01.mp3": {
                   "de-DE-KatjaNeural": "Moderation",
                   "de-DE-AmalaNeural": "Frau Neumann",
-                  "de-DE-BerndNeural": "Herr Yilmaz",
+                  "de-DE-KillianNeural": "Herr Yilmaz",
                   "de-DE-SeraphinaMultilingualNeural": "Frau Roth",
                   "de-DE-ConradNeural": "Herr Berger"
               },
