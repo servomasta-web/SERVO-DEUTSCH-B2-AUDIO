@@ -19,47 +19,47 @@ CONTEXT = (
 
 tracks = {
     "teil1_01.mp3": [
-        ("de-DE-KatjaNeural", f"Guten Tag. Der Informationsabend zum Thema {TOPIC} findet nicht wie angekündigt am Donnerstag, sondern am Freitag um 18 Uhr statt. Bitte melden Sie sich bis Mittwoch im Sekretariat an.")
+        ("de-DE-KatjaNeural", "Guten Morgen zusammen. Wegen einer technischen Störung in unserem Bürogebäude findet die heutige Teamsitzung nicht im Besprechungsraum statt. Wir treffen uns wie geplant um halb zehn, allerdings per Videokonferenz. Den Zugangslink finden Sie in der Nachricht, die ich gestern Abend verschickt habe. Wer Präsentationsunterlagen zeigen möchte, sollte sie vorher öffnen.")
     ],
     "teil1_02.mp3": [
-        ("de-DE-KatjaNeural", f"Hast du schon von der neuen Regelung zu {TOPIC} gehört?"),
-        ("de-DE-ConradNeural", "Ja, ich finde sie grundsätzlich sinnvoll. Allerdings sollten die Verantwortlichen zuerst eine Testphase durchführen."),
-        ("de-DE-KatjaNeural", "Genau, danach können wir die Erfahrungen auswerten."),
-        ("de-DE-ConradNeural", "Wichtig wäre mir außerdem, dass die Betroffenen rechtzeitig informiert werden.")
+        ("de-DE-KatjaNeural", "Ich würde gern ab September an vier Tagen pro Woche arbeiten. Meine Aufgaben lassen sich gut bündeln."),
+        ("de-DE-ConradNeural", "Grundsätzlich kann ich mir das vorstellen. Wir sollten aber zunächst drei Monate testen, ob die Erreichbarkeit für unsere Kundschaft gewährleistet bleibt."),
+        ("de-DE-KatjaNeural", "Damit bin ich einverstanden. Ich könnte montags bis donnerstags jeweils etwas länger arbeiten.")
     ],
     "teil1_03.mp3": [
-        ("de-DE-KatjaNeural", f"Die Stadtbibliothek erweitert ihr Angebot im Rahmen eines Projekts zu {TOPIC}. Ab nächster Woche können Besucherinnen und Besucher Medien auch online reservieren. Die Abholung bleibt während der normalen Öffnungszeiten möglich. Bei Fragen hilft das Personal am Informationsschalter.")
+        ("de-DE-KatjaNeural", "Ab kommenden Monat können Beschäftigte die kleinen Gesprächsräume über das interne Buchungssystem reservieren. Die Reservierung ist frühestens sieben Tage im Voraus möglich und gilt jeweils für höchstens neunzig Minuten. Wer vertrauliche Kundengespräche führt, soll ausdrücklich einen geschlossenen Raum auswählen.")
     ],
     "teil1_04.mp3": [
-        ("de-DE-ConradNeural", f"Im Praktikum zu {TOPIC} war ich überrascht, wie viel Verantwortung ich übernehmen durfte. Natürlich musste ich auch einfache Aufgaben erledigen, aber besonders hilfreich waren die Gespräche mit meiner Betreuerin. Sie hat mir gezeigt, wie man Schwierigkeiten systematisch löst.")
+        ("de-DE-ConradNeural", "Als ich vor einem Jahr ins Unternehmen kam, arbeitete fast das ganze Team von verschiedenen Orten aus. Am Anfang fiel es mir schwer, die richtigen Ansprechpartner zu finden. Besonders geholfen hat mir eine Kollegin, die sich jeden Freitag eine halbe Stunde Zeit für meine Fragen nahm. Inzwischen fühle ich mich gut eingebunden.")
     ],
     "teil1_05.mp3": [
-        ("de-DE-KatjaNeural", f"Ein Hinweis für alle Fahrgäste: Wegen einer Baustelle im Zusammenhang mit {TOPIC} fährt die Linie 6 am Samstag nur bis zum Rathaus. Zum Bahnhof gelangen Sie mit dem Ersatzbus 16. Planen Sie bitte etwas mehr Zeit ein.")
+        ("de-DE-KatjaNeural", "Eine kurze Information für alle: Der gemeinsame Präsenztag wird in der nächsten Woche ausnahmsweise vom Mittwoch auf Donnerstag verlegt. Bitte bringen Sie Ihren Mitarbeiterausweis mit, denn der Empfang ist an diesem Tag nur bis 17 Uhr besetzt. Die übrigen Homeoffice-Regelungen bleiben unverändert.")
     ],
     "teil2_01.mp3": [
-        ("de-DE-KatjaNeural", f"Moderator: Heute sprechen wir über {TOPIC}. {CONTEXT} Frau Dr. Weber, Sie forschen zu diesem Thema. Warum ist es derzeit so aktuell?"),
-        ("de-DE-AmalaNeural", "Expertin: Viele Veränderungen bieten Chancen, bringen aber auch neue Anforderungen mit sich. Entscheidend ist, dass die Menschen rechtzeitig informiert und an den Entscheidungen beteiligt werden."),
-        ("de-DE-KatjaNeural", "Moderator: Welche Schwierigkeiten beobachten Sie?"),
-        ("de-DE-AmalaNeural", "Expertin: Häufig fehlen Zeit und klare Zuständigkeiten. Außerdem werden die langfristigen Kosten manchmal unterschätzt."),
-        ("de-DE-KatjaNeural", "Moderator: Was empfehlen Sie?"),
-        ("de-DE-AmalaNeural", "Expertin: Zunächst sollte man verlässliche Informationen sammeln. Danach empfiehlt sich ein begrenzter Versuch, dessen Ergebnisse unabhängig ausgewertet werden. Erst dann sollte man über eine größere Einführung entscheiden."),
-        ("de-DE-KatjaNeural", "Moderator: Welche Rolle spielt die Öffentlichkeit?"),
-        ("de-DE-AmalaNeural", "Expertin: Eine sehr große. Akzeptanz entsteht durch Transparenz und die Möglichkeit, Fragen zu stellen. Eine Lösung ist nur dann dauerhaft erfolgreich, wenn sie praktisch umsetzbar ist und von den Betroffenen verstanden wird.")
+        ("de-DE-KatjaNeural", "Willkommen bei Arbeit im Wandel. Heute geht es um die Frage, wie Beschäftigte im Homeoffice gesund und produktiv bleiben können. Frau Professorin Neumann, viele Unternehmen bieten inzwischen flexible Arbeitsorte an. Ist das automatisch ein Vorteil?"),
+        ("de-DE-AmalaNeural", "Nicht unbedingt. Flexibilität kann den Alltag erleichtern, aber sie verlangt auch Selbstorganisation. Wer zu Hause arbeitet, muss beispielsweise bewusste Pausen einplanen. Sonst verschwimmen die Grenzen zwischen Beruf und Freizeit."),
+        ("de-DE-KatjaNeural", "Welche Schwierigkeiten beobachten Sie besonders häufig?"),
+        ("de-DE-AmalaNeural", "Viele Menschen unterschätzen die Bedeutung eines geeigneten Arbeitsplatzes. Ein Küchentisch ist für eine kurze Aufgabe in Ordnung, aber nicht unbedingt für acht Stunden Bildschirmarbeit. Außerdem fehlt manchen der spontane Austausch mit Kolleginnen und Kollegen."),
+        ("de-DE-KatjaNeural", "Was können Betriebe konkret tun?"),
+        ("de-DE-AmalaNeural", "Sie sollten klare Erreichbarkeitszeiten vereinbaren und Führungskräfte darin schulen, Ergebnisse statt bloßer Anwesenheit zu bewerten. Sinnvoll sind außerdem regelmäßige Gespräche, in denen nicht nur über Aufgaben, sondern auch über Belastungen gesprochen wird."),
+        ("de-DE-KatjaNeural", "Bedeutet das, dass alle Beschäftigten gleich viele Tage zu Hause arbeiten sollten?"),
+        ("de-DE-AmalaNeural", "Nein. Die passende Lösung hängt von der Tätigkeit, der Wohnsituation und den persönlichen Bedürfnissen ab. Wichtig ist, dass Regeln gemeinsam entwickelt und nach einer gewissen Zeit überprüft werden.")
     ],
     "teil3_01.mp3": [
-        ("de-DE-KatjaNeural", f"Moderator: Willkommen zu unserer Diskussion über {TOPIC}. Ich moderiere das Gespräch und fasse am Ende die wichtigsten Punkte zusammen. Herr Braun, was ist Ihnen besonders wichtig?"),
-        ("de-DE-KillianNeural", "Herr Braun: Entscheidend ist für mich eine verlässliche Finanzierung. Ohne realistische Kostenplanung und ausreichende Mittel scheitert selbst ein überzeugendes Vorhaben. Auch mögliche Folgekosten müssen von Anfang an berücksichtigt werden."),
-        ("de-DE-AmalaNeural", "Frau Keller: Ich halte es für genauso wichtig, die betroffenen Menschen frühzeitig einzubeziehen. Sie kennen die Schwierigkeiten aus dem Alltag und können sagen, welche Lösungen tatsächlich funktionieren."),
-        ("de-DE-KatjaNeural", "Moderator: Herr Braun, würden Sie also zuerst die Kosten prüfen?"),
-        ("de-DE-KillianNeural", "Herr Braun: Ja. Ich würde einen Finanzplan erstellen und einen Puffer für unerwartete Ausgaben vorsehen."),
-        ("de-DE-AmalaNeural", "Frau Keller: Und ich würde zuerst Gespräche mit den Betroffenen führen. Ihre Erfahrungen sollten bereits in die Planung einfließen."),
-        ("de-DE-KatjaNeural", "Moderator: Zusammenfassend brauchen wir beides: eine solide Finanzierung und eine Planung, die sich an den Erfahrungen der Menschen orientiert.")
+        ("de-DE-KatjaNeural", "In unserem heutigen Gespräch diskutieren wir, ob Unternehmen feste gemeinsame Bürotage einführen sollten. Herr Yilmaz, Sie leiten ein Team, das überwiegend digital zusammenarbeitet."),
+        ("de-DE-KillianNeural", "Ich bin für einen gemeinsamen Tag pro Woche. Bei komplizierten Projekten entstehen Missverständnisse oft schneller, wenn man sich nur über Nachrichten austauscht. Ein persönliches Treffen hilft, offene Fragen direkt zu klären."),
+        ("de-DE-KatjaNeural", "Frau Roth, sehen Sie das ähnlich?"),
+        ("de-DE-AmalaNeural", "Teilweise. Für neue Kolleginnen und Kollegen ist der persönliche Kontakt wichtig. Trotzdem halte ich einen verpflichtenden Tag für problematisch. Einige wohnen weit entfernt oder betreuen Angehörige. Ein zusätzlicher Fahrtweg kann den angeblichen Zeitgewinn zunichtemachen."),
+        ("de-DE-KatjaNeural", "Herr Yilmaz, könnte man die Teilnahme freiwillig machen?"),
+        ("de-DE-KillianNeural", "Dann kommen möglicherweise gerade diejenigen nicht, die besonders von einem Austausch profitieren würden. Ich könnte mir aber vorstellen, dass Teams den Tag selbst festlegen."),
+        ("de-DE-AmalaNeural", "Das wäre ein vernünftiger Kompromiss. Außerdem sollte es Ausnahmen geben, wenn jemand an diesem Tag konzentriert an einer Aufgabe arbeiten muss."),
+        ("de-DE-KatjaNeural", "Wir halten also fest: Gemeinsame Präsenz kann die Zusammenarbeit stärken, sollte jedoch flexibel organisiert werden und persönliche Lebensumstände berücksichtigen.")
     ],
     "teil4_01.mp3": [
-        ("de-DE-ConradNeural", f"Guten Tag. In meinem Vortrag geht es heute um {TOPIC}. {CONTEXT} Zunächst möchte ich betonen, dass gute Ergebnisse eine klare Zielsetzung voraussetzen. Wer mehrere Aufgaben gleichzeitig beginnt, verliert häufig den Überblick. Deshalb ist es sinnvoll, größere Vorhaben in überschaubare Schritte aufzuteilen."),
-        ("de-DE-ConradNeural", "Ein weiterer wichtiger Punkt ist die Planung. Man sollte Prioritäten setzen und für anspruchsvolle Aufgaben ausreichend Zeit reservieren. Kurze Pausen helfen dabei, die Konzentration zu erhalten."),
-        ("de-DE-ConradNeural", "Auch Informationen müssen sorgfältig geprüft werden. Nicht jede Nachricht ist zuverlässig oder für die eigene Entscheidung relevant. Es empfiehlt sich daher, verschiedene Quellen zu vergleichen."),
-        ("de-DE-ConradNeural", "Zum Schluss: Veränderungen gelingen selten sofort. Wer die Ergebnisse regelmäßig überprüft, Rückmeldungen ernst nimmt und seine Vorgehensweise anpasst, kann langfristig bessere Lösungen erreichen. Dabei ist es wichtig, auch unerwartete Folgen zu dokumentieren und nicht nur positive Ergebnisse zu veröffentlichen. Nur so entsteht ein realistisches Bild der Situation.")
+        ("de-DE-ConradNeural", "Guten Tag. In meinem Vortrag möchte ich zeigen, wie Teams die Zusammenarbeit organisieren können, wenn ihre Mitglieder nicht am selben Ort arbeiten. Zunächst sollte man unterscheiden, welche Aufgaben direkte Abstimmung benötigen und welche unabhängig erledigt werden können. Eine kurze Rückfrage lässt sich oft schriftlich klären; bei einem Konflikt mit mehreren Beteiligten ist ein Gespräch dagegen meist effizienter."),
+        ("de-DE-ConradNeural", "Ein zweiter Punkt betrifft die Kommunikation. Wenn jede Kleinigkeit sofort beantwortet werden muss, werden Beschäftigte ständig unterbrochen. Deshalb empfiehlt es sich, feste Zeitfenster für Nachrichten einzurichten und dringende Anliegen eindeutig zu kennzeichnen."),
+        ("de-DE-ConradNeural", "Auch die Dokumentation darf nicht vernachlässigt werden. Entscheidungen sollten an einem gemeinsamen Ort festgehalten werden, damit neue Teammitglieder den Hintergrund nachvollziehen können. Eine lange Nachrichtensammlung ersetzt jedoch keine verständliche Zusammenfassung."),
+        ("de-DE-ConradNeural", "Schließlich braucht ein verteiltes Team Vertrauen. Führungskräfte sollten nicht kontrollieren, ob jemand ständig online ist, sondern vereinbarte Ergebnisse besprechen. Gleichzeitig müssen Beschäftigte frühzeitig mitteilen, wenn Termine unrealistisch werden. So lassen sich Aufgaben neu verteilen, bevor unnötiger Druck entsteht.")
     ]
 }
 
