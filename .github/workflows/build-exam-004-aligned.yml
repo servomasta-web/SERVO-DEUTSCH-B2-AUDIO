@@ -1,0 +1,42 @@
+name: Build and audit aligned audio — exam 004
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "build_exam_004_aligned.py"
+      - "audit_audio_duplicates.py"
+      - ".github/workflows/build-exam-004-aligned.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Audit distinct content against existing packs
+        run: python audit_audio_duplicates.py
+      - name: Install audio tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install edge-tts
+      - name: Generate and validate eight tracks
+        run: |
+          mkdir -p output
+          python build_exam_004_aligned.py
+          test "$(unzip -Z1 output/exam-004.zip | grep -c '\\.mp3$')" -eq 8
+      - name: Upload validated test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SERVO-DEUTSCH-B2-EXAMEN-004-ALIGNED-TEST
+          path: output/exam-004.zip
+          retention-days: 30
