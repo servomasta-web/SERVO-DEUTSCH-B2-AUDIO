@@ -93,7 +93,7 @@ jobs:
               ("de-DE-KatjaNeural", "Herr Yilmaz, Sie vertreten einen Pflegeverband. Ist das Modell auch in Ihrer Branche denkbar?"),
               ("de-DE-BerndNeural", "Grundsätzlich ja, aber nicht ohne zusätzliches Personal. Pflegebedürftige Menschen brauchen jeden Tag Unterstützung. Wenn eine Schicht weniger arbeitet, müssen andere einspringen. Ohne ausreichende Finanzierung würde die Belastung nur auf die Kolleginnen und Kollegen übertragen."),
               ("de-DE-KatjaNeural", "Frau Roth, Sie forschen an einer Universität zu Arbeitsorganisation."),
-              ("de-DE-SeraphinaNeural", "Ich würde davor warnen, die Vier-Tage-Woche als allgemeingültige Lösung zu betrachten. Entscheidend sind Branche, Arbeitsaufgaben und individuelle Lebenssituation. In manchen Bereichen lässt sich Arbeitszeit flexibel gestalten, in anderen ist die persönliche Anwesenheit unverzichtbar. Unternehmen sollten deshalb verschiedene Modelle erproben und die Ergebnisse wissenschaftlich begleiten."),
+              ("de-DE-SeraphinaMultilingualNeural", "Ich würde davor warnen, die Vier-Tage-Woche als allgemeingültige Lösung zu betrachten. Entscheidend sind Branche, Arbeitsaufgaben und individuelle Lebenssituation. In manchen Bereichen lässt sich Arbeitszeit flexibel gestalten, in anderen ist die persönliche Anwesenheit unverzichtbar. Unternehmen sollten deshalb verschiedene Modelle erproben und die Ergebnisse wissenschaftlich begleiten."),
               ("de-DE-KatjaNeural", "Herr Berger, Sie sind Betriebsrat in einem Logistikzentrum. Was sagen die Beschäftigten?"),
               ("de-DE-ConradNeural", "Viele wünschen sich mehr freie Zeit, aber sie wollen nicht, dass dafür die täglichen Schichten deutlich länger werden. Gerade ältere Beschäftigte finden zehn Stunden körperliche Arbeit zu anstrengend. Wir setzen uns daher für zusätzliche freie Tage bei gleichbleibender Schichtlänge ein. Das kostet allerdings mehr Personal."),
               ("de-DE-KatjaNeural", "Frau Neumann, wie reagieren Ihre Kundinnen und Kunden auf einen geschlossenen Freitag?"),
@@ -297,7 +297,7 @@ jobs:
                   "de-DE-KatjaNeural": "Moderation",
                   "de-DE-AmalaNeural": "Frau Neumann",
                   "de-DE-BerndNeural": "Herr Yilmaz",
-                  "de-DE-SeraphinaNeural": "Frau Roth",
+                  "de-DE-SeraphinaMultilingualNeural": "Frau Roth",
                   "de-DE-ConradNeural": "Herr Berger"
               },
               "teil4_01.mp3": {
