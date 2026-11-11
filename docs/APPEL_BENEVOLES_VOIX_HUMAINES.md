@@ -22,7 +22,7 @@ Nous souhaitons commencer par une audition courte, puis un seul examen pilote (8
 - Les enregistrements doivent être réalisés par de vraies personnes ; aucune voix synthétique ou clonée.
 - La participation est volontaire et non rémunérée.
 - Avant d'utiliser un enregistrement, nous conviendrons par écrit de l'autorisation de le monter, de le distribuer dans les packs audio et de le rendre accessible dans l'application, y compris hors connexion.
-- Nous expliquerons clairement si l'application est distribuée gratuitement et si elle comporte ou non de la publicité ou des fonctions payantes. Aucun fichier ne sera publié sans accord explicite.
+- **État actuel vérifié du code :** la branche de développement examinée (version 7.2.0) ne déclare actuellement ni SDK publicitaire ni système d'achat intégré. Le projet n'a pas annoncé de monétisation. Cela décrit uniquement l'état technique vérifié aujourd'hui et ne constitue pas une promesse sur toutes les versions futures ; tout changement concernant la publicité ou les fonctions payantes sera communiqué aux bénévoles avant toute nouvelle utilisation de leurs enregistrements. Aucun fichier ne sera publié sans accord explicite.
 - **Crédits facultatifs :** chaque bénévole pourra choisir d'être crédité avec son nom, un pseudonyme ou de rester anonyme. La préférence sera demandée individuellement et pourra être modifiée avant la publication.
 - Aucun contrat ne doit autoriser le clonage de la voix ou l'entraînement d'une IA vocale.
 
