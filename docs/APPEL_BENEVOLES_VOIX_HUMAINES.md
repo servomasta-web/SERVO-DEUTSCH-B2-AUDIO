@@ -23,7 +23,7 @@ Nous souhaitons commencer par une audition courte, puis un seul examen pilote (8
 - La participation est volontaire et non rémunérée.
 - Avant d'utiliser un enregistrement, nous conviendrons par écrit de l'autorisation de le monter, de le distribuer dans les packs audio et de le rendre accessible dans l'application, y compris hors connexion.
 - Nous expliquerons clairement si l'application est distribuée gratuitement et si elle comporte ou non de la publicité ou des fonctions payantes. Aucun fichier ne sera publié sans accord explicite.
-- Les bénévoles pourront demander que leur nom soit crédité ou choisir un pseudonyme.
+- **Crédits facultatifs :** chaque bénévole pourra choisir d'être crédité avec son nom, un pseudonyme ou de rester anonyme. La préférence sera demandée individuellement et pourra être modifiée avant la publication.
 - Aucun contrat ne doit autoriser le clonage de la voix ou l'entraînement d'une IA vocale.
 
 Si vous aimez les langues, l'éducation et les projets collaboratifs, votre aide serait précieuse. Merci !
@@ -51,7 +51,9 @@ Dafür suchen wir freiwillige Sprecherinnen und Sprecher mit sehr guten Deutschk
 Zuerst gibt es eine kurze Probeaufnahme. Danach möchten wir — nur mit Zustimmung der Beteiligten — eine vollständige Pilotprüfung mit acht Audiodateien produzieren. Niemand muss sich verpflichten, alle 30 Prüfungen aufzunehmen. Mehrere Freiwillige können sich die Rollen teilen.
 
 ### Transparenz und Nutzungsrechte
-Die Aufnahmen werden ausschließlich von echten Menschen eingesprochen, nicht synthetisch erzeugt und nicht geklont. Vor einer Veröffentlichung vereinbaren wir schriftlich, ob und wie die Aufnahmen in der App und in herunterladbaren Audiopaketen verwendet werden dürfen. Es gibt kein Voice-Cloning und kein Training von KI-Stimmen mit den Aufnahmen. Die Freiwilligen können eine Namensnennung oder ein Pseudonym wählen.
+Die Aufnahmen werden ausschließlich von echten Menschen eingesprochen, nicht synthetisch erzeugt und nicht geklont. Vor einer Veröffentlichung vereinbaren wir schriftlich, ob und wie die Aufnahmen in der App und in herunterladbaren Audiopaketen verwendet werden dürfen. Es gibt kein Voice-Cloning und kein Training von KI-Stimmen mit den Aufnahmen.
+
+**Freiwillige Namensnennung:** Jede Person kann selbst entscheiden, ob sie mit ihrem echten Namen, einem Pseudonym oder anonym in den Credits erscheinen möchte. Die Namensnennung ist freiwillig.
 
 Wenn ihr Bildung, Sprachen und gemeinschaftliche Projekte mögt, freuen wir uns über eure Nachricht. Vielen Dank!
 
@@ -63,5 +65,6 @@ Kontakt: [hier eine Projektkontaktadresse einfügen]
 2. State accurately whether the app is free, contains advertising, or has paid features.
 3. Confirm that volunteer audio may be distributed publicly in app downloads; do not imply that the recordings will remain private.
 4. Ask for written permission before publishing or packaging any voice recording.
-5. Do not promise payment, future employment, or professional exposure.
-6. Follow each community's rules; some language-exchange communities prohibit commercial promotion or recording conversations.
+5. Ask each volunteer separately for their credit preference: real name, pseudonym, or anonymity. Do not infer consent to be credited from consent to record.
+6. Do not promise payment, future employment, or professional exposure.
+7. Follow each community's rules; some language-exchange communities prohibit commercial promotion or recording conversations.
