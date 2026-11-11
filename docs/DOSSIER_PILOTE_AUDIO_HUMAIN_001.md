@@ -1,6 +1,6 @@
 # Dossier de démarrage — pilote audio humain 001
 
-Ce document organise le premier enregistrement humain de SERVO DEUTSCH B2. Il ne constitue pas un avis juridique. Les autorisations doivent être adaptées au pays des participants et relues si nécessaire avant toute diffusion.
+Ce document organise le premier enregistrement humain de SERVO DEUTSCH B2. Il ne constitue pas un avis juridique. Les autorisations doivent être adaptées au pays des participants et relues si nécessaire avant toute diffusion.\n\n**Modèle économique à communiquer :** le budget actuel est de 0 €, mais le projet a choisi de conserver la possibilité d'une commercialisation future, avec une version gratuite généreuse et d'éventuelles fonctions Premium payantes. Cette perspective doit être expliquée avant toute audition et couverte explicitement par l'autorisation écrite. Les contributions non rémunérées ne peuvent être sollicitées que dans les communautés dont les règles autorisent explicitement ce cadre ; sinon, il faut renoncer à y publier un appel bénévole.
 
 ## 1. Objectif du pilote
 
@@ -75,12 +75,12 @@ Après validation, exporter en MP3 avec un débit constant ou de bonne qualité 
 
 Je confirme que les enregistrements que je remets sont ma propre interprétation vocale et que je suis autorisé(e) à les fournir.
 
-Après avoir reçu les informations sur l'application, son mode de distribution, la présence éventuelle de publicité et de fonctions payantes, je choisis :
+Après avoir reçu les informations sur l'application, son mode de distribution, le budget actuel de 0 €, ainsi que la possibilité de fonctions Premium payantes ou d'une commercialisation future, je choisis :
 
 - [ ] J'autorise l'utilisation et le montage de mes prises sélectionnées.
 - [ ] J'autorise leur intégration dans SERVO DEUTSCH B2.
 - [ ] J'autorise leur distribution dans les packs audio téléchargeables et leur écoute hors connexion.
-- [ ] J'autorise leur conservation et leur diffusion dans les versions futures de l'application, selon les conditions écrites qui me sont communiquées.
+- [ ] J'autorise leur conservation et leur diffusion dans les versions futures de l'application, y compris si le projet introduit ultérieurement des fonctions Premium payantes, dans les limites précises décrites dans les conditions écrites qui me sont communiquées.
 
 **Crédit — choisir une seule option :**
 - [ ] Mon nom réel : ______________________________
@@ -116,9 +116,9 @@ Ne jamais inscrire les coordonnées personnelles dans le dépôt public. Ne publ
 ## 8. Conditions à régler avant le recrutement public
 
 - Ajouter une adresse de contact dédiée et contrôlée par le projet.
-- Décrire honnêtement l'état actuel : la branche Android 7.2.0 examinée ne déclare ni SDK publicitaire ni système d'achat intégré. Préciser que cela reflète le code vérifié à ce jour et que tout changement futur sera communiqué avant une nouvelle utilisation des enregistrements.
+- Décrire honnêtement l'état actuel : la branche Android 7.2.0 examinée ne déclare ni SDK publicitaire ni système d'achat intégré. Préciser que le projet envisage une version gratuite et d'éventuelles fonctions Premium payantes à l'avenir ; l'état actuel du code n'est pas une promesse de gratuité permanente.
 - Définir la durée de l'autorisation et le processus de retrait.
-- Vérifier les règles des communautés où l'appel sera diffusé.
+- Vérifier les règles des communautés où l'appel sera diffusé, notamment leurs restrictions sur les contributions bénévoles pour des projets susceptibles d'être commercialisés.
 - Ne publier aucun nom, aucune voix ni aucun extrait d'audition sans autorisation distincte.
 - Ne pas commencer par les 30 examens : valider d'abord le pilote 001.
 
