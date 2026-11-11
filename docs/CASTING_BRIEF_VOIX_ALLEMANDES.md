@@ -1,3 +1,5 @@
+> **Statut du document : modèle de casting rémunéré à conserver pour une phase ultérieure. Il n'est pas un appel actif.** Le budget actuel du projet audio est de 0 € : aucun devis ne peut être accepté ni aucun paiement promis à ce stade. Le projet privilégie actuellement l'étude d'un petit pilote bénévole uniquement dans les communautés qui l'autorisent explicitement malgré la possibilité de Premium payant. Toute personne doit être informée de cette possibilité et donner son accord écrit avant toute utilisation. Ce brief rémunéré ne sera réactivé que lorsqu'un budget sera réellement disponible.
+
 # Casting brief — voix humaines allemandes pour SERVO DEUTSCH B2
 
 ## Projet
