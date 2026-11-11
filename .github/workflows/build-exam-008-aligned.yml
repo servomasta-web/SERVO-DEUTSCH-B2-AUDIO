@@ -37,6 +37,17 @@ jobs:
           for f in output/audio/*.mp3; do
             ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\.[0-9]+)?$'
           done
+      - name: Publish individual MP3 tracks for Android playback
+        run: |
+          mkdir -p audio/exam-008
+          cp output/audio/*.mp3 audio/exam-008/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/exam-008/*.mp3
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish aligned audio tracks for exam 008"
+            git push
+          fi
       - name: Upload validated build artifact
         uses: actions/upload-artifact@v4
         with:
