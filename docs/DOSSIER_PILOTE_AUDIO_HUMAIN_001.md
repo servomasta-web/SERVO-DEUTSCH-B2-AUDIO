@@ -71,7 +71,7 @@ Après validation, exporter en MP3 avec un débit constant ou de bonne qualité 
 **Projet :** SERVO DEUTSCH B2  
 **Nom légal ou identité du participant :** ______________________________  
 **Date :** ______________________________  
-**Adresse de contact du projet :** ______________________________
+**Adresse de contact du projet :** servomasta@gmail.com
 
 Je confirme que les enregistrements que je remets sont ma propre interprétation vocale et que je suis autorisé(e) à les fournir.
 
@@ -115,7 +115,7 @@ Ne jamais inscrire les coordonnées personnelles dans le dépôt public. Ne publ
 
 ## 8. Conditions à régler avant le recrutement public
 
-- Ajouter une adresse de contact dédiée et contrôlée par le projet.
+- Adresse de contact du projet renseignée : servomasta@gmail.com (à vérifier comme boîte effectivement contrôlée avant diffusion publique).
 - Décrire honnêtement l'état actuel : la branche Android 7.2.0 examinée ne déclare ni SDK publicitaire ni système d'achat intégré. Préciser que le projet envisage une version gratuite et d'éventuelles fonctions Premium payantes à l'avenir ; l'état actuel du code n'est pas une promesse de gratuité permanente.
 - Définir la durée de l'autorisation et le processus de retrait.
 - Vérifier les règles des communautés où l'appel sera diffusé, notamment leurs restrictions sur les contributions bénévoles pour des projets susceptibles d'être commercialisés.
