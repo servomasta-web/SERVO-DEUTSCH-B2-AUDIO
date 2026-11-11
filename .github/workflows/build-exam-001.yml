@@ -308,17 +308,17 @@ jobs:
           for track_name in ("teil2_01.mp3",):
               for voice, spoken_text in tracks[track_name]:
                   extra.append(f"{speaker_labels[track_name][voice]}: {spoken_text}")
-          extra.append("\\n## Teil 3 — Diskussion")
+          extra.append("\n## Teil 3 — Diskussion")
           for track_name in ("teil3_01.mp3",):
               for voice, spoken_text in tracks[track_name]:
                   extra.append(f"{speaker_labels[track_name][voice]}: {spoken_text}")
-          extra.append("\\n## Teil 4 — Vortrag")
+          extra.append("\n## Teil 4 — Vortrag")
           for track_name in ("teil4_01.mp3",):
               for voice, spoken_text in tracks[track_name]:
                   extra.append(f"{speaker_labels[track_name][voice]}: {spoken_text}")
           transcripts = transcripts.replace(
-              "## Teil 2, Teil 3 und Teil 4\\nLes textes audio correspondants sont fournis dans les pistes MP3. Cette première édition inclut ici les consignes et le corrigé ; la transcription intégrale de ces trois textes sera ajoutée à la prochaine révision éditoriale.",
-              "\\n".join(extra)
+              "## Teil 2, Teil 3 und Teil 4\nLes textes audio correspondants sont fournis dans les pistes MP3. Cette première édition inclut ici les consignes et le corrigé ; la transcription intégrale de ces trois textes sera ajoutée à la prochaine révision éditoriale.",
+              "\n".join(extra)
           )
           (DOCS / "sujet-examen-001.md").write_text(booklet, encoding="utf-8")
           (DOCS / "corrige-examen-001.md").write_text(answer_key, encoding="utf-8")
