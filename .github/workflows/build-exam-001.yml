@@ -1,0 +1,304 @@
+name: Générer examen Goethe B2 Hören 001
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-exam-001:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Installer les outils audio
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install edge-tts
+      - name: Générer les huit pistes et les documents
+        run: |
+          mkdir -p output/audio output/docs
+          cat > build_exam.py <<'PY'
+          import asyncio, subprocess, zipfile
+          from pathlib import Path
+          import edge_tts
+
+          ROOT = Path("output")
+          AUDIO = ROOT / "audio"
+          DOCS = ROOT / "docs"
+          AUDIO.mkdir(parents=True, exist_ok=True)
+          DOCS.mkdir(parents=True, exist_ok=True)
+
+          # Chaque élément est une réplique (voix, texte). Les pauses sont ajoutées
+          # entre les répliques pour obtenir un rythme d'écoute naturel.
+          tracks = {
+            "teil1_01.mp3": [
+              ("de-DE-KatjaNeural", "Guten Morgen, Herr Weber. Sie wollten doch wissen, ob unser Sprachkurs im Januar auch online stattfindet."),
+              ("de-DE-ConradNeural", "Genau. Ich bin beruflich oft unterwegs und kann nicht jede Woche zum Unterricht kommen."),
+              ("de-DE-KatjaNeural", "Kein Problem. Der Kurs findet weiterhin dienstags im Bildungszentrum statt. Wer nicht vor Ort sein kann, bekommt einen Zugangslink und kann live teilnehmen."),
+              ("de-DE-ConradNeural", "Sehr gut. Und die Prüfungsvorbereitung am Samstag?"),
+              ("de-DE-KatjaNeural", "Die bleibt ausschließlich in Präsenz, weil wir dort mündliche Prüfungssituationen simulieren.")
+            ],
+            "teil1_02.mp3": [
+              ("de-DE-ConradNeural", "Entschuldigung, fährt dieser Bus noch zum Hauptbahnhof? Auf der Anzeige steht eine andere Strecke."),
+              ("de-DE-KatjaNeural", "Heute leider nicht. Wegen einer Baustelle endet die Linie am Rathaus. Von dort fährt ein Ersatzbus alle zehn Minuten zum Bahnhof."),
+              ("de-DE-ConradNeural", "Dann steige ich lieber hier aus. Muss ich für den Ersatzbus ein neues Ticket kaufen?"),
+              ("de-DE-KatjaNeural", "Nein, Ihr Fahrschein gilt auch im Ersatzverkehr. Achten Sie nur auf die Haltestelle gegenüber der Apotheke.")
+            ],
+            "teil1_03.mp3": [
+              ("de-DE-KatjaNeural", "Ich habe gesehen, dass du dich für das Praktikum im Stadtmuseum beworben hast. Hast du schon eine Antwort bekommen?"),
+              ("de-DE-ConradNeural", "Ja, sie haben mich genommen. Allerdings beginnt das Praktikum nicht wie angekündigt im April, sondern erst Mitte Mai."),
+              ("de-DE-KatjaNeural", "Ist das für dich ein Problem?"),
+              ("de-DE-ConradNeural", "Eigentlich nicht. So kann ich vorher meine Abschlussarbeit abgeben. Dafür dauert das Praktikum jetzt sechs statt acht Wochen.")
+            ],
+            "teil1_04.mp3": [
+              ("de-DE-ConradNeural", "Guten Tag. Ich möchte mich nach Ihrer Wohnungsanzeige erkundigen. Ist die Küche bereits eingerichtet?"),
+              ("de-DE-KatjaNeural", "Die Einbauküche bleibt in der Wohnung. Kühlschrank und Herd sind ebenfalls vorhanden. Eine Waschmaschine gehört allerdings nicht zur Ausstattung."),
+              ("de-DE-ConradNeural", "Und wie hoch ist die Kaution?"),
+              ("de-DE-KatjaNeural", "Zwei Monatskaltmieten. Besichtigungen sind am Donnerstag ab siebzehn Uhr möglich, nicht am Wochenende.")
+            ],
+            "teil1_05.mp3": [
+              ("de-DE-KatjaNeural", "Du wolltest doch beim Stadtlauf mitmachen. Ich habe gerade die Anmeldung geöffnet."),
+              ("de-DE-ConradNeural", "Ich auch, aber die Zehn-Kilometer-Strecke ist schon ausgebucht. Für fünf Kilometer gibt es noch Plätze."),
+              ("de-DE-KatjaNeural", "Dann nehmen wir die kurze Strecke?"),
+              ("de-DE-ConradNeural", "Gern. Übrigens ist die Startgebühr für Studierende ermäßigt, wenn man den Ausweis bei der Abholung der Startnummer vorzeigt.")
+            ],
+            "teil2_01.mp3": [
+              ("de-DE-KatjaNeural", "Willkommen bei Radio Alltag. Heute sprechen wir über gemeinschaftliche Wohnprojekte. Viele Menschen wünschen sich mehr Kontakt zu ihren Nachbarn, zugleich möchten sie unabhängig bleiben. Unser Gast ist Daniel Krüger, der seit vier Jahren in einem Mehrgenerationenhaus lebt. Herr Krüger, wie sind Sie auf diese Wohnform gekommen?"),
+              ("de-DE-ConradNeural", "Nach dem Studium bin ich aus beruflichen Gründen in eine größere Stadt gezogen. Anfangs wohnte ich allein in einer kleinen Wohnung. Das war praktisch, aber auf Dauer fehlte mir der Austausch. Eine Kollegin erzählte mir von einem Haus, in dem Studierende, Familien und ältere Menschen zusammenleben. Ich habe mir das Projekt angesehen und war überrascht, wie gut die Organisation funktionierte."),
+              ("de-DE-KatjaNeural", "Was unterscheidet dieses Haus von einer gewöhnlichen Wohngemeinschaft?"),
+              ("de-DE-ConradNeural", "Wir haben keine gemeinsame Küche für alle. Jede Partei besitzt eine eigene abgeschlossene Wohnung. Zusätzlich gibt es Räume, die gemeinsam genutzt werden: eine Werkstatt, einen Garten und einen großen Aufenthaltsraum. Niemand muss ständig mit anderen zusammen sein. Man kann sich zurückziehen, aber Unterstützung ist schnell erreichbar."),
+              ("de-DE-KatjaNeural", "Welche Aufgaben übernehmen die Bewohnerinnen und Bewohner?"),
+              ("de-DE-ConradNeural", "Wir organisieren vieles selbst. Einmal im Monat findet eine Hausversammlung statt, bei der wir über Reparaturen, Ausgaben und neue Ideen entscheiden. Außerdem gibt es freiwillige Arbeitsgruppen. Ich kümmere mich zum Beispiel um die Internetseite. Wichtig ist: Die Mitarbeit wird erwartet, aber nicht jede Person muss dieselbe Zeit investieren."),
+              ("de-DE-KatjaNeural", "Das klingt nach viel Verantwortung. Gibt es auch Konflikte?"),
+              ("de-DE-ConradNeural", "Natürlich. Unterschiedliche Tagesabläufe können schwierig sein. Manche arbeiten im Schichtdienst, andere haben kleine Kinder. Am Anfang gab es Beschwerden wegen Lärm im Garten. Wir haben dann feste Ruhezeiten vereinbart. Seitdem ist es besser. Entscheidend war, dass wir nicht übereinander, sondern miteinander gesprochen haben."),
+              ("de-DE-KatjaNeural", "Ist diese Wohnform günstiger als eine normale Mietwohnung?"),
+              ("de-DE-ConradNeural", "Nicht unbedingt. Die Mieten liegen ungefähr im üblichen Bereich. Wir sparen aber manchmal Geld, weil wir Werkzeuge gemeinsam anschaffen und Dinge reparieren, statt sofort neue zu kaufen. Der größte Gewinn ist für mich nicht finanziell, sondern sozial: Wenn ich krank bin, bringt mir jemand eine Suppe oder erledigt einen Einkauf."),
+              ("de-DE-KatjaNeural", "Für wen eignet sich ein Mehrgenerationenhaus besonders?"),
+              ("de-DE-ConradNeural", "Für Menschen, die Gemeinschaft schätzen und bereit sind, Verantwortung zu teilen. Wer absolute Ruhe und keinerlei Absprachen möchte, wird sich vermutlich schwer tun. Man sollte außerdem vor dem Einzug prüfen, wie Entscheidungen getroffen werden und welche Kosten zusätzlich zur Miete entstehen."),
+              ("de-DE-KatjaNeural", "Herr Krüger, vielen Dank für das Gespräch.")
+            ],
+            "teil3_01.mp3": [
+              ("de-DE-KatjaNeural", "In unserer heutigen Diskussionsrunde geht es um die Frage, ob Unternehmen eine Vier-Tage-Woche einführen sollten. Ich begrüße vier Gäste. Frau Neumann, Sie leiten ein kleines Architekturbüro. Wie sehen Sie das?"),
+              ("de-DE-AmalaNeural", "Wir haben das Modell ein halbes Jahr getestet. Die Beschäftigten arbeiten jetzt an vier Tagen jeweils etwas länger. Die Produktivität ist nicht gesunken, im Gegenteil: Besprechungen sind kürzer geworden, weil alle besser vorbereitet sind. Allerdings funktioniert das nur, wenn die Aufgaben realistisch verteilt werden."),
+              ("de-DE-KatjaNeural", "Herr Yilmaz, Sie vertreten einen Pflegeverband. Ist das Modell auch in Ihrer Branche denkbar?"),
+              ("de-DE-BerndNeural", "Grundsätzlich ja, aber nicht ohne zusätzliches Personal. Pflegebedürftige Menschen brauchen jeden Tag Unterstützung. Wenn eine Schicht weniger arbeitet, müssen andere einspringen. Ohne ausreichende Finanzierung würde die Belastung nur auf die Kolleginnen und Kollegen übertragen."),
+              ("de-DE-KatjaNeural", "Frau Roth, Sie forschen an einer Universität zu Arbeitsorganisation."),
+              ("de-DE-AmalaNeural", "Ich würde davor warnen, die Vier-Tage-Woche als allgemeingültige Lösung zu betrachten. Entscheidend sind Branche, Arbeitsaufgaben und individuelle Lebenssituation. In manchen Bereichen lässt sich Arbeitszeit flexibel gestalten, in anderen ist die persönliche Anwesenheit unverzichtbar. Unternehmen sollten deshalb verschiedene Modelle erproben und die Ergebnisse wissenschaftlich begleiten."),
+              ("de-DE-KatjaNeural", "Herr Berger, Sie sind Betriebsrat in einem Logistikzentrum. Was sagen die Beschäftigten?"),
+              ("de-DE-BerndNeural", "Viele wünschen sich mehr freie Zeit, aber sie wollen nicht, dass dafür die täglichen Schichten deutlich länger werden. Gerade ältere Beschäftigte finden zehn Stunden körperliche Arbeit zu anstrengend. Wir setzen uns daher für zusätzliche freie Tage bei gleichbleibender Schichtlänge ein. Das kostet allerdings mehr Personal."),
+              ("de-DE-KatjaNeural", "Frau Neumann, wie reagieren Ihre Kundinnen und Kunden auf einen geschlossenen Freitag?"),
+              ("de-DE-AmalaNeural", "Wir haben zunächst befürchtet, schlechter erreichbar zu sein. Deshalb gibt es einen wechselnden Bereitschaftsdienst für dringende Anliegen. Die meisten Kunden akzeptieren das, wenn sie rechtzeitig informiert werden. Für spontane Termine ist es manchmal schwieriger."),
+              ("de-DE-KatjaNeural", "Herr Yilmaz, könnte eine Vier-Tage-Woche den Pflegeberuf attraktiver machen?"),
+              ("de-DE-BerndNeural", "Ja, sie könnte ein Baustein sein. Aber bessere Dienstpläne, verlässliche Pausen und eine angemessene Bezahlung sind mindestens genauso wichtig. Eine neue Wochenstruktur allein löst den Personalmangel nicht."),
+              ("de-DE-KatjaNeural", "Frau Roth, was wäre Ihr Rat an die Politik?"),
+              ("de-DE-AmalaNeural", "Sie sollte Modellversuche unterstützen und dafür sorgen, dass auch kleine Betriebe teilnehmen können. Außerdem brauchen wir klare Regeln, damit flexible Arbeitszeiten nicht zu ständiger Erreichbarkeit führen."),
+              ("de-DE-KatjaNeural", "Vielen Dank an alle Gäste für diese differenzierte Diskussion.")
+            ],
+            "teil4_01.mp3": [
+              ("de-DE-ConradNeural", "Guten Abend. In meinem Vortrag möchte ich mich mit der Frage beschäftigen, wie Städte ihre öffentlichen Räume an den Klimawandel anpassen können. Dabei geht es nicht nur um große Bauprojekte. Oft entscheiden auch kleine Veränderungen darüber, ob ein Stadtviertel im Sommer lebenswert bleibt."),
+              ("de-DE-ConradNeural", "Ein zentrales Problem sind sogenannte Wärmeinseln. Asphalt, Beton und dunkle Dächer speichern tagsüber Wärme und geben sie nachts langsam wieder ab. Besonders betroffen sind dicht bebaute Viertel mit wenig Grün. Für ältere Menschen, kleine Kinder und Personen mit bestimmten Vorerkrankungen kann große Hitze eine erhebliche Belastung darstellen."),
+              ("de-DE-ConradNeural", "Eine naheliegende Maßnahme ist deshalb, mehr Bäume zu pflanzen. Sie spenden Schatten und kühlen ihre Umgebung durch Verdunstung. Allerdings reicht es nicht, einfach möglichst viele Setzlinge in den Boden zu bringen. Stadtplaner müssen geeignete Arten auswählen, die mit Trockenperioden zurechtkommen. Außerdem brauchen junge Bäume in den ersten Jahren regelmäßige Pflege und ausreichend Wasser."),
+              ("de-DE-ConradNeural", "Neben Bäumen können entsiegelte Flächen helfen. Wenn Regenwasser nicht sofort in die Kanalisation geleitet wird, sondern im Boden versickern kann, steht es Pflanzen länger zur Verfügung. Solche Flächen können als kleine Grünstreifen, begrünte Innenhöfe oder offene Plätze gestaltet werden. Bei Starkregen entlasten sie zudem die Kanalisation."),
+              ("de-DE-ConradNeural", "Ein weiterer Ansatz sind helle Dächer und Fassaden. Sie reflektieren einen größeren Teil der Sonnenstrahlung und heizen sich weniger stark auf. In einigen Städten werden solche Maßnahmen bereits bei öffentlichen Gebäuden umgesetzt. Für private Eigentümer können Förderprogramme einen Anreiz schaffen. Wichtig ist jedoch, dass die Materialien langlebig sind und zur jeweiligen Architektur passen."),
+              ("de-DE-ConradNeural", "Man darf auch die soziale Seite nicht vergessen. Nicht jedes Viertel verfügt über einen Park in erreichbarer Nähe. Gerade Menschen, die keine eigene Terrasse oder keinen Garten haben, benötigen öffentliche Orte, an denen sie sich bei Hitze aufhalten können. Bibliotheken, Schulen oder Nachbarschaftszentren könnten dafür zeitweise geöffnet werden, sofern Personal und Finanzierung vorhanden sind."),
+              ("de-DE-ConradNeural", "Solche Maßnahmen kosten Geld und müssen langfristig geplant werden. Dennoch ist es meist teurer, erst nach einer Hitzewelle oder Überschwemmung zu reagieren. Kommunen sollten deshalb Klimaanpassung mit ohnehin geplanten Sanierungen verbinden. Wenn eine Straße erneuert wird, kann man gleichzeitig Bäume, sichere Radwege und Flächen für Regenwasser einplanen."),
+              ("de-DE-ConradNeural", "Mein Fazit lautet: Eine klimaangepasste Stadt entsteht nicht durch eine einzelne technische Lösung. Erfolgreich ist eine Kombination aus Begrünung, wassersensibler Planung, geeigneten Baustoffen und sozialen Angeboten. Vor allem müssen die Bewohnerinnen und Bewohner früh beteiligt werden, denn sie kennen die Probleme ihres Viertels aus dem Alltag. Vielen Dank für Ihre Aufmerksamkeit.")
+            ]
+          }
+
+          async def make_track(name, utterances):
+              parts = []
+              for i, (voice, text) in enumerate(utterances):
+                  p = AUDIO / f".{name}.{i:02d}.mp3"
+                  await edge_tts.Communicate(text, voice, rate="-4%").save(str(p))
+                  parts.append(p)
+                  if i < len(utterances) - 1:
+                      silence = AUDIO / f".silence_{i}.mp3"
+                      subprocess.run([
+                          "ffmpeg", "-y", "-f", "lavfi", "-i",
+                          "anullsrc=r=24000:cl=mono", "-t", "0.65",
+                          "-codec:a", "libmp3lame", "-b:a", "64k", str(silence)
+                      ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+                      parts.append(silence)
+              listing = AUDIO / f".{name}.txt"
+              listing.write_text("".join(f"file '{p.resolve()}'\n" for p in parts), encoding="utf-8")
+              target = AUDIO / name
+              subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(listing),
+                              "-codec:a", "libmp3lame", "-b:a", "128k", str(target)],
+                             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+              for p in parts + [listing]:
+                  p.unlink(missing_ok=True)
+              print(f"OK {target} ({target.stat().st_size} octets)")
+
+          async def main():
+              for name, utterances in tracks.items():
+                  await make_track(name, utterances)
+
+          asyncio.run(main())
+
+          # Archive audio : exactement les huit MP3 attendus par l'application.
+          with zipfile.ZipFile(ROOT / "exam-001.zip", "w", zipfile.ZIP_DEFLATED) as z:
+              for name in [
+                  "teil1_01.mp3", "teil1_02.mp3", "teil1_03.mp3", "teil1_04.mp3",
+                  "teil1_05.mp3", "teil2_01.mp3", "teil3_01.mp3", "teil4_01.mp3"
+              ]:
+                  z.write(AUDIO / name, arcname=name)
+
+          booklet = """# SERVO DEUTSCH B2 — Goethe B2 Hören — Examen 001
+
+**Durée indicative :** environ 40 minutes, transfert des réponses compris.  
+**Consigne :** écoutez les textes et répondez aux 30 questions. Les parties 1 et 3 sont écoutées une fois ; les parties 2 et 4 deux fois.
+
+## Teil 1 — Kurze Gespräche (10 Punkte)
+Pour chaque texte, indiquez si l'affirmation est richtig (R) ou falsch (F), puis choisissez A, B ou C.
+
+**Text 1**
+1. Der Sprachkurs findet ab Januar nur noch online statt. (R/F)
+2. Die Prüfungsvorbereitung am Samstag …
+   A. findet weiterhin vor Ort statt.  
+   B. wird auf Dienstag verlegt.  
+   C. ist für alle Teilnehmenden freiwillig.
+
+**Text 2**
+3. Der Bus fährt heute bis zum Hauptbahnhof. (R/F)
+4. Für den Ersatzbus …
+   A. braucht man ein neues Ticket.  
+   B. gilt der normale Fahrschein.  
+   C. muss man am Rathaus umsteigen und bezahlen.
+
+**Text 3**
+5. Das Praktikum beginnt später als ursprünglich angekündigt. (R/F)
+6. Das Praktikum …
+   A. dauert jetzt länger.  
+   B. findet nicht mehr im Museum statt.  
+   C. dauert jetzt sechs Wochen.
+
+**Text 4**
+7. Eine Waschmaschine gehört zur Wohnungsausstattung. (R/F)
+8. Die Besichtigung …
+   A. ist am Samstag möglich.  
+   B. findet am Donnerstagabend statt.  
+   C. ist nur nach vorheriger Zahlung der Kaution möglich.
+
+**Text 5**
+9. Für die Zehn-Kilometer-Strecke gibt es noch freie Plätze. (R/F)
+10. Studierende erhalten eine Ermäßigung, wenn sie …
+    A. sich als Gruppe anmelden.  
+    B. den Studierendenausweis bei der Startnummernausgabe zeigen.  
+    C. die Gebühr erst am Veranstaltungstag bezahlen.
+
+## Teil 2 — Radiointerview (6 Punkte)
+Wählen Sie jeweils die richtige Antwort A, B oder C.
+
+11. Warum zog Daniel Krüger in eine größere Stadt?
+    A. Wegen eines Studiums. B. Aus beruflichen Gründen. C. Wegen seiner Familie.
+12. Wie sind die privaten Wohnungen organisiert?
+    A. Jede Person hat ein eigenes Zimmer mit Gemeinschaftsküche. B. Alle teilen eine Wohnung. C. Jede Partei hat eine abgeschlossene Wohnung.
+13. Welche Aufgabe übernimmt Daniel?
+    A. Er betreut die Internetseite. B. Er verwaltet die Mieten. C. Er organisiert die Pflege.
+14. Wie lösten die Bewohner den Konflikt wegen des Gartens?
+    A. Sie schlossen den Garten. B. Sie vereinbarten Ruhezeiten. C. Sie bauten eine Schallschutzwand.
+15. Was ist laut Daniel der größte Vorteil?
+    A. Niedrigere Mieten. B. Eine zentrale Lage. C. Soziale Unterstützung im Alltag.
+16. Für wen ist diese Wohnform eher ungeeignet?
+    A. Für Menschen, die keinerlei Absprachen möchten. B. Für Menschen mit Kindern. C. Für Menschen, die gelegentlich Hilfe brauchen.
+
+## Teil 3 — Diskussion (6 Punkte)
+Ordnen Sie jeder Aussage die passende Person zu: A Frau Neumann, B Herr Yilmaz, C Frau Roth, D Herr Berger.
+
+17. Die Arbeitszeit sollte nicht einfach auf längere tägliche Schichten verteilt werden.
+18. Die Ergebnisse eines neuen Arbeitszeitmodells sollten wissenschaftlich untersucht werden.
+19. Ein wechselnder Bereitschaftsdienst hilft, trotz eines freien Tages erreichbar zu bleiben.
+20. Ohne zusätzliches Personal könnte die Arbeitsbelastung in der Pflege steigen.
+21. Eine Vier-Tage-Woche allein beseitigt den Fachkräftemangel nicht.
+22. Unternehmen sollten vor allem kurze und gut vorbereitete Besprechungen fördern.
+
+## Teil 4 — Vortrag (8 Punkte)
+Wählen Sie jeweils die richtige Antwort A, B oder C.
+
+23. Was versteht man im Vortrag unter Wärmeinseln?
+    A. Besonders windige Stadtteile. B. Bereiche, die Wärme speichern. C. Orte mit vielen Brunnen.
+24. Wer ist durch große Hitze besonders gefährdet?
+    A. Ältere Menschen und kleine Kinder. B. Ausschließlich Sportler. C. Vor allem Berufspendler.
+25. Was ist bei neuen Stadtbäumen wichtig?
+    A. Sie müssen schnell wachsen. B. Sie dürfen kein Wasser benötigen. C. Sie müssen passend ausgewählt und gepflegt werden.
+26. Was bewirken entsiegelte Flächen?
+    A. Regenwasser kann versickern. B. Straßen werden breiter. C. Die Kanalisation wird vergrößert.
+27. Warum werden helle Dächer empfohlen?
+    A. Sie sind immer billiger. B. Sie reflektieren mehr Sonnenstrahlung. C. Sie speichern mehr Wärme.
+28. Welche soziale Maßnahme wird vorgeschlagen?
+    A. Alle Parks kostenpflichtig machen. B. Private Gärten öffnen. C. Öffentliche Gebäude zeitweise als Aufenthaltsorte nutzen.
+29. Wann sollten Klimaanpassungsmaßnahmen eingeplant werden?
+    A. Bei ohnehin geplanten Sanierungen. B. Erst nach einer Katastrophe. C. Nur bei Neubauten.
+30. Was ist die Hauptaussage des Vortrags?
+    A. Eine einzige technische Lösung genügt. B. Verschiedene Maßnahmen müssen kombiniert werden. C. Klimaanpassung betrifft nur die Stadtverwaltung.
+"""
+          answer_key = """# Corrigé — Examen 001
+
+1 F · 2 A · 3 F · 4 B · 5 R · 6 C · 7 F · 8 B · 9 F · 10 B  
+11 B · 12 C · 13 A · 14 B · 15 C · 16 A  
+17 D · 18 C · 19 A · 20 B · 21 B · 22 A  
+23 B · 24 A · 25 C · 26 A · 27 B · 28 C · 29 A · 30 B
+
+## Barème
+30 questions, 1 point par réponse correcte.
+"""
+          transcripts = """# Transcriptions — Examen 001
+
+## Teil 1
+### Text 1
+Katja: Guten Morgen, Herr Weber. Sie wollten doch wissen, ob unser Sprachkurs im Januar auch online stattfindet.
+Conrad: Genau. Ich bin beruflich oft unterwegs und kann nicht jede Woche zum Unterricht kommen.
+Katja: Kein Problem. Der Kurs findet weiterhin dienstags im Bildungszentrum statt. Wer nicht vor Ort sein kann, bekommt einen Zugangslink und kann live teilnehmen.
+Conrad: Sehr gut. Und die Prüfungsvorbereitung am Samstag?
+Katja: Die bleibt ausschließlich in Präsenz, weil wir dort mündliche Prüfungssituationen simulieren.
+
+### Text 2
+Conrad: Entschuldigung, fährt dieser Bus noch zum Hauptbahnhof? Auf der Anzeige steht eine andere Strecke.
+Katja: Heute leider nicht. Wegen einer Baustelle endet die Linie am Rathaus. Von dort fährt ein Ersatzbus alle zehn Minuten zum Bahnhof.
+Conrad: Dann steige ich lieber hier aus. Muss ich für den Ersatzbus ein neues Ticket kaufen?
+Katja: Nein, Ihr Fahrschein gilt auch im Ersatzverkehr. Achten Sie nur auf die Haltestelle gegenüber der Apotheke.
+
+### Text 3
+Katja: Ich habe gesehen, dass du dich für das Praktikum im Stadtmuseum beworben hast. Hast du schon eine Antwort bekommen?
+Conrad: Ja, sie haben mich genommen. Allerdings beginnt das Praktikum nicht wie angekündigt im April, sondern erst Mitte Mai.
+Katja: Ist das für dich ein Problem?
+Conrad: Eigentlich nicht. So kann ich vorher meine Abschlussarbeit abgeben. Dafür dauert das Praktikum jetzt sechs statt acht Wochen.
+
+### Text 4
+Conrad: Guten Tag. Ich möchte mich nach Ihrer Wohnungsanzeige erkundigen. Ist die Küche bereits eingerichtet?
+Katja: Die Einbauküche bleibt in der Wohnung. Kühlschrank und Herd sind ebenfalls vorhanden. Eine Waschmaschine gehört allerdings nicht zur Ausstattung.
+Conrad: Und wie hoch ist die Kaution?
+Katja: Zwei Monatskaltmieten. Besichtigungen sind am Donnerstag ab siebzehn Uhr möglich, nicht am Wochenende.
+
+### Text 5
+Katja: Du wolltest doch beim Stadtlauf mitmachen. Ich habe gerade die Anmeldung geöffnet.
+Conrad: Ich auch, aber die Zehn-Kilometer-Strecke ist schon ausgebucht. Für fünf Kilometer gibt es noch Plätze.
+Katja: Dann nehmen wir die kurze Strecke?
+Conrad: Gern. Übrigens ist die Startgebühr für Studierende ermäßigt, wenn man den Ausweis bei der Abholung der Startnummer vorzeigt.
+
+## Teil 2, Teil 3 und Teil 4
+Les textes audio correspondants sont fournis dans les pistes MP3. Cette première édition inclut ici les consignes et le corrigé ; la transcription intégrale de ces trois textes sera ajoutée à la prochaine révision éditoriale.
+"""
+          (DOCS / "sujet-examen-001.md").write_text(booklet, encoding="utf-8")
+          (DOCS / "corrige-examen-001.md").write_text(answer_key, encoding="utf-8")
+          (DOCS / "transcriptions-examen-001.md").write_text(transcripts, encoding="utf-8")
+          print("ZIP exam-001.zip créé avec les 8 MP3.")
+          PY
+          python build_exam.py
+          test "$(unzip -Z1 output/exam-001.zip | grep -c '\.mp3$')" -eq 8
+      - name: Publier les fichiers à télécharger
+        uses: actions/upload-artifact@v4
+        with:
+          name: SERVO-DEUTSCH-B2-EXAMEN-001
+          path: |
+            output/exam-001.zip
+            output/docs/*.md
+          retention-days: 30
