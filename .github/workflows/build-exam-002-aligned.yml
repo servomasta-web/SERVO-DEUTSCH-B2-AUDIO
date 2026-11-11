@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Audit duplicate audio content
+        run: python audit_audio_duplicates.py
       - name: Install audio tools
         run: |
           sudo apt-get update
