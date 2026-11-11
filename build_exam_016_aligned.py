@@ -8,8 +8,8 @@ ROOT=Path("output")
 AUDIO=ROOT/"audio"
 AUDIO.mkdir(parents=True,exist_ok=True)
 
-# Prüfung 006 — Ehrenamtliches Engagement in der Gemeinde.
-# Inhaltlich an GoetheExam06Audio.java ausgerichtet.
+# Goethe B2 Hören — Prüfung 016: Kultur für alle.
+# Acht aligned tracks with German dialogue voices and one- or two-play exam playback.
 tracks={
 "teil1_01.mp3":[("de-DE-KatjaNeural","Mitteilung des Kulturhauses: Für die Lesung am Freitag sind noch Plätze frei. Karten können bis Donnerstagabend online reserviert werden. An der Abendkasse ist nur eine begrenzte Anzahl verfügbar.")],
 "teil1_02.mp3":[("de-DE-KatjaNeural","Ich würde gern öfter ins Theater gehen, aber die Karten sind teuer."),("de-DE-ConradNeural","Das Stadttheater bietet am ersten Sonntag im Monat ermäßigte Plätze an."),("de-DE-KatjaNeural","Gilt das auch für Studierende?"),("de-DE-ConradNeural","Ja, wenn du deinen Studierendenausweis an der Kasse vorzeigst.")],
