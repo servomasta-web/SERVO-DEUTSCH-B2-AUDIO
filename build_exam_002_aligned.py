@@ -8,62 +8,6 @@ ROOT = Path("output")
 AUDIO = ROOT / "audio"
 AUDIO.mkdir(parents=True, exist_ok=True)
 
-# Examen 002 — textes repris de GoetheExamData.get(1), sans changement de contenu.
-# Thème : Nachhaltige Mobilität in Großstädten
-TOPIC = "nachhaltige mobilität in großstädten"
-CONTEXT = (
-    "Ein unabhängiges Forschungszentrum vergleicht mehrere praktische Lösungen. "
-    "Dabei werden Kosten, Alltagstauglichkeit und mögliche Nebenwirkungen getrennt bewertet. "
-    "Im fiktiven Fallbeispiel zu „Nachhaltige Mobilität in Großstädten“ wurden 277 Personen aus "
-    "4 Regionen einbezogen. Die Ergebnisse dienen als Grundlage für die folgenden Texte und Aufgaben."
-)
-
-tracks = {
-    "teil1_01.mp3": [
-        ("de-DE-KatjaNeural", f"Guten Tag. Der Informationsabend zum Thema {TOPIC} findet nicht wie angekündigt am Donnerstag, sondern am Freitag um 18 Uhr statt. Bitte melden Sie sich bis Mittwoch im Sekretariat an.")
-    ],
-    "teil1_02.mp3": [
-        ("de-DE-KatjaNeural", f"Hast du schon von der neuen Regelung zu {TOPIC} gehört?"),
-        ("de-DE-ConradNeural", "Ja, ich finde sie grundsätzlich sinnvoll. Allerdings sollten die Verantwortlichen zuerst eine Testphase durchführen."),
-        ("de-DE-KatjaNeural", "Genau, danach können wir die Erfahrungen auswerten."),
-        ("de-DE-ConradNeural", "Wichtig wäre mir außerdem, dass die Betroffenen rechtzeitig informiert werden.")
-    ],
-    "teil1_03.mp3": [
-        ("de-DE-KatjaNeural", f"Die Stadtbibliothek erweitert ihr Angebot im Rahmen eines Projekts zu {TOPIC}. Ab nächster Woche können Besucherinnen und Besucher Medien auch online reservieren. Die Abholung bleibt während der normalen Öffnungszeiten möglich. Bei Fragen hilft das Personal am Informationsschalter.")
-    ],
-    "teil1_04.mp3": [
-        ("de-DE-ConradNeural", f"Im Praktikum zu {TOPIC} war ich überrascht, wie viel Verantwortung ich übernehmen durfte. Natürlich musste ich auch einfache Aufgaben erledigen, aber besonders hilfreich waren die Gespräche mit meiner Betreuerin. Sie hat mir gezeigt, wie man Schwierigkeiten systematisch löst.")
-    ],
-    "teil1_05.mp3": [
-        ("de-DE-KatjaNeural", f"Ein Hinweis für alle Fahrgäste: Wegen einer Baustelle im Zusammenhang mit {TOPIC} fährt die Linie 6 am Samstag nur bis zum Rathaus. Zum Bahnhof gelangen Sie mit dem Ersatzbus 16. Planen Sie bitte etwas mehr Zeit ein.")
-    ],
-    "teil2_01.mp3": [
-        ("de-DE-KatjaNeural", f"Moderator: Heute sprechen wir über {TOPIC}. {CONTEXT} Frau Dr. Weber, Sie forschen zu diesem Thema. Warum ist es derzeit so aktuell?"),
-        ("de-DE-AmalaNeural", "Expertin: Viele Veränderungen bieten Chancen, bringen aber auch neue Anforderungen mit sich. Entscheidend ist, dass die Menschen rechtzeitig informiert und an den Entscheidungen beteiligt werden."),
-        ("de-DE-KatjaNeural", "Moderator: Welche Schwierigkeiten beobachten Sie?"),
-        ("de-DE-AmalaNeural", "Expertin: Häufig fehlen Zeit und klare Zuständigkeiten. Außerdem werden die langfristigen Kosten manchmal unterschätzt."),
-        ("de-DE-KatjaNeural", "Moderator: Was empfehlen Sie?"),
-        ("de-DE-AmalaNeural", "Expertin: Zunächst sollte man verlässliche Informationen sammeln. Danach empfiehlt sich ein begrenzter Versuch, dessen Ergebnisse unabhängig ausgewertet werden. Erst dann sollte man über eine größere Einführung entscheiden."),
-        ("de-DE-KatjaNeural", "Moderator: Welche Rolle spielt die Öffentlichkeit?"),
-        ("de-DE-AmalaNeural", "Expertin: Eine sehr große. Akzeptanz entsteht durch Transparenz und die Möglichkeit, Fragen zu stellen. Eine Lösung ist nur dann dauerhaft erfolgreich, wenn sie praktisch umsetzbar ist und von den Betroffenen verstanden wird.")
-    ],
-    "teil3_01.mp3": [
-        ("de-DE-KatjaNeural", f"Moderator: Willkommen zu unserer Diskussion über {TOPIC}. Ich moderiere das Gespräch und fasse am Ende die wichtigsten Punkte zusammen. Herr Braun, was ist Ihnen besonders wichtig?"),
-        ("de-DE-KillianNeural", "Herr Braun: Entscheidend ist für mich eine verlässliche Finanzierung. Ohne realistische Kostenplanung und ausreichende Mittel scheitert selbst ein überzeugendes Vorhaben. Auch mögliche Folgekosten müssen von Anfang an berücksichtigt werden."),
-        ("de-DE-AmalaNeural", "Frau Keller: Ich halte es für genauso wichtig, die betroffenen Menschen frühzeitig einzubeziehen. Sie kennen die Schwierigkeiten aus dem Alltag und können sagen, welche Lösungen tatsächlich funktionieren."),
-        ("de-DE-KatjaNeural", "Moderator: Herr Braun, würden Sie also zuerst die Kosten prüfen?"),
-        ("de-DE-KillianNeural", "Herr Braun: Ja. Ich würde einen Finanzplan erstellen und einen Puffer für unerwartete Ausgaben vorsehen."),
-        ("de-DE-AmalaNeural", "Frau Keller: Und ich würde zuerst Gespräche mit den Betroffenen führen. Ihre Erfahrungen sollten bereits in die Planung einfließen."),
-        ("de-DE-KatjaNeural", "Moderator: Zusammenfassend brauchen wir beides: eine solide Finanzierung und eine Planung, die sich an den Erfahrungen der Menschen orientiert.")
-    ],
-    "teil4_01.mp3": [
-        ("de-DE-ConradNeural", f"Guten Tag. In meinem Vortrag geht es heute um {TOPIC}. {CONTEXT} Zunächst möchte ich betonen, dass gute Ergebnisse eine klare Zielsetzung voraussetzen. Wer mehrere Aufgaben gleichzeitig beginnt, verliert häufig den Überblick. Deshalb ist es sinnvoll, größere Vorhaben in überschaubare Schritte aufzuteilen."),
-        ("de-DE-ConradNeural", "Ein weiterer wichtiger Punkt ist die Planung. Man sollte Prioritäten setzen und für anspruchsvolle Aufgaben ausreichend Zeit reservieren. Kurze Pausen helfen dabei, die Konzentration zu erhalten."),
-        ("de-DE-ConradNeural", "Auch Informationen müssen sorgfältig geprüft werden. Nicht jede Nachricht ist zuverlässig oder für die eigene Entscheidung relevant. Es empfiehlt sich daher, verschiedene Quellen zu vergleichen."),
-        ("de-DE-ConradNeural", "Zum Schluss: Veränderungen gelingen selten sofort. Wer die Ergebnisse regelmäßig überprüft, Rückmeldungen ernst nimmt und seine Vorgehensweise anpasst, kann langfristig bessere Lösungen erreichen. Dabei ist es wichtig, auch unerwartete Folgen zu dokumentieren und nicht nur positive Ergebnisse zu veröffentlichen. Nur so entsteht ein realistisches Bild der Situation.")
-    ]
-}
-
 async def make_track(name, utterances):
     parts = []
     for i, (voice, spoken_text) in enumerate(utterances):
@@ -89,20 +33,16 @@ async def make_track(name, utterances):
         await asyncio.sleep(1)
         if i < len(utterances) - 1:
             silence = AUDIO / f".silence_{name}_{i}.mp3"
-            subprocess.run([
-                "ffmpeg", "-y", "-f", "lavfi", "-i",
-                "anullsrc=r=24000:cl=mono", "-t", "0.65",
-                "-codec:a", "libmp3lame", "-b:a", "64k", str(silence)
-            ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+            subprocess.run(["ffmpeg", "-y", "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono",
+                            "-t", "0.65", "-codec:a", "libmp3lame", "-b:a", "64k", str(silence)],
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
             parts.append(silence)
-
     listing = AUDIO / f".{name}.txt"
     listing.write_text("".join(f"file '{p.resolve()}'\n" for p in parts), encoding="utf-8")
     target = AUDIO / name
-    subprocess.run([
-        "ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(listing),
-        "-codec:a", "libmp3lame", "-b:a", "128k", str(target)
-    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(listing),
+                    "-codec:a", "libmp3lame", "-b:a", "128k", str(target)],
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
     for part in parts + [listing]:
         part.unlink(missing_ok=True)
     if not target.exists() or target.stat().st_size < 1024:
@@ -110,24 +50,55 @@ async def make_track(name, utterances):
     print(f"OK {name}: {target.stat().st_size} octets", flush=True)
 
 async def main():
-    for name, utterances in tracks.items():
-        await make_track(name, utterances)
+    expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
+                "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
+    if set(tracks) != set(expected):
+        raise RuntimeError(f"Liste de pistes incorrecte: {sorted(tracks)}")
+    for name in expected:
+        await make_track(name, tracks[name])
 
 asyncio.run(main())
 
 archive = ROOT / "exam-002.zip"
-expected = [
-    "teil1_01.mp3", "teil1_02.mp3", "teil1_03.mp3", "teil1_04.mp3",
-    "teil1_05.mp3", "teil2_01.mp3", "teil3_01.mp3", "teil4_01.mp3"
-]
+expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
+            "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
     for name in expected:
         z.write(AUDIO / name, arcname=name)
 with zipfile.ZipFile(archive) as z:
-    actual = sorted(z.namelist())
-    if sorted(expected) != actual:
-        raise RuntimeError(f"Contenu ZIP inattendu : {actual}")
+    if sorted(z.namelist()) != sorted(expected):
+        raise RuntimeError(f"Contenu ZIP inattendu : {z.namelist()}")
     for info in z.infolist():
         if info.file_size < 1024:
             raise RuntimeError(f"Piste ZIP invalide : {info.filename}")
 print(f"Archive validée : {archive} ({archive.stat().st_size} octets)", flush=True)
+# Prüfung 002 — Nachhaltige Mobilität in Großstädten.
+# Audioinhalte stimmen mit GoetheExam02Audio.java in der App überein.
+tracks = {
+"teil1_01.mp3": [("de-DE-KatjaNeural", "Achtung an alle Fahrgäste: Wegen einer kurzfristigen Reparatur ist der Aufzug am Nordausgang des Hauptbahnhofs bis morgen Mittag außer Betrieb. Reisende mit Kinderwagen oder Rollstuhl werden gebeten, den barrierefreien Zugang auf der Südseite zu benutzen. Das Servicepersonal hilft bei Bedarf vor Ort.")],
+"teil1_02.mp3": [("de-DE-KatjaNeural", "Ich überlege, mit dem Fahrrad zur Arbeit zu fahren."), ("de-DE-ConradNeural", "Die Strecke ist doch ziemlich lang."), ("de-DE-KatjaNeural", "Stimmt, aber seitdem es den neuen Radweg entlang des Flusses gibt, fühle ich mich sicherer."), ("de-DE-ConradNeural", "Dann probier es doch zunächst an zwei Tagen pro Woche aus, statt gleich ganz umzusteigen.")],
+"teil1_03.mp3": [("de-DE-KatjaNeural", "Die Stadtverwaltung informiert: Ab dem ersten Juni kostet das Monatsticket für Bus und Straßenbahn weniger. Die Ermäßigung gilt allerdings nur für Personen, die das Ticket online oder am Automaten kaufen. Im Kundenzentrum bleibt der bisherige Preis bestehen, weil dort eine persönliche Beratung angeboten wird.")],
+"teil1_04.mp3": [("de-DE-AmalaNeural", "Ich nutze das Leihauto nur noch selten. Früher dachte ich, es sei immer günstiger als ein eigenes Fahrzeug. Inzwischen habe ich aber festgestellt, dass ich viele Wege zu Fuß erledigen kann. Für Besuche außerhalb der Stadt nehme ich meistens den Zug und miete nur dann ein Auto, wenn es wirklich notwendig ist.")],
+"teil1_05.mp3": [("de-DE-KatjaNeural", "Eine Meldung aus dem Verkehrsverbund: Am kommenden Samstag werden mehrere Straßen im Zentrum für den Autoverkehr gesperrt. Die Busse fahren deshalb über eine Umleitung und halten vorübergehend nicht am Rathausplatz. Die Haltestelle am Stadtpark bleibt dagegen in Betrieb.")],
+"teil2_01.mp3": [
+("de-DE-KatjaNeural", "Moderator: Unsere Städte wachsen, und damit nimmt auch der Verkehr zu. Frau Dr. Seidel, viele Kommunen investieren in Radwege. Reicht das aus?"),
+("de-DE-AmalaNeural", "Expertin: Es ist ein wichtiger Schritt, aber allein nicht ausreichend. Menschen steigen nur dann dauerhaft um, wenn Radwege durchgehend, gut beleuchtet und von starkem Autoverkehr getrennt sind. Einzelne kurze Abschnitte schaffen noch kein zuverlässiges Netz."),
+("de-DE-KatjaNeural", "Moderator: Was müsste zusätzlich verbessert werden?"),
+("de-DE-AmalaNeural", "Expertin: Der öffentliche Nahverkehr muss häufiger fahren und besser aufeinander abgestimmt sein. Besonders außerhalb der Hauptverkehrszeiten warten Fahrgäste mancherorts sehr lange. Wer nach einem langen Arbeitstag nicht sicher nach Hause kommt, entscheidet sich oft wieder für das Auto."),
+("de-DE-KatjaNeural", "Moderator: Ist ein niedriger Ticketpreis der wichtigste Anreiz?"),
+("de-DE-AmalaNeural", "Expertin: Er hilft, doch die Verlässlichkeit ist mindestens genauso wichtig. Ein günstiges Ticket überzeugt wenig, wenn Anschlüsse regelmäßig verpasst werden. Außerdem sollten sichere Fahrradstellplätze an Bahnhöfen entstehen."),
+("de-DE-KatjaNeural", "Moderator: Wie kann man Menschen überzeugen, die bisher ausschließlich Auto fahren?"),
+("de-DE-AmalaNeural", "Expertin: Nicht mit Verboten allein. Sinnvoll sind zunächst praktische Angebote und zeitlich begrenzte Tests. Wer eine gute Verbindung selbst erlebt, verändert seine Gewohnheiten eher als durch eine bloße Werbekampagne.")
+],
+"teil3_01.mp3": [
+("de-DE-KatjaNeural", "Moderatorin: In unserem Stadtgespräch geht es heute um eine autofreie Innenstadt. Herr Vogt, Sie betreiben ein Geschäft im Zentrum."),
+("de-DE-ConradNeural", "Vogt: Ich habe Bedenken. Viele Kundinnen und Kunden kommen von außerhalb und können schwere Einkäufe nicht bequem mit dem Fahrrad transportieren. Wenn Parkplätze verschwinden, könnten sie künftig in Einkaufszentren am Stadtrand fahren."),
+("de-DE-KatjaNeural", "Moderatorin: Frau Aydin, Sie engagieren sich für bessere Luft in der Stadt."),
+("de-DE-AmalaNeural", "Aydin: Die Sorge der Geschäftsleute ist verständlich. Trotzdem zeigen andere Städte, dass Fußgängerzonen mehr Menschen anziehen können, wenn Busse häufig fahren und Lieferzonen gut geplant sind. Aufenthaltsqualität ist ebenfalls ein wirtschaftlicher Faktor."),
+("de-DE-KatjaNeural", "Moderatorin: Herr Vogt, wäre eine schrittweise Einführung denkbar?"),
+("de-DE-ConradNeural", "Vogt: Ja, wenn die Stadt zuerst die Erreichbarkeit verbessert und mit den Betrieben spricht. Eine Testphase mit klaren Messkriterien wäre akzeptabel."),
+("de-DE-AmalaNeural", "Aydin: Damit könnte ich leben. Wichtig wäre mir, nicht nur die Umsätze zu zählen, sondern auch Lärm, Luftqualität und die Zahl der Besucher zu untersuchen."),
+("de-DE-KatjaNeural", "Moderatorin: Wir sehen also, dass wirtschaftliche Interessen und Umweltziele gemeinsam berücksichtigt werden müssen.")
+],
+"teil4_01.mp3": [("de-DE-ConradNeural", "Guten Tag. Ich möchte heute erläutern, weshalb eine nachhaltige Verkehrspolitik nicht nur aus dem Bau neuer Straßen oder Radwege besteht. Zunächst muss eine Stadt verstehen, welche Wege ihre Einwohner tatsächlich zurücklegen. Dafür sind Befragungen hilfreich, aber auch anonymisierte Verkehrsdaten können ein realistisches Bild liefern. Auf dieser Grundlage lassen sich Maßnahmen besser planen. In dicht besiedelten Vierteln kann es sinnvoll sein, Gehwege zu verbreitern und sichere Querungen einzurichten. In Randgebieten ist dagegen häufig eine bessere Busverbindung entscheidend. Eine einheitliche Lösung für alle Stadtteile wäre deshalb wenig zweckmäßig. Ein oft unterschätzter Aspekt ist die Verknüpfung verschiedener Verkehrsmittel. Wer mit dem Zug ankommt, sollte problemlos ein Fahrrad ausleihen oder einen Bus erreichen können. Dafür braucht man übersichtliche Informationen und abgestimmte Fahrpläne. Schließlich darf man die Bevölkerung nicht erst informieren, wenn die Entscheidung bereits gefallen ist. Frühzeitige Gespräche können Konflikte sichtbar machen und bessere Vorschläge hervorbringen. Nach der Einführung einer Maßnahme sollte die Stadt regelmäßig prüfen, ob sie ihre Ziele erreicht. Falls nicht, müssen Anpassungen möglich sein.")]
+}
