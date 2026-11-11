@@ -14,7 +14,11 @@ Avant de publier, le responsable du projet doit confirmer par écrit :
 - si les enregistrements seront distribués mondialement dans l'application et les packs téléchargeables ;
 - la durée de l'autorisation et la procédure de retrait.
 
-Ne pas présenter le projet comme non commercial si ce n'est pas exact. Ne pas demander du travail bénévole pour un projet destiné à générer des revenus.
+Le choix du projet est désormais de conserver la possibilité d'une commercialisation future : une version gratuite généreuse et d'éventuelles fonctions Premium payantes. Ne pas présenter le projet comme non commercial et ne pas demander du travail bénévole dans une communauté qui interdit les contributions gratuites pour un projet susceptible de générer des revenus.
+
+**Conséquence pour Voice Acting Club (VAC) :** son guide créateur interdit explicitement les appels non rémunérés pour un projet destiné à générer des revenus. En conséquence, ne pas publier l'appel bénévole de SERVO DEUTSCH B2 dans les espaces unpaid de VAC. Ne pas tenter de contourner cette règle en qualifiant le projet de simple projet de loisir. Une éventuelle voie rémunérée ne pourra être étudiée que si un budget existe et respecte les conditions du canal concerné.
+
+Pour les communautés germanophones d'apprentissage, demander l'autorisation écrite d'un modérateur en exposant clairement la possibilité de Premium payant. Si la réponse est négative ou ambiguë, ne pas publier.
 
 ## 2. Canal prioritaire à étudier : Voice Acting Club
 
