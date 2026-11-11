@@ -8,8 +8,8 @@ ROOT=Path("output")
 AUDIO=ROOT/"audio"
 AUDIO.mkdir(parents=True,exist_ok=True)
 
-# Prüfung 006 — Ehrenamtliches Engagement in der Gemeinde.
-# Inhaltlich an GoetheExam06Audio.java ausgerichtet.
+# Goethe B2 Hören — Prüfung 014: Mehrsprachigkeit am Arbeitsplatz.
+# Acht validierte MP3-Tracks mit abwechslungsreichen deutschen Stimmen.
 tracks={
 "teil1_01.mp3":[("de-DE-KatjaNeural","Mitteilung der Personalabteilung: Der interne Sprachstammtisch findet ab nächster Woche jeden zweiten Mittwoch statt. Beschäftigte können dort in kleinen Gruppen Deutsch, Englisch und weitere Sprachen üben. Eine Anmeldung ist nicht erforderlich.")],
 "teil1_02.mp3":[("de-DE-KatjaNeural","Für das neue Projekt arbeiten Kolleginnen aus vier Ländern zusammen."),("de-DE-ConradNeural","Das kann sehr hilfreich sein, aber wir sollten wichtige Entscheidungen schriftlich festhalten."),("de-DE-KatjaNeural","Wegen der unterschiedlichen Sprachen?"),("de-DE-ConradNeural","Ja, damit alle dieselben Informationen erhalten und Missverständnisse später geklärt werden können.")],
