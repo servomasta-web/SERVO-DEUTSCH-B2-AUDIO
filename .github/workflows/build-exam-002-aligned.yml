@@ -27,9 +27,7 @@ jobs:
       - name: Download and validate the already generated audio pack
         run: |
           mkdir -p output/audio
-          curl --fail --location --retry 3 \\
-            https://github.com/servomasta-web/SERVO-DEUTSCH-B2-AUDIO/releases/download/audio-v1/exam-002.zip \\
-            --output output/exam-002.zip
+          curl --fail --location --retry 3 https://github.com/servomasta-web/SERVO-DEUTSCH-B2-AUDIO/releases/download/audio-v1/exam-002.zip --output output/exam-002.zip
           unzip -tq output/exam-002.zip
           unzip -o output/exam-002.zip -d output/audio
           test "$(find output/audio -maxdepth 1 -name '*.mp3' | wc -l)" -eq 8
