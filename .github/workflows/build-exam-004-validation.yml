@@ -9,7 +9,7 @@ on:
       - ".github/workflows/build-exam-004-validation.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -36,6 +36,19 @@ jobs:
           for f in output/audio/*.mp3; do
             ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\.[0-9]+)?$'
           done
+      - name: Publish validated MP3 tracks to the audio repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p audio/exam-004
+          cp output/audio/*.mp3 audio/exam-004/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/exam-004/*.mp3
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish validated audio tracks for exam 004"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
       - name: Upload validated ZIP
         uses: actions/upload-artifact@v4
         with:
