@@ -1,0 +1,48 @@
+name: Rebuild aligned human audio — exam 001
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "build_exam_001_aligned.py"
+      - ".github/workflows/build-exam-001-aligned.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install audio tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install edge-tts
+      - name: Generate and validate the eight aligned tracks
+        run: |
+          mkdir -p output
+          python build_exam_001_aligned.py
+          test "$(unzip -Z1 output/exam-001.zip | grep -c '\.mp3$')" -eq 8
+      - name: Upload temporary build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SERVO-DEUTSCH-B2-EXAMEN-001-ALIGNED
+          path: output/exam-001.zip
+          retention-days: 30
+      - name: Replace exam 001 asset in the permanent audio release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: audio-v1
+          name: SERVO DEUTSCH B2 — Packs audio
+          files: output/exam-001.zip
+          overwrite_files: true
+          make_latest: false
+          fail_on_unmatched_files: true
