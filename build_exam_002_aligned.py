@@ -49,29 +49,6 @@ async def make_track(name, utterances):
         raise RuntimeError(f"Piste finale invalide : {name}")
     print(f"OK {name}: {target.stat().st_size} octets", flush=True)
 
-async def main():
-    expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
-                "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
-    if set(tracks) != set(expected):
-        raise RuntimeError(f"Liste de pistes incorrecte: {sorted(tracks)}")
-    for name in expected:
-        await make_track(name, tracks[name])
-
-asyncio.run(main())
-
-archive = ROOT / "exam-002.zip"
-expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
-            "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
-with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
-    for name in expected:
-        z.write(AUDIO / name, arcname=name)
-with zipfile.ZipFile(archive) as z:
-    if sorted(z.namelist()) != sorted(expected):
-        raise RuntimeError(f"Contenu ZIP inattendu : {z.namelist()}")
-    for info in z.infolist():
-        if info.file_size < 1024:
-            raise RuntimeError(f"Piste ZIP invalide : {info.filename}")
-print(f"Archive validée : {archive} ({archive.stat().st_size} octets)", flush=True)
 # Prüfung 002 — Nachhaltige Mobilität in Großstädten.
 # Audioinhalte stimmen mit GoetheExam02Audio.java in der App überein.
 tracks = {
@@ -102,3 +79,27 @@ tracks = {
 ],
 "teil4_01.mp3": [("de-DE-ConradNeural", "Guten Tag. Ich möchte heute erläutern, weshalb eine nachhaltige Verkehrspolitik nicht nur aus dem Bau neuer Straßen oder Radwege besteht. Zunächst muss eine Stadt verstehen, welche Wege ihre Einwohner tatsächlich zurücklegen. Dafür sind Befragungen hilfreich, aber auch anonymisierte Verkehrsdaten können ein realistisches Bild liefern. Auf dieser Grundlage lassen sich Maßnahmen besser planen. In dicht besiedelten Vierteln kann es sinnvoll sein, Gehwege zu verbreitern und sichere Querungen einzurichten. In Randgebieten ist dagegen häufig eine bessere Busverbindung entscheidend. Eine einheitliche Lösung für alle Stadtteile wäre deshalb wenig zweckmäßig. Ein oft unterschätzter Aspekt ist die Verknüpfung verschiedener Verkehrsmittel. Wer mit dem Zug ankommt, sollte problemlos ein Fahrrad ausleihen oder einen Bus erreichen können. Dafür braucht man übersichtliche Informationen und abgestimmte Fahrpläne. Schließlich darf man die Bevölkerung nicht erst informieren, wenn die Entscheidung bereits gefallen ist. Frühzeitige Gespräche können Konflikte sichtbar machen und bessere Vorschläge hervorbringen. Nach der Einführung einer Maßnahme sollte die Stadt regelmäßig prüfen, ob sie ihre Ziele erreicht. Falls nicht, müssen Anpassungen möglich sein.")]
 }
+
+async def main():
+    expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
+                "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
+    if set(tracks) != set(expected):
+        raise RuntimeError(f"Liste de pistes incorrecte: {sorted(tracks)}")
+    for name in expected:
+        await make_track(name, tracks[name])
+
+asyncio.run(main())
+
+archive = ROOT / "exam-002.zip"
+expected = ["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3",
+            "teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
+with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
+    for name in expected:
+        z.write(AUDIO / name, arcname=name)
+with zipfile.ZipFile(archive) as z:
+    if sorted(z.namelist()) != sorted(expected):
+        raise RuntimeError(f"Contenu ZIP inattendu : {z.namelist()}")
+    for info in z.infolist():
+        if info.file_size < 1024:
+            raise RuntimeError(f"Piste ZIP invalide : {info.filename}")
+print(f"Archive validée : {archive} ({archive.stat().st_size} octets)", flush=True)
