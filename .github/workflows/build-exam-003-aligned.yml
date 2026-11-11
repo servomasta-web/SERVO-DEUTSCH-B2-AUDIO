@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "build_exam_003_aligned.py"
-      - ".github/workflows/build-exam-003-aligned.yml"
+      - "audit_audio_duplicates.py"\n      - ".github/workflows/build-exam-003-aligned.yml"
   workflow_dispatch:
 
 permissions:
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install audio tools
+      - name: Audit duplicate audio content\n        run: python audit_audio_duplicates.py\n      - name: Install audio tools
         run: |
           sudo apt-get update
           sudo apt-get install -y ffmpeg
