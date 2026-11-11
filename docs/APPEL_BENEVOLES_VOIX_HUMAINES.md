@@ -6,7 +6,7 @@ Bonjour !
 
 Nous développons SERVO DEUTSCH B2, une application éducative Android qui aide les apprenants à préparer le Goethe-Zertifikat B2.
 
-Nous cherchons des personnes germanophones bénévoles, idéalement de langue maternelle allemande, pour enregistrer des dialogues et documents audio d'entraînement. Le projet dispose actuellement d'un budget de 0 € : il s'agit donc d'une collaboration bénévole, sans rémunération. Nous le précisons clairement avant toute audition.
+Nous cherchons des personnes germanophones bénévoles, idéalement de langue maternelle allemande, pour enregistrer des dialogues et documents audio d'entraînement. Le projet dispose actuellement d'un budget de 0 €. Nous étudions toutefois un modèle comprenant une version gratuite et, éventuellement, des fonctions Premium payantes à l'avenir. Cette possibilité sera annoncée clairement à chaque participant avant toute audition. Aucune rémunération n'est actuellement prévue ; nous ne solliciterons des contributions non rémunérées que dans des communautés dont les règles autorisent explicitement ce type de contribution malgré cette perspective commerciale. Si les règles l'interdisent, nous ne publierons pas d'appel bénévole dans ces espaces.
 
 ### Ce que nous recherchons
 - Des voix féminines et masculines naturelles, distinctes.
@@ -22,7 +22,7 @@ Nous souhaitons commencer par une audition courte, puis un seul examen pilote (8
 - Les enregistrements doivent être réalisés par de vraies personnes ; aucune voix synthétique ou clonée.
 - La participation est volontaire et non rémunérée.
 - Avant d'utiliser un enregistrement, nous conviendrons par écrit de l'autorisation de le monter, de le distribuer dans les packs audio et de le rendre accessible dans l'application, y compris hors connexion.
-- **État actuel vérifié du code :** la branche de développement examinée (version 7.2.0) ne déclare actuellement ni SDK publicitaire ni système d'achat intégré. Le projet n'a pas annoncé de monétisation. Cela décrit uniquement l'état technique vérifié aujourd'hui et ne constitue pas une promesse sur toutes les versions futures ; tout changement concernant la publicité ou les fonctions payantes sera communiqué aux bénévoles avant toute nouvelle utilisation de leurs enregistrements. Aucun fichier ne sera publié sans accord explicite.
+- **État actuel vérifié du code :** la branche de développement examinée (version 7.2.0) ne déclare actuellement ni SDK publicitaire ni système d'achat intégré. Le modèle envisagé prévoit une version gratuite et la possibilité de fonctions Premium payantes à l'avenir. Cela décrit l'orientation actuelle du projet, pas une garantie sur les tarifs ou fonctionnalités futurs ; toute utilisation des enregistrements devra rester dans le périmètre de l'autorisation écrite acceptée par chaque contributeur. Aucun fichier ne sera publié sans accord explicite.
 - **Crédits facultatifs :** chaque bénévole pourra choisir d'être crédité avec son nom, un pseudonyme ou de rester anonyme. La préférence sera demandée individuellement et pourra être modifiée avant la publication.
 - Aucun contrat ne doit autoriser le clonage de la voix ou l'entraînement d'une IA vocale.
 
@@ -38,7 +38,7 @@ Wir entwickeln SERVO DEUTSCH B2, eine Android-Lern-App zur Vorbereitung auf die 
 
 Dafür suchen wir freiwillige Sprecherinnen und Sprecher mit sehr guten Deutschkenntnissen, möglichst deutsche Muttersprachlerinnen und Muttersprachler. Gesucht werden natürliche weibliche und männliche Stimmen für kurze Hörtexte, Interviews, Diskussionen und Vorträge.
 
-**Wichtig: Das Projekt hat derzeit kein Budget (0 €). Die Mitarbeit ist freiwillig und unbezahlt.** Wir möchten das von Anfang an transparent machen.
+**Wichtig: Das Projekt hat derzeit kein Budget (0 €).** Wir prüfen ein Modell mit einer nützlichen kostenlosen Version und möglichen kostenpflichtigen Premium-Funktionen in der Zukunft. Diese Möglichkeit wird vor jeder Probeaufnahme offengelegt. Unbezahlte Beiträge werden wir nur dort anfragen, wo die Regeln der jeweiligen Community eine solche Mitarbeit trotz möglicher späterer Kommerzialisierung ausdrücklich erlauben.
 
 ### Was wir suchen
 - Verschiedene natürliche Frauen- und Männerstimmen.
@@ -59,10 +59,10 @@ Wenn ihr Bildung, Sprachen und gemeinschaftliche Projekte mögt, freuen wir uns 
 
 Kontakt: [hier eine Projektkontaktadresse einfügen]
 
-## Before publishing this call
+## Transparence sur le modèle économique envisagé\n\nLe projet a retenu l'option de conserver une possibilité de commercialisation future : une offre gratuite généreuse et, éventuellement, une offre Premium. Le budget actuel reste de 0 €. Cette perspective doit être communiquée avant toute contribution et inscrite dans les autorisations d'utilisation. Une contribution non rémunérée ne sera sollicitée que si les règles du canal de recrutement l'autorisent explicitement ; à défaut, aucun appel bénévole ne sera publié dans ce canal. En particulier, ne pas publier cet appel non rémunéré dans une communauté qui interdit les contributions gratuites pour les projets susceptibles de générer des revenus.\n\n## Before publishing this call
 
 1. Add a project contact address controlled by the project owner; do not publish personal phone numbers.
-2. State accurately whether the app is free, contains advertising, or has paid features.
+2. State accurately that the current budget is €0 and that the project may introduce paid Premium features in the future; do not promise that the app will always be entirely free.
 3. Confirm that volunteer audio may be distributed publicly in app downloads; do not imply that the recordings will remain private.
 4. Ask for written permission before publishing or packaging any voice recording.
 5. Ask each volunteer separately for their credit preference: real name, pseudonym, or anonymity. Do not infer consent to be credited from consent to record.
