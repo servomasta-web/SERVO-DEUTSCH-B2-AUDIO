@@ -18,15 +18,15 @@ tracks={
 "teil1_05.mp3":[("de-DE-KatjaNeural","Durchsage im Betrieb: Die Beratung zu Fördermöglichkeiten findet heute nicht wie geplant im Konferenzraum statt. Sie wurde in das kleinere Besprechungszimmer neben dem Empfang verlegt. Der Beginn um 14 Uhr bleibt unverändert. Eine Anmeldung ist nicht erforderlich.")],
 "teil2_01.mp3":[
 ("de-DE-KatjaNeural","Moderatorin: Viele Beschäftigte müssen sich beruflich weiterentwickeln, obwohl ihre Arbeitszeit bereits sehr voll ist. Herr Dr. Weber, wie können Unternehmen darauf reagieren?"),
-("de-DE-AmalaNeural","Weiterbildungsexperte: Zunächst sollten sie nicht einfach möglichst viele Kurse anbieten. Sinnvoller ist es, gemeinsam mit den Beschäftigten festzustellen, welche Fähigkeiten in den kommenden Jahren tatsächlich gebraucht werden. Daraus kann ein passender Lernplan entstehen."),
+("de-DE-ConradNeural","Weiterbildungsexperte: Zunächst sollten sie nicht einfach möglichst viele Kurse anbieten. Sinnvoller ist es, gemeinsam mit den Beschäftigten festzustellen, welche Fähigkeiten in den kommenden Jahren tatsächlich gebraucht werden. Daraus kann ein passender Lernplan entstehen."),
 ("de-DE-KatjaNeural","Moderatorin: Sollte Weiterbildung während der Arbeitszeit stattfinden?"),
-("de-DE-AmalaNeural","Experte: Wenn es organisatorisch möglich ist, halte ich das für vorteilhaft. Lernen nach Feierabend kann zwar funktionieren, führt aber auf Dauer zu zusätzlicher Belastung. Manche Betriebe ermöglichen deshalb feste Lernstunden oder flexible Arbeitszeiten."),
+("de-DE-ConradNeural","Experte: Wenn es organisatorisch möglich ist, halte ich das für vorteilhaft. Lernen nach Feierabend kann zwar funktionieren, führt aber auf Dauer zu zusätzlicher Belastung. Manche Betriebe ermöglichen deshalb feste Lernstunden oder flexible Arbeitszeiten."),
 ("de-DE-KatjaNeural","Moderatorin: Welche Rolle spielen digitale Angebote?"),
-("de-DE-AmalaNeural","Experte: Sie bieten große Freiheit, weil man Inhalte zeitlich unabhängig bearbeiten kann. Allerdings braucht man dafür Selbstdisziplin. Außerdem fehlt bei rein digitalen Kursen manchmal der direkte Austausch, der gerade bei komplexen Themen hilfreich ist. Eine Kombination aus Online-Phasen und persönlichen Treffen ist oft überzeugend."),
+("de-DE-ConradNeural","Experte: Sie bieten große Freiheit, weil man Inhalte zeitlich unabhängig bearbeiten kann. Allerdings braucht man dafür Selbstdisziplin. Außerdem fehlt bei rein digitalen Kursen manchmal der direkte Austausch, der gerade bei komplexen Themen hilfreich ist. Eine Kombination aus Online-Phasen und persönlichen Treffen ist oft überzeugend."),
 ("de-DE-KatjaNeural","Moderatorin: Wie lässt sich feststellen, ob eine Weiterbildung erfolgreich war?"),
-("de-DE-AmalaNeural","Experte: Nicht allein durch eine Abschlussprüfung. Entscheidend ist, ob die Teilnehmenden das Gelernte später bei ihrer Arbeit anwenden können. Vorgesetzte sollten dafür geeignete Aufgaben und Rückmeldungen anbieten."),
+("de-DE-ConradNeural","Experte: Nicht allein durch eine Abschlussprüfung. Entscheidend ist, ob die Teilnehmenden das Gelernte später bei ihrer Arbeit anwenden können. Vorgesetzte sollten dafür geeignete Aufgaben und Rückmeldungen anbieten."),
 ("de-DE-KatjaNeural","Moderatorin: Und was ist mit älteren Beschäftigten, die sich unsicher fühlen?"),
-("de-DE-AmalaNeural","Experte: Man sollte sie nicht unterschätzen. Erfahrung ist eine wichtige Grundlage. Wenn Lernangebote verständlich aufgebaut sind und genügend Zeit lassen, profitieren Menschen in jedem Alter davon.")
+("de-DE-ConradNeural","Experte: Man sollte sie nicht unterschätzen. Erfahrung ist eine wichtige Grundlage. Wenn Lernangebote verständlich aufgebaut sind und genügend Zeit lassen, profitieren Menschen in jedem Alter davon.")
 ],
 "teil3_01.mp3":[
 ("de-DE-KatjaNeural","Moderator: Heute diskutieren wir, ob Unternehmen ihre Beschäftigten stärker zur Weiterbildung verpflichten sollten. Frau Roth, Sie sind Geschäftsführerin eines mittelständischen Betriebs."),
