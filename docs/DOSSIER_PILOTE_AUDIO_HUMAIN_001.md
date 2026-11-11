@@ -116,7 +116,7 @@ Ne jamais inscrire les coordonnées personnelles dans le dépôt public. Ne publ
 ## 8. Conditions à régler avant le recrutement public
 
 - Ajouter une adresse de contact dédiée et contrôlée par le projet.
-- Décrire honnêtement le modèle économique actuel de l'application (gratuite, publicité, fonctions payantes ou combinaison).
+- Décrire honnêtement l'état actuel : la branche Android 7.2.0 examinée ne déclare ni SDK publicitaire ni système d'achat intégré. Préciser que cela reflète le code vérifié à ce jour et que tout changement futur sera communiqué avant une nouvelle utilisation des enregistrements.
 - Définir la durée de l'autorisation et le processus de retrait.
 - Vérifier les règles des communautés où l'appel sera diffusé.
 - Ne publier aucun nom, aucune voix ni aucun extrait d'audition sans autorisation distincte.
