@@ -239,7 +239,7 @@ jobs:
               A. Bei ohnehin geplanten Sanierungen. B. Erst nach einer Katastrophe. C. Nur bei Neubauten.
           30. Was ist die Hauptaussage des Vortrags?
               A. Eine einzige technische Lösung genügt. B. Verschiedene Maßnahmen müssen kombiniert werden. C. Klimaanpassung betrifft nur die Stadtverwaltung.
-""")
+          """)
           answer_key = textwrap.dedent("""# Corrigé — Examen 001
 
           1 F · 2 A · 3 F · 4 B · 5 R · 6 C · 7 F · 8 B · 9 F · 10 B  
@@ -249,7 +249,7 @@ jobs:
 
           ## Barème
           30 questions, 1 point par réponse correcte.
-""")
+          """)
           transcripts = textwrap.dedent("""# Transcriptions — Examen 001
 
           ## Teil 1
@@ -286,7 +286,7 @@ jobs:
 
           ## Teil 2, Teil 3 und Teil 4
           Les textes audio correspondants sont fournis dans les pistes MP3. Cette première édition inclut ici les consignes et le corrigé ; la transcription intégrale de ces trois textes sera ajoutée à la prochaine révision éditoriale.
-""")
+          """)
           (DOCS / "sujet-examen-001.md").write_text(booklet, encoding="utf-8")
           (DOCS / "corrige-examen-001.md").write_text(answer_key, encoding="utf-8")
           (DOCS / "transcriptions-examen-001.md").write_text(transcripts, encoding="utf-8")
