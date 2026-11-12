@@ -32,8 +32,12 @@ def decode_java_string(raw: str) -> str:
     """Decode the Java string escapes used in the app source."""
     try:
         return json.loads('"' + raw + '"')
-    except json.JSONDecodeError as exc:
-        raise ValueError(f"Unsupported Java string escape: {raw[:80]!r}") from exc
+    except json.JSONDecodeError:
+        # Java permits an escaped apostrophe inside a double-quoted string.
+        try:
+            return json.loads('"' + raw.replace("\\'", "'") + '"')
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Unsupported Java string escape: {raw[:80]!r}") from exc
 
 
 def quoted_literals(source: str) -> list[str]:
@@ -178,6 +182,16 @@ def extract_exam_tracks(app_root: Path, exam: int) -> tuple[dict[str, list[tuple
         raise FileNotFoundError(f"Missing app source: {source_path}")
     source = source_path.read_text(encoding="utf-8")
     array_name, short_texts = extract_first_audio_array(source)
+    expected_questions = (10, 6, 6, 8)
+    for part_number, expected_count in enumerate(expected_questions, start=1):
+        match = re.search(
+            rf"\\bq{part_number}\\s*=\\s*new\\s+(?:GoetheExamData\\.)?Question\\[(\\d+)\\]",
+            source,
+        )
+        if not match or int(match.group(1)) != expected_count:
+            raise ValueError(
+                f"Exam {exam:03d}: Teil {part_number} must contain {expected_count} questions"
+            )
     interview = extract_string_variable(source, "interview")
     panel = extract_string_variable(source, "panel")
     lecture = extract_string_variable(source, "lecture")
