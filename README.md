@@ -45,7 +45,7 @@ Le générateur produit :
 Un script individuel reste disponible, par exemple :
 
 ```bash
-python build_exam_009_aligned.py --app-root ../SERVO-DEUTSCH-B2-7.2.0
+SERVO_APP_ROOT=../SERVO-DEUTSCH-B2-7.2.0 python build_exam_009_aligned.py
 ```
 
 ## Publication
