@@ -29,7 +29,7 @@ tracks={
 ("de-DE-KatjaNeural","Mara: Bei der Information sehe ich ebenfalls großen Bedarf. Viele wissen nicht, wie man Gemüse richtig lagert oder Reste sicher aufbewahrt. Kleine Workshops in Schulen und Stadtteilzentren könnten viel bewirken."),
 ("de-DE-ConradNeural","Jonas: Ich möchte noch ergänzen, dass soziale Einrichtungen regelmäßig verlässliche Spenden benötigen. Es reicht nicht, gelegentlich große Mengen abzugeben. Die Weitergabe muss planbar sein und hygienische Standards erfüllen."),
 ("de-DE-AmalaNeural","Leonie: Genau. Wenn Handel, soziale Einrichtungen und Nachbarschaften zusammenarbeiten, können wir mehr erreichen. Wichtig ist, dass solche Projekte dauerhaft unterstützt werden und nicht nur von einzelnen engagierten Menschen abhängen.")
-,
+],
 "teil4_01.mp3":[
 ("de-DE-AmalaNeural","Guten Abend. In meinem Vortrag geht es um Lebensmittelverschwendung und darum, wie sie entlang der gesamten Versorgungskette reduziert werden kann. Unter Lebensmittelverschwendung verstehen wir essbare Produkte, die nicht verzehrt werden, sondern verloren gehen oder entsorgt werden. Das betrifft Landwirtschaft, Verarbeitung, Transport, Handel, Gastronomie und private Haushalte."),
 ("de-DE-ConradNeural","Die Folgen sind erheblich. Für jedes Lebensmittel wurden Wasser, Energie, Arbeitskraft und Fläche eingesetzt. Wird es weggeworfen, waren diese Ressourcen teilweise umsonst. Zusätzlich entstehen Treibhausgasemissionen, etwa durch Produktion, Kühlung, Transport und die Entsorgung organischer Abfälle. Lebensmittelverschwendung ist deshalb nicht nur ein wirtschaftliches, sondern auch ein ökologisches und soziales Problem."),
