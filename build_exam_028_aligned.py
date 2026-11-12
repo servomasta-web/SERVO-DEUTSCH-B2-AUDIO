@@ -50,7 +50,7 @@ async def main():
         if len(pieces)==1: pieces[0].replace(target)
         else:
             manifest=ROOT/f"{filename[:-4]}_concat.txt"
-            manifest.write_text("".join("file '"+str(p.resolve())+"'\\n" for p in pieces),encoding="utf-8")
+            manifest.write_text("".join("file '"+str(p.resolve())+"'\n" for p in pieces),encoding="utf-8")
             subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(manifest),"-c","copy",str(target)],check=True)
             for p in pieces:p.unlink()
             manifest.unlink()
