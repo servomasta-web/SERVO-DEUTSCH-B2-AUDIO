@@ -8,11 +8,11 @@ AUDIO.mkdir(parents=True,exist_ok=True)
 
 # Prüfung 024 — Wissenschaftskommunikation und Vertrauen in die Forschung.
 tracks={
-"teil1_01.mp3":[("de-DE-KatjaNeural","Hinweis der Stadtbibliothek: Am Mittwoch findet das Wissenschaftscafé diesmal im großen Lesesaal statt. Beginn ist um siebzehn Uhr. Der Eintritt ist frei; wegen der begrenzten Plätze wird jedoch um eine Anmeldung gebeten.")],
-"teil1_02.mp3":[("de-DE-ConradNeural","Die Universität lädt zu einem öffentlichen Gespräch über neue Forschungsergebnisse ein. Die Veranstaltung beginnt am Dienstag um achtzehn Uhr im Hörsaal drei. Fragen können vorab über ein Onlineformular eingereicht werden.")],
-"teil1_03.mp3":[("de-DE-AmalaNeural","Die Ausstellung zur Klimaforschung im Naturkundemuseum ist ab sofort auch sonntags geöffnet. Besucherinnen und Besucher können dort Experimente ausprobieren und erfahren, wie Forschende langfristige Veränderungen messen.")],
-"teil1_04.mp3":[("de-DE-KatjaNeural","Das Forschungsinstitut bietet für Schulklassen eine Führung mit Experimenten an. Lehrkräfte müssen ihre Gruppe mindestens zwei Wochen vorher anmelden. Die Teilnahme ist kostenlos; die Anreise organisiert die Schule selbst.")],
-"teil1_05.mp3":[("de-DE-ConradNeural","Der neue Podcast der Hochschule erklärt aktuelle Forschung in verständlicher Sprache. Eine neue Folge erscheint alle zwei Wochen. Zu jeder Sendung gibt es eine Liste mit weiterführenden Quellen und Links zu den besprochenen Studien.")],
+"teil1_01.mp3":[("de-DE-KatjaNeural","Hinweis der Stadtbibliothek: Das Wissenschaftscafé findet am Mittwoch um siebzehn Uhr im großen Lesesaal statt. Der Eintritt ist kostenlos. Wegen der begrenzten Plätze wird um eine Anmeldung gebeten.")],
+"teil1_02.mp3":[("de-DE-ConradNeural","Die Universität lädt zu einem öffentlichen Gespräch über neue Forschungsergebnisse ein. Der Eintritt ist frei. Fragen an das Forschungsteam können vorab über ein Onlineformular eingereicht werden. Die Veranstaltung beginnt am Dienstag um achtzehn Uhr im Hörsaal drei.")],
+"teil1_03.mp3":[("de-DE-AmalaNeural","Die Ausstellung zur Klimaforschung im Naturkundemuseum ist ab sofort auch sonntags geöffnet. Für Schulklassen bietet das Museum eine Führung mit Experimenten an. Lehrkräfte müssen ihre Gruppe mindestens zwei Wochen vorher anmelden.")],
+"teil1_04.mp3":[("de-DE-KatjaNeural","Der neue Podcast der Hochschule erklärt aktuelle Forschung in verständlicher Sprache und verzichtet auf unnötig komplizierte Fachbegriffe. Eine neue Folge erscheint alle zwei Wochen. Zu jeder Sendung gibt es weiterführende Quellen.")],
+"teil1_05.mp3":[("de-DE-ConradNeural","Die Universität sucht Bürgerinnen und Bürger, die an einer Befragung zur Wissenschaft teilnehmen möchten. Interessierte können sich bis zum zwanzigsten Mai über die Internetseite der Universität anmelden. Die Teilnahme dauert etwa fünfzehn Minuten.")],
 "teil2_01.mp3":[
 ("de-DE-KatjaNeural","Moderatorin: Viele Menschen fragen sich, welchen wissenschaftlichen Informationen sie vertrauen können. Professorin Weber, Sie forschen zur Wissenschaftskommunikation. Was ist dafür besonders wichtig?"),
 ("de-DE-AmalaNeural","Weber: Vertrauen entsteht nicht dadurch, dass Forschende immer sicher klingen. Entscheidend ist, dass sie offenlegen, wie sie zu ihren Ergebnissen gekommen sind, welche Methoden sie verwendet haben und wo die Grenzen einer Untersuchung liegen."),
