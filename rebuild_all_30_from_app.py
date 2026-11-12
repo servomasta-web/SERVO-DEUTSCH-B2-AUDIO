@@ -185,7 +185,7 @@ def extract_exam_tracks(app_root: Path, exam: int) -> tuple[dict[str, list[tuple
     expected_questions = (10, 6, 6, 8)
     for part_number, expected_count in enumerate(expected_questions, start=1):
         match = re.search(
-            rf"\\bq{part_number}\\s*=\\s*new\\s+(?:GoetheExamData\\.)?Question\\[(\\d+)\\]",
+            rf"\bq{part_number}\s*=\s*new\s+(?:GoetheExamData\.)?Question\[(\d+)\]",
             source,
         )
         if not match or int(match.group(1)) != expected_count:
