@@ -65,7 +65,7 @@ def quoted_literals(source: str) -> list[str]:
 def statement_end(source: str, start: int, array: bool = False) -> int:
     quoted = False
     escaped = False
-    depth = 0
+    depth = 1 if array else 0
     for i in range(start, len(source)):
         ch = source[i]
         if quoted:
