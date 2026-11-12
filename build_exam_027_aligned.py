@@ -1,58 +1,67 @@
-import asyncio
-import subprocess
-import zipfile
+import asyncio, subprocess, zipfile
 from pathlib import Path
 import edge_tts
 
-ROOT=Path("output")
-AUDIO=ROOT/"audio"
-AUDIO.mkdir(parents=True,exist_ok=True)
-
-# Prüfung 006 — Ehrenamtliches Engagement in der Gemeinde.
-# Inhaltlich an GoetheExam06Audio.java ausgerichtet.
-tracks={"teil1_01.mp3":[["de-DE-KatjaNeural","Mitteilung des Modehauses: Die Reparaturannahme für Jacken und Mäntel ist am Donnerstag nur bis 16 Uhr geöffnet. Ab Freitag gelten wieder die üblichen Öffnungszeiten. Für kleine Änderungen ist keine vorherige Anmeldung nötig."]],"teil1_02.mp3":[["de-DE-KatjaNeural","A: Ich kaufe inzwischen oft Kleidung aus zweiter Hand. B: Findest du da immer etwas Passendes? A: Nicht sofort, aber ich schaue regelmäßig vorbei. B: Und wie ist das mit der Qualität? A: Ich prüfe Nähte und Reißverschlüsse genau, bevor ich etwas mitnehme."]],"teil1_03.mp3":[["de-DE-KatjaNeural","Hinweis der Verbraucherberatung: Beim Kauf von Kleidung sollte man auf Materialangaben und Pflegehinweise achten. Ein Kleidungsstück, das nur chemisch gereinigt werden kann, verursacht möglicherweise höhere Folgekosten."]],"teil1_04.mp3":[["de-DE-AmalaNeural","Ich habe an einer Kleidertauschaktion teilgenommen. Ich brachte drei gut erhaltene Hemden mit und fand eine warme Jacke. Es wurde kein Geld verlangt; die Organisatoren wollten vor allem zeigen, dass Kleidung länger genutzt werden kann."]],"teil1_05.mp3":[["de-DE-KatjaNeural","Durchsage im Einkaufszentrum: Der Vortrag über nachhaltige Textilien findet nicht wie geplant im Erdgeschoss, sondern im Seminarraum im dritten Stock statt. Beginn ist um 18 Uhr."]],"teil2_01.mp3":[["de-DE-KatjaNeural","Moderatorin: Kleidung wird oft schnell gekauft und wieder aussortiert. Frau Weber, Sie beraten Unternehmen zu nachhaltiger Mode. Was ist das wichtigste Problem der Textilbranche?\nWeber: Viele Kleidungsstücke werden nur kurze Zeit getragen. Gleichzeitig sind Herstellung und Transport ressourcenintensiv. Besonders problematisch ist, wenn niedrige Preise dazu führen, dass Qualität und Arbeitsbedingungen aus dem Blick geraten.\nModeratorin: Ist der Kauf von Bio-Baumwolle automatisch nachhaltig?\nWeber: Nicht automatisch. Man muss auch Wasserverbrauch, Färbung, Transport und die Lebensdauer des Produkts betrachten. Ein Material allein sagt noch nicht alles über die Umweltbilanz aus.\nModeratorin: Was können Verbraucher konkret tun?\nWeber: Weniger, aber bewusster kaufen. Auf gute Verarbeitung achten, Kleidung reparieren und bei Bedarf gebraucht kaufen. Auch Kleidertausch oder Leihangebote können sinnvoll sein, wenn sie tatsächlich genutzt werden.\nModeratorin: Welche Verantwortung haben Hersteller?\nWeber: Sie sollten transparente Informationen über Lieferketten bereitstellen, langlebige Produkte entwickeln und Reparaturen ermöglichen. Außerdem müssen Beschäftigte entlang der Lieferkette fair behandelt werden.\nModeratorin: Wie erkennt man glaubwürdige Nachhaltigkeitsversprechen?\nWeber: Man sollte auf überprüfbare Kriterien achten. Allgemeine Begriffe wie 'grün' oder 'bewusst' reichen nicht. Aussagekräftiger sind konkrete Angaben zu Materialien, Produktion und unabhängigen Kontrollen."]],"teil3_01.mp3":[["de-DE-KatjaNeural","Moderator: Sollten Modeunternehmen verpflichtet werden, nicht verkaufte Kleidung zu spenden statt sie zu vernichten? Herr Baum, Sie vertreten einen Handelsverband."],["de-DE-ConradNeural","Baum: Spenden können sinnvoll sein, aber nicht jedes Produkt ist dafür geeignet. Es gibt hygienische, qualitative und logistische Fragen. Eine Pflicht ohne klare Regeln könnte zusätzliche Kosten verursachen und kleinere Betriebe überfordern."],["de-DE-KatjaNeural","Moderator: Frau Fischer, Sie arbeiten für eine Umweltorganisation."],["de-DE-ConradNeural","Fischer: Die Vernichtung unverkaufter Ware ist eine Verschwendung von Ressourcen. Unternehmen sollten zuerst besser planen und Überproduktion vermeiden. Wenn Kleidung noch tragbar ist, muss eine Weitergabe Vorrang haben."],["de-DE-ConradNeural","Baum: Bessere Planung unterstütze ich. Allerdings brauchen wir auch sichere Wege, um Spenden an Einrichtungen zu verteilen, die sie wirklich benötigen."],["de-DE-ConradNeural","Fischer: Genau deshalb sollten Unternehmen mit sozialen Organisationen zusammenarbeiten und Mengen frühzeitig melden. So kann die Verteilung organisiert werden."],["de-DE-KatjaNeural","Moderator: Beide wollen Verschwendung verhindern, sehen aber unterschiedliche Herausforderungen bei einer verbindlichen Spendenpflicht."]],"teil4_01.mp3":[["de-DE-ConradNeural","Guten Tag. In meinem Vortrag geht es um nachhaltige Mode. Die Textilproduktion benötigt Rohstoffe, Wasser, Energie und Transport. Wenn Kleidung nur wenige Male getragen wird, entsteht ein hoher Ressourcenverbrauch im Verhältnis zur tatsächlichen Nutzung. Nachhaltigkeit beginnt deshalb nicht erst beim Recycling, sondern bereits bei Kaufentscheidungen und Produktgestaltung.\nVerbraucher können die Lebensdauer ihrer Kleidung verlängern. Dazu gehören gute Pflege, kleine Reparaturen und die Weitergabe nicht mehr benötigter Stücke. Secondhand-Angebote und Kleidertausch ermöglichen, dass vorhandene Kleidung länger genutzt wird. Leihen kann bei besonderen Anlässen eine Alternative zum Kauf sein.\nHersteller tragen ebenfalls Verantwortung. Sie sollten langlebige Materialien auswählen, Reparaturen ermöglichen und Informationen über Herkunft und Produktionsbedingungen bereitstellen. Auch die Arbeitsbedingungen in den Lieferketten gehören zur Nachhaltigkeit. Ein niedriger Preis darf nicht auf Kosten der Beschäftigten entstehen.\nEin Problem ist die Überproduktion. Unternehmen können Nachfrage besser einschätzen, kleinere Serien herstellen und unverkaufte Ware weitergeben. Spenden müssen gut organisiert sein, damit Produkte tatsächlich gebraucht werden und nicht an anderer Stelle zu Abfall werden.\nSchließlich sollten Verbraucher Werbeversprechen kritisch prüfen. Konkrete Informationen und unabhängige Kontrollen sind verlässlicher als allgemeine Aussagen. Nachhaltige Mode bedeutet, weniger Ressourcen zu verbrauchen, Kleidung länger zu nutzen und faire Bedingungen entlang der gesamten Lieferkette zu fördern."]]}
-async def make_track(name,utterances):
-    parts=[]
-    for i,(voice,spoken_text) in enumerate(utterances):
-        part=AUDIO/f".{name}.{i:02d}.mp3"
-        error=None
-        for attempt in range(1,6):
-            try:
-                print(f"{name}: {i+1}/{len(utterances)} {voice} Versuch {attempt}/5",flush=True)
-                await edge_tts.Communicate(spoken_text,voice,rate="-4%").save(str(part))
-                if not part.exists() or part.stat().st_size<1000:
-                    raise RuntimeError("Audio fehlt oder ist zu klein")
-                error=None
-                break
-            except Exception as exc:
-                error=exc
-                part.unlink(missing_ok=True)
-                print(f"Fehler: {exc}",flush=True)
-                if attempt<5: await asyncio.sleep(2*attempt)
-        if error: raise RuntimeError(f"Track fehlgeschlagen: {name}") from error
-        parts.append(part)
-        await asyncio.sleep(1)
-        if i<len(utterances)-1:
-            silence=AUDIO/f".silence_{name}_{i}.mp3"
-            subprocess.run(["ffmpeg","-y","-f","lavfi","-i","anullsrc=r=24000:cl=mono","-t","0.65","-codec:a","libmp3lame","-b:a","64k",str(silence)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
-            parts.append(silence)
-    listing=AUDIO/f".{name}.txt"
-    listing.write_text("".join(f"file '{p.resolve()}'\n" for p in parts),encoding="utf-8")
-    target=AUDIO/name
-    subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(listing),"-codec:a","libmp3lame","-b:a","128k",str(target)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
-    for p in parts+[listing]: p.unlink(missing_ok=True)
-    if not target.exists() or target.stat().st_size<1024: raise RuntimeError(f"MP3 invalide: {name}")
-    print(f"OK {name}: {target.stat().st_size} octets",flush=True)
-
+ROOT=Path("output"); AUDIO=ROOT/"audio"; AUDIO.mkdir(parents=True,exist_ok=True)
+tracks={
+"teil1_01.mp3":[("de-DE-KatjaNeural","Das Stadtteilzentrum lädt zum Nachbarschaftsfrühstück ein. Es findet jeden ersten Sonntag im Monat um zehn Uhr statt. Alle Bewohnerinnen und Bewohner sind willkommen. Eine Anmeldung ist nicht erforderlich.")],
+"teil1_02.mp3":[("de-DE-ConradNeural","Sie sind neu in unserem Viertel und möchten Menschen kennenlernen? Schreiben Sie uns eine kurze Nachricht und werfen Sie sie in den Briefkasten des Stadtteilzentrums. Wir melden uns und informieren Sie über die nächsten Treffen.")],
+"teil1_03.mp3":[("de-DE-AmalaNeural","Die Nachbarschaftsinitiative organisiert Unterstützung für ältere Menschen. Wer Hilfe beim Einkaufen benötigt, kann seinen Bedarf bis Dienstag in eine wöchentliche Liste eintragen. Freiwillige melden sich anschließend direkt bei den betreffenden Personen.")],
+"teil1_04.mp3":[("de-DE-KatjaNeural","Im Nachbarschaftshaus gibt es jetzt einen öffentlichen Tauschschrank. Während der Öffnungszeiten können gut erhaltene Bücher, Geschirr und kleine Haushaltsgegenstände abgegeben oder kostenlos mitgenommen werden. Bitte legen Sie keine beschädigten Gegenstände hinein.")],
+"teil1_05.mp3":[("de-DE-ConradNeural","Der Nachbarschaftsgarten sucht weitere freiwillige Helferinnen und Helfer. Die Gartengruppe trifft sich jeden Mittwoch um siebzehn Uhr. Auch Menschen ohne Gartenerfahrung können mitmachen. Werkzeuge werden vor Ort zur Verfügung gestellt.")],
+"teil2_01.mp3":[
+("de-DE-KatjaNeural","Moderatorin: In vielen Städten wohnen Menschen jahrelang Tür an Tür, ohne sich zu kennen. Warum sind Nachbarschaftskontakte so schwach?"),
+("de-DE-AmalaNeural","Sozialforscherin: Viele Menschen haben wenig Zeit, und häufige Wohnungswechsel erschweren langfristige Beziehungen. Schon kurze Gespräche im Treppenhaus können jedoch Vertrauen schaffen. Wer sich kennt, fragt eher nach, ob jemand beim Einkaufen oder beim Blumengießen Hilfe braucht. Solche kleinen Gesten können Isolation verringern, ersetzen aber keine professionellen sozialen Dienste."),
+("de-DE-KatjaNeural","Moderatorin: Wie erreicht man Menschen mit unterschiedlichen Lebensgeschichten?"),
+("de-DE-AmalaNeural","Sozialforscherin: Angebote sollten offen und niedrigschwellig sein. Ein gemeinsames Frühstück, ein Tauschschrank oder ein Gartenprojekt sind gute Anlässe. Niemand sollte das Gefühl bekommen, erst bestimmte Voraussetzungen erfüllen zu müssen."),
+("de-DE-KatjaNeural","Moderatorin: Welche Herausforderungen gibt es für Freiwillige?"),
+("de-DE-AmalaNeural","Sozialforscherin: Oft tragen wenige Engagierte zu viele Aufgaben. Das führt langfristig zu Überlastung. Deshalb müssen Verantwortlichkeiten klar verteilt werden. Man sollte klein anfangen und Aufgaben anbieten, die zeitlich überschaubar sind."),
+("de-DE-KatjaNeural","Moderatorin: Können digitale Gruppen helfen?"),
+("de-DE-AmalaNeural","Sozialforscherin: Ja, sie sind praktisch für kurzfristige Absprachen. Allerdings ersetzen Nachrichten keine persönlichen Begegnungen. Gruppenregeln sind wichtig, damit private Daten geschützt werden und Diskussionen respektvoll bleiben."),
+("de-DE-KatjaNeural","Moderatorin: Ihr wichtigster Rat für eine neue Initiative?"),
+("de-DE-AmalaNeural","Sozialforscherin: Beginnen Sie mit einem konkreten Angebot, das im Viertel gebraucht wird. Eine kleine, verlässliche Initiative ist oft wirksamer als ein großes Konzept, das niemand umsetzt.")
+],
+"teil3_01.mp3":[
+("de-DE-KatjaNeural","Moderatorin: Wie gelingt gute Nachbarschaft? Dazu sprechen Frau Berger, die eine Initiative leitet, und Herr Yilmaz, der ein digitales Nachbarschaftsnetz betreut."),
+("de-DE-AmalaNeural","Berger: Für mich stehen persönliche Begegnungen im Mittelpunkt. Beim gemeinsamen Kochen oder bei einem Straßenfest entstehen Gespräche ganz natürlich. Wir möchten besonders neu zugezogene Menschen erreichen. Allerdings haben wir manchmal Schwierigkeiten, genügend Freiwillige zu finden."),
+("de-DE-ConradNeural","Yilmaz: Digitale Angebote sind eine hilfreiche Ergänzung. Über unsere Gruppe können Bewohner schnell fragen, ob jemand ein Paket annehmen oder ein Werkzeug ausleihen kann. Aufgaben müssen aber klar beschrieben und zeitlich begrenzt werden, damit Absprachen verlässlich bleiben."),
+("de-DE-AmalaNeural","Berger: Ein persönliches Willkommen und eine Einladung zu einer konkreten Aktivität sind oft wirksamer als ein allgemeiner Aushang. Neue Bewohner sollen nicht nur Informationen erhalten, sondern wirklich mitgestalten können."),
+("de-DE-ConradNeural","Yilmaz: Gleichzeitig dürfen wir nicht erwarten, dass Ehrenamtliche jede Aufgabe übernehmen. Bei Pflege, medizinischen Fragen oder schwierigen sozialen Problemen braucht es professionelle Unterstützung. Unsere Gruppe kann Kontakte vermitteln, aber keine Fachkräfte ersetzen."),
+("de-DE-KatjaNeural","Moderatorin: Vielen Dank. Persönliche Begegnungen und digitale Hilfen können also zusammenwirken, wenn Aufgaben und Grenzen klar sind.")
+],
+"teil4_01.mp3":[
+("de-DE-ConradNeural","Guten Tag. Heute geht es um die Frage, wie Nachbarschaften zu Orten werden können, an denen Menschen sich zugehörig fühlen und sich gegenseitig unterstützen. In vielen Wohngebieten kennen sich die Bewohner kaum. Stabile Kontakte im Wohnumfeld können Isolation verringern und das Sicherheitsgefühl stärken."),
+("de-DE-ConradNeural","Nachbarschaft bedeutet nicht, dass alle Menschen enge Freundschaften schließen müssen. Schon ein freundlicher Gruß, ein kurzes Gespräch oder eine kleine Hilfeleistung kann Vertrauen entstehen lassen. Solche Kontakte bilden eine Grundlage, auf der bei Bedarf Unterstützung möglich wird."),
+("de-DE-ConradNeural","Damit Menschen teilnehmen, müssen Angebote leicht zugänglich sein. Ein gemeinsames Frühstück, ein Tauschregal oder ein Gartenprojekt bieten einen konkreten Anlass, ohne eine langfristige Verpflichtung vorauszusetzen. Menschen unterschiedlichen Alters und unterschiedlicher Herkunft sollten willkommen sein. Ihre Erfahrungen und Fähigkeiten können sich ergänzen."),
+("de-DE-ConradNeural","Wo viele Menschen zusammenkommen, können Konflikte entstehen. Unterschiedliche Vorstellungen über Lärm, Sauberkeit oder die Nutzung gemeinsamer Flächen sind nicht ungewöhnlich. Entscheidend ist, Probleme frühzeitig und respektvoll anzusprechen. Klare Gesprächsregeln und transparente Entscheidungen helfen, Missverständnisse zu vermeiden."),
+("de-DE-ConradNeural","Eine weitere Herausforderung ist die Verteilung ehrenamtlicher Aufgaben. Wenn immer dieselben Personen organisieren und aufräumen, droht Überlastung. Aufgaben sollten deshalb überschaubar sein und regelmäßig wechseln. Die Grenzen freiwilliger Hilfe müssen deutlich bleiben: Professionelle Pflege und Beratung können Nachbarschaftsprojekte nicht ersetzen."),
+("de-DE-ConradNeural","Kommunen können gute Rahmenbedingungen schaffen. Sie können Räume bereitstellen, Initiativen beraten und Kontakte zwischen Vereinen, sozialen Einrichtungen und Bewohnern vermitteln. Erfolgreiche Projekte brauchen jedoch Spielraum, damit Menschen vor Ort eigene Ideen entwickeln können."),
+("de-DE-ConradNeural","Zusammenfassend lässt sich sagen: Eine lebendige Nachbarschaft entsteht weder von allein noch durch digitale Kommunikation allein. Sie braucht persönliche Begegnungen, verlässliche Absprachen, eine faire Aufgabenverteilung und unterstützende Strukturen. Wenn Bewohner und Kommunen gemeinsam Verantwortung übernehmen, kann aus einem Wohnort ein echtes soziales Umfeld werden. Vielen Dank für Ihre Aufmerksamkeit.")
+]}
+async def synthesize(voice,text,path):
+    await edge_tts.Communicate(text,voice).save(str(path))
 async def main():
-    for name,utterances in tracks.items(): await make_track(name,utterances)
-
-asyncio.run(main())
-expected=["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3","teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
-archive=ROOT/"exam-027.zip"
-with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as z:
-    for name in expected: z.write(AUDIO/name,arcname=name)
-with zipfile.ZipFile(archive) as z:
-    if sorted(z.namelist())!=sorted(expected): raise RuntimeError("Contenu ZIP incorrect")
-    if any(x.file_size<1024 for x in z.infolist()): raise RuntimeError("Piste vide ou trop petite")
-print(f"Archive validée: {archive} ({archive.stat().st_size} octets)",flush=True)
+    for filename,segments in tracks.items():
+        pieces=[]
+        for i,(voice,text) in enumerate(segments):
+            p=AUDIO/f"{filename[:-4]}_{i:02d}.mp3"
+            await synthesize(voice,text,p); pieces.append(p)
+        target=AUDIO/filename
+        if len(pieces)==1:
+            pieces[0].replace(target)
+        else:
+            manifest=ROOT/f"{filename[:-4]}_concat.txt"
+            manifest.write_text("".join("file '"+str(p.resolve())+"'\n" for p in pieces),encoding="utf-8")
+            subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(manifest),"-c","copy",str(target)],check=True)
+            for p in pieces:p.unlink()
+            manifest.unlink()
+    archive=ROOT/"exam-027.zip"
+    with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as z:
+        for p in sorted(AUDIO.glob("*.mp3")): z.write(p,p.name)
+    expected={f"teil1_0{i}.mp3" for i in range(1,6)}|{"teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"}
+    with zipfile.ZipFile(archive) as z:
+        actual={n for n in z.namelist() if n.endswith(".mp3")}
+        assert actual==expected,(actual,expected)
+        assert all(z.getinfo(n).file_size>10000 for n in expected)
+    print(f"Created {archive} ({archive.stat().st_size} bytes), 8 validated tracks")
+if __name__=="__main__": asyncio.run(main())
