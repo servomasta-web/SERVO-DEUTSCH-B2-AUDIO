@@ -1,52 +1,63 @@
-import asyncio
-import subprocess
-import zipfile
+import asyncio, subprocess, zipfile
 from pathlib import Path
 import edge_tts
 
-ROOT=Path("output")
-AUDIO=ROOT/"audio"
-AUDIO.mkdir(parents=True,exist_ok=True)
-
-# Prüfung 006 — Ehrenamtliches Engagement in der Gemeinde.
-# Inhaltlich an GoetheExam06Audio.java ausgerichtet.
-tracks={"teil1_01.mp3":[["de-DE-KatjaNeural","Mitteilung der Stadtbibliothek: Ab nächster Woche können Nutzerinnen und Nutzer E-Books auch für vier Wochen ausleihen. Bisher betrug die Leihfrist zwei Wochen. Die Zahl der gleichzeitig ausleihbaren Titel bleibt auf fünf begrenzt."]],"teil1_02.mp3":[["de-DE-KatjaNeural","A: Ich dachte, Bibliotheken seien nur noch zum Ausleihen von Büchern da. B: Überhaupt nicht. Unsere Bibliothek bietet auch Arbeitsplätze, Sprachcafés und Beratung zur digitalen Suche. A: Kann man dort auch lernen? B: Ja, es gibt ruhige Räume und Gruppenplätze."]],"teil1_03.mp3":[["de-DE-KatjaNeural","Hinweis der Bibliothek: Der Workshop zur Recherche wissenschaftlicher Quellen findet am Dienstag um 16 Uhr statt. Teilnehmende sollten ihren eigenen Laptop mitbringen. Die Anmeldung ist kostenlos und erfolgt über das Bibliothekskonto."]],"teil1_04.mp3":[["de-DE-AmalaNeural","Ich lese gern auf Papier, aber auf Reisen nehme ich inzwischen einen E-Reader mit. So kann ich mehrere Bücher dabei haben. Wenn ich längere Texte bearbeiten muss, bevorzuge ich trotzdem gedruckte Seiten, weil ich mich darauf besser konzentrieren kann."]],"teil1_05.mp3":[["de-DE-KatjaNeural","Durchsage: Der Lesesaal bleibt am Freitag wegen einer technischen Prüfung geschlossen. Die Ausleihe und Rückgabe am Selbstbedienungsautomaten im Eingangsbereich funktionieren weiterhin."]],"teil2_01.mp3":[["de-DE-KatjaNeural","Moderator: Manche Menschen glauben, Bibliotheken würden durch digitale Medien überflüssig. Frau Schneider, Sie leiten eine moderne Stadtbibliothek. Wie hat sich die Einrichtung verändert?\nSchneider: Bücher bleiben wichtig, aber unser Angebot ist breiter geworden. Wir verleihen E-Books, Hörbücher und digitale Zeitschriften. Gleichzeitig stellen wir Arbeitsplätze, Gruppenräume und technische Geräte zur Verfügung.\nModerator: Welche Rolle spielt Beratung?\nSchneider: Eine große. Viele Menschen wissen nicht, wie sie zuverlässige Informationen im Internet finden oder digitale Behördendienste nutzen können. Unsere Mitarbeitenden helfen bei der Recherche und erklären, wie Quellen bewertet werden.\nModerator: Werden Bibliotheken zu sozialen Treffpunkten?\nSchneider: Ja. Sprachcafés, Lesungen und Lernangebote bringen Menschen zusammen. Wichtig ist, dass Besucher sich auch ohne Kauf oder Mitgliedschaft bei jeder Veranstaltung willkommen fühlen.\nModerator: Wie erreichen Sie Menschen, die selten kommen?\nSchneider: Wir arbeiten mit Schulen, Seniorengruppen und Vereinen zusammen. Außerdem bieten wir mobile Bibliotheksdienste in Stadtteilen an, in denen der Weg zur nächsten Filiale weit ist.\nModerator: Was bleibt trotz aller Digitalisierung unverändert?\nSchneider: Unser Auftrag, Zugang zu Wissen zu ermöglichen. Dafür brauchen wir sowohl digitale Angebote als auch gedruckte Medien und persönliche Unterstützung."]],"teil3_01.mp3":[["de-DE-KatjaNeural","Moderatorin: Sollten öffentliche Bibliotheken ihre gedruckten Bestände reduzieren, um mehr Platz für digitale Angebote zu schaffen? Herr Fischer, Sie leiten eine Zweigstelle."],["de-DE-ConradNeural","Fischer: Wir brauchen beides. Manche Nutzer lesen lieber auf Papier, andere benötigen E-Books oder Datenbanken. Wenn wir gedruckte Bestände zu schnell abbauen, verlieren wir einen Teil unseres Publikums."],["de-DE-KatjaNeural","Moderatorin: Frau Yilmaz, Sie forscht zur digitalen Bildung."],["de-DE-ConradNeural","Yilmaz: Digitale Angebote sind wichtig, besonders für Menschen, die Informationen unterwegs nutzen. Bibliotheken sollten mehr Geräte und Schulungen anbieten. Aber ich fordere nicht, dass gedruckte Bücher verschwinden."],["de-DE-ConradNeural","Fischer: Der Platz ist allerdings begrenzt. Wir müssen prüfen, welche Titel häufig genutzt werden und welche selten. Wenig genutzte Bücher können eventuell in einem gemeinsamen Magazin aufbewahrt werden."],["de-DE-ConradNeural","Yilmaz: Das ist sinnvoll, solange sie weiterhin bestellbar bleiben. Außerdem sollte die Bibliothek Räume für Gruppenarbeit und digitale Beratung schaffen."],["de-DE-KatjaNeural","Moderatorin: Beide Seiten sprechen sich für eine Mischung aus gedruckten und digitalen Angeboten aus, setzen aber unterschiedliche Prioritäten bei Raum und Bestand."]],"teil4_01.mp3":[["de-DE-ConradNeural","Guten Tag. In meinem Vortrag geht es um Bibliotheken im digitalen Zeitalter. Digitale Medien verändern, wie Menschen Informationen suchen und lesen. E-Books, Datenbanken und Online-Zeitschriften ermöglichen schnellen Zugriff auf viele Inhalte. Trotzdem verlieren Bibliotheken ihre Bedeutung nicht. Sie entwickeln ihre Aufgaben weiter und verbinden verschiedene Medienformen.\nEine zentrale Aufgabe bleibt der Zugang zu verlässlichem Wissen. Bibliotheksmitarbeitende helfen bei der Recherche, erklären Suchstrategien und zeigen, wie Quellen geprüft werden können. Das ist besonders wichtig, weil im Internet Informationen unterschiedlicher Qualität nebeneinanderstehen.\nBibliotheken bieten außerdem Räume für konzentriertes Arbeiten und gemeinsames Lernen. Gruppenräume, Computer und Internetzugang unterstützen Menschen, die zu Hause keine geeignete Ausstattung haben. Sprachcafés, Lesungen und Workshops schaffen Begegnungen und fördern Bildung.\nDigitale Angebote müssen zugänglich gestaltet sein. Dazu gehören verständliche Benutzeroberflächen, Unterstützung bei der Nutzung und der Schutz persönlicher Daten. Nicht alle Menschen verfügen über dieselben Geräte oder digitalen Kenntnisse. Persönliche Beratung bleibt deshalb wichtig.\nDie Zukunft der Bibliothek liegt nicht in der Entscheidung zwischen Papier und Bildschirm. Sie besteht darin, Medien, Räume und Beratung so zu verbinden, dass möglichst viele Menschen selbstständig lernen und am gesellschaftlichen Leben teilnehmen können."]]}
-async def make_track(name,utterances):
+ROOT=Path("output"); AUDIO=ROOT/"audio"; AUDIO.mkdir(parents=True,exist_ok=True)
+tracks={
+"teil1_01.mp3":[("de-DE-KatjaNeural","Der Wochenmarkt lädt am Freitag zu einer Informationsveranstaltung gegen Lebensmittelverschwendung ein. Sie beginnt um fünfzehn Uhr neben dem Haupteingang. Der Eintritt ist frei. Besucherinnen und Besucher erfahren, wie sie Lebensmittel länger nutzen können.")],
+"teil1_02.mp3":[("de-DE-ConradNeural","Das Bürgerzentrum bietet am Samstag einen Kochkurs mit übrig gebliebenen Lebensmitteln an. Der Kurs beginnt um zehn Uhr. Bitte bringen Sie eine saubere, wiederverwendbare Dose mit. Die Teilnahme ist kostenlos, eine Anmeldung ist erforderlich.")],
+"teil1_03.mp3":[("de-DE-AmalaNeural","Die Stadtbibliothek sammelt bis Mittwochmittag ungeöffnete und haltbare Lebensmittel. Die Spenden werden anschließend an eine lokale Hilfsorganisation weitergegeben. Frische Produkte und selbst zubereitete Speisen können leider nicht angenommen werden.")],
+"teil1_04.mp3":[("de-DE-KatjaNeural","Restaurants und Bäckereien können ab sofort eine digitale Plattform nutzen, um überschüssige Speisen kurz vor Ladenschluss anzubieten. Interessierte Betriebe registrieren sich kostenlos. Kundinnen und Kunden reservieren die Angebote direkt über die Anwendung.")],
+"teil1_05.mp3":[("de-DE-ConradNeural","Auf der Internetseite der Stadt gibt es neue Hinweise zur Lagerung von Obst, Gemüse und Milchprodukten. Außerdem erklärt ein kurzer Ratgeber den Unterschied zwischen Mindesthaltbarkeitsdatum und Verbrauchsdatum. Die Informationen können kostenlos heruntergeladen werden.")],
+"teil2_01.mp3":[
+("de-DE-KatjaNeural","In Deutschland werden noch immer große Mengen genießbarer Lebensmittel weggeworfen. Wo liegt das Problem besonders häufig?"),
+("de-DE-AmalaNeural","Ein erheblicher Teil der vermeidbaren Abfälle entsteht in privaten Haushalten. Viele Menschen kaufen spontan ein, verlieren den Überblick über ihre Vorräte und planen Mahlzeiten nicht ausreichend."),
+("de-DE-KatjaNeural","Viele werfen Produkte direkt nach dem Mindesthaltbarkeitsdatum weg. Ist das sinnvoll?"),
+("de-DE-AmalaNeural","Nein. Das Mindesthaltbarkeitsdatum ist eine Qualitätsgarantie des Herstellers und kein automatisches Wegwerfdatum. Man sollte das Produkt ansehen, daran riechen und gegebenenfalls vorsichtig probieren. Das Verbrauchsdatum bei leicht verderblichen Lebensmitteln ist dagegen unbedingt zu beachten."),
+("de-DE-KatjaNeural","Was kann man im Alltag konkret verändern?"),
+("de-DE-AmalaNeural","Eine Einkaufsliste hilft, wenn man vorher Kühlschrank und Vorratsschrank kontrolliert. Außerdem sollte man Mahlzeiten für einige Tage planen und Reste kreativ weiterverwenden."),
+("de-DE-KatjaNeural","Welche Verantwortung tragen Supermärkte?"),
+("de-DE-AmalaNeural","Sie können Produkte kurz vor Ablauf günstiger anbieten, Mengen besser kalkulieren und genießbare Überschüsse an soziale Einrichtungen weitergeben. Dafür braucht es verlässliche Abläufe."),
+("de-DE-KatjaNeural","Reichen digitale Apps aus, um das Problem zu lösen?"),
+("de-DE-AmalaNeural","Sie sind nützlich, aber keine alleinige Lösung. Entscheidend ist die Zusammenarbeit von Landwirtschaft, Handel, Gastronomie, Politik und Verbrauchern.")
+],
+"teil3_01.mp3":[
+("de-DE-KatjaNeural","Ich finde, wir sollten zuerst bei unseren eigenen Gewohnheiten anfangen. Wenn wir vor dem Einkauf prüfen, was noch im Kühlschrank liegt, kaufen wir weniger doppelt. Außerdem müsste man die Menschen besser über das Mindesthaltbarkeitsdatum informieren. Viele verwechseln es mit dem Verbrauchsdatum."),
+("de-DE-ConradNeural","Das ist wichtig, aber meiner Meinung nach darf die Verantwortung nicht hauptsächlich auf Einzelpersonen abgeschoben werden. Große Handelsunternehmen sollten verbindliche Regeln bekommen, damit genießbare Ware nicht unnötig vernichtet wird. Apps können helfen, ersetzen jedoch keine strukturellen Veränderungen."),
+("de-DE-AmalaNeural","In unserem Viertel haben wir einen offenen Kühlschrank eingerichtet. Geschäfte und Privatpersonen stellen dort geeignete Lebensmittel hinein, die andere kostenlos mitnehmen können. Das funktioniert gut, weil sich Freiwillige um Kontrolle und Sauberkeit kümmern. So entsteht auch mehr Kontakt zwischen den Nachbarn."),
+("de-DE-KatjaNeural","Bei der Information sehe ich ebenfalls großen Bedarf. Viele wissen nicht, wie man Gemüse richtig lagert oder Reste sicher aufbewahrt. Kleine Workshops in Schulen und Stadtteilzentren könnten viel bewirken."),
+("de-DE-ConradNeural","Ich möchte noch ergänzen, dass soziale Einrichtungen regelmäßig verlässliche Spenden benötigen. Es reicht nicht, gelegentlich große Mengen abzugeben. Die Weitergabe muss planbar sein und hygienische Standards erfüllen."),
+("de-DE-AmalaNeural","Genau. Wenn Handel, soziale Einrichtungen und Nachbarschaften zusammenarbeiten, können wir mehr erreichen. Wichtig ist, dass solche Projekte dauerhaft unterstützt werden und nicht nur von einzelnen engagierten Menschen abhängen.")
+],
+"teil4_01.mp3":[
+("de-DE-AmalaNeural","Guten Abend. In meinem Vortrag geht es um Lebensmittelverschwendung und darum, wie sie entlang der gesamten Versorgungskette reduziert werden kann. Unter Lebensmittelverschwendung verstehen wir essbare Produkte, die nicht verzehrt werden, sondern verloren gehen oder entsorgt werden. Das betrifft Landwirtschaft, Verarbeitung, Transport, Handel, Gastronomie und private Haushalte."),
+("de-DE-ConradNeural","Die Folgen sind erheblich. Für jedes Lebensmittel wurden Wasser, Energie, Arbeitskraft und Fläche eingesetzt. Wird es weggeworfen, waren diese Ressourcen teilweise umsonst. Zusätzlich entstehen Treibhausgasemissionen, etwa durch Produktion, Kühlung, Transport und die Entsorgung organischer Abfälle. Lebensmittelverschwendung ist deshalb nicht nur ein wirtschaftliches, sondern auch ein ökologisches und soziales Problem."),
+("de-DE-AmalaNeural","Verluste können bereits bei der Ernte entstehen, wenn Produkte nicht den Handelsnormen entsprechen oder nicht rechtzeitig abgeholt werden. Während Lagerung und Transport können falsche Temperaturen oder beschädigte Verpackungen dazu führen, dass Waren verderben. Im Handel spielen Überbestände und eine ungenaue Nachfrageplanung eine Rolle."),
+("de-DE-ConradNeural","Auch Kantinen und Restaurants können handeln. Sie sollten die Nachfrage besser einschätzen, Portionsgrößen flexibel anbieten und Speisepläne an saisonale Produkte anpassen. Gäste könnten außerdem die Möglichkeit erhalten, nicht verzehrte Speisen hygienisch verpackt mitzunehmen. Eine genaue Dokumentation der Reste hilft, wiederkehrende Ursachen zu erkennen."),
+("de-DE-AmalaNeural","Spendenorganisationen übernehmen eine wichtige Vermittlungsfunktion. Sie sammeln geeignete Überschüsse und verteilen sie an soziale Einrichtungen oder Menschen in schwierigen Lebenslagen. Dabei müssen Kühlketten, Hygienevorschriften und eine nachvollziehbare Kennzeichnung eingehalten werden. Nicht jedes überschüssige Produkt ist automatisch für eine Weitergabe geeignet."),
+("de-DE-ConradNeural","Auch politische Rahmenbedingungen können helfen. Denkbar sind steuerliche Anreize für die Weitergabe genießbarer Überschüsse, klare Leitlinien für Unternehmen und eine bessere Aufklärung. Gleichzeitig sollten unnötig strenge optische Anforderungen an Obst und Gemüse überprüft werden, denn ungewöhnlich geformte Produkte sind genauso essbar."),
+("de-DE-AmalaNeural","Zusammenfassend lässt sich sagen: Lebensmittelverschwendung lässt sich weder durch Apps noch durch Appelle an einzelne Verbraucher allein beseitigen. Notwendig sind bessere Planung, passende Infrastruktur, sichere Weitergabe und eine Kultur der Wertschätzung. Wenn alle Beteiligten Verantwortung übernehmen, können Ressourcen geschont und Menschen unterstützt werden.")
+]
+}
+async def make_track(name, segments):
     parts=[]
-    for i,(voice,spoken_text) in enumerate(utterances):
-        part=AUDIO/f".{name}.{i:02d}.mp3"
-        error=None
-        for attempt in range(1,6):
-            try:
-                print(f"{name}: {i+1}/{len(utterances)} {voice} Versuch {attempt}/5",flush=True)
-                await edge_tts.Communicate(spoken_text,voice,rate="-4%").save(str(part))
-                if not part.exists() or part.stat().st_size<1000:
-                    raise RuntimeError("Audio fehlt oder ist zu klein")
-                error=None
-                break
-            except Exception as exc:
-                error=exc
-                part.unlink(missing_ok=True)
-                print(f"Fehler: {exc}",flush=True)
-                if attempt<5: await asyncio.sleep(2*attempt)
-        if error: raise RuntimeError(f"Track fehlgeschlagen: {name}") from error
-        parts.append(part)
-        await asyncio.sleep(1)
-        if i<len(utterances)-1:
+    for i,(voice,words) in enumerate(segments):
+        p=AUDIO/f".{name}_{i}.mp3"
+        await edge_tts.Communicate(words,voice).save(str(p))
+        parts.append(p)
+        if i<len(segments)-1:
             silence=AUDIO/f".silence_{name}_{i}.mp3"
-            subprocess.run(["ffmpeg","-y","-f","lavfi","-i","anullsrc=r=24000:cl=mono","-t","0.65","-codec:a","libmp3lame","-b:a","64k",str(silence)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
+            subprocess.run(["ffmpeg","-y","-f","lavfi","-i","anullsrc=r=24000:cl=mono","-t","0.55","-codec:a","libmp3lame","-b:a","64k",str(silence)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
             parts.append(silence)
     listing=AUDIO/f".{name}.txt"
-    listing.write_text("".join(f"file '{p.resolve()}'\n" for p in parts),encoding="utf-8")
+    listing.write_text("".join(f"file '{p.resolve()}\\n" for p in parts),encoding="utf-8")
     target=AUDIO/name
-    subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(listing),"-codec:a","libmp3lame","-b:a","128k",str(target)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
+    subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(listing),"-codec:a","libmp3lame","-b:a","128k",str(target)],stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,check=True)
     for p in parts+[listing]: p.unlink(missing_ok=True)
     if not target.exists() or target.stat().st_size<1024: raise RuntimeError(f"MP3 invalide: {name}")
     print(f"OK {name}: {target.stat().st_size} octets",flush=True)
-
 async def main():
-    for name,utterances in tracks.items(): await make_track(name,utterances)
-
+    for name,segments in tracks.items(): await make_track(name,segments)
 asyncio.run(main())
 expected=["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3","teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
 archive=ROOT/"exam-029.zip"
@@ -54,5 +65,5 @@ with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as z:
     for name in expected: z.write(AUDIO/name,arcname=name)
 with zipfile.ZipFile(archive) as z:
     if sorted(z.namelist())!=sorted(expected): raise RuntimeError("Contenu ZIP incorrect")
-    if any(x.file_size<1024 for x in z.infolist()): raise RuntimeError("Piste vide ou trop petite")
+    if any(x.file_size<10000 for x in z.infolist()): raise RuntimeError("Piste vide ou trop petite")
 print(f"Archive validée: {archive} ({archive.stat().st_size} octets)",flush=True)
