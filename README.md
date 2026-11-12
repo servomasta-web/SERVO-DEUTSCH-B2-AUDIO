@@ -6,30 +6,23 @@ Le code source de l'application reste dans le dépôt privé `SERVO-DEUTSCH-B2`.
 
 ## Format des packs
 
-Les packs sont publiés comme pièces jointes d'une GitHub Release, et non stockés dans l'historique Git.
+Les packs sont publiés comme pièces jointes de la GitHub Release `audio-v1`.
 
-- Tag de release : `audio-v1`
-- Nom des archives : `exam-001.zip` à `exam-030.zip` pour le module Hören actuellement pris en charge.
+- Archives : `exam-001.zip` à `exam-033.zip`
+- Chaque archive contient huit pistes MP3 :
+  - `teil1_01.mp3` à `teil1_05.mp3`
+  - `teil2_01.mp3`
+  - `teil3_01.mp3`
+  - `teil4_01.mp3`
 
-Chaque archive doit contenir huit pistes MP3 :
-- `teil1_01.mp3` à `teil1_05.mp3`
-- `teil2_01.mp3`
-- `teil3_01.mp3`
-- `teil4_01.mp3`
+## Utilisation dans l'application
 
-## État de publication vérifié
+L'application télécharge le pack correspondant à l'examen sélectionné et extrait les pistes dans son cache local. Les parties 2 et 4 sont diffusées deux fois ; les parties 1 et 3 une seule fois.
 
-La release `audio-v1` contient actuellement les trois archives suivantes :
-- `exam-001.zip`
-- `exam-002.zip`
-- `exam-003.zip`
+**Nature des voix :** les packs utilisent des voix allemandes neuronales de synthèse vocale.
 
-Les packs `exam-004.zip` à `exam-030.zip` ne sont pas encore publiés. L'application peut utiliser provisoirement la synthèse vocale locale pour ces examens.
+## Maintenance
 
-**Nature des voix :** les packs actuellement générés utilisent des voix allemandes neuronales de synthèse vocale. Il ne faut pas les présenter comme des enregistrements réalisés par des comédiens humains.
+Les scripts `build_exam_NNN_aligned.py` servent de sources textuelles pour les pistes. Toute modification d'un script audio doit être suivie d'une vérification de cohérence avec les questions du dépôt de l'application avant toute nouvelle publication.
 
-Chaque nouveau pack doit être contrôlé (huit pistes présentes, MP3 lisibles, contenu distinct et cohérent avec les questions) avant publication.
-
-## Confidentialité
-
-Ce dépôt est public. Tout fichier audio publié ici pourra être téléchargé par tout le monde. Ne pas y déposer de code source privé, de clés, de configuration Firebase ou de données personnelles.
+Aucune piste audio n'est modifiée par les contrôles de cohérence des questions.
