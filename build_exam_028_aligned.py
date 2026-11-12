@@ -1,58 +1,66 @@
-import asyncio
-import subprocess
-import zipfile
+import asyncio, subprocess, zipfile
 from pathlib import Path
 import edge_tts
 
-ROOT=Path("output")
-AUDIO=ROOT/"audio"
-AUDIO.mkdir(parents=True,exist_ok=True)
-
-# Prüfung 006 — Ehrenamtliches Engagement in der Gemeinde.
-# Inhaltlich an GoetheExam06Audio.java ausgerichtet.
-tracks={"teil1_01.mp3":[["de-DE-KatjaNeural","Mitteilung der Schulleitung: Ab dem nächsten Monat können Schülerinnen und Schüler das Mittagessen bis 9 Uhr am selben Tag online abbestellen. Bisher war eine Abmeldung nur am Vortag möglich. Die Änderung soll Lebensmittelabfälle verringern."]],"teil1_02.mp3":[["de-DE-KatjaNeural","A: Mein Sohn isst in der Schule kaum Gemüse. B: Gibt es dort eine Auswahl? A: Ja, aber er nimmt meistens Nudeln. B: Vielleicht könnt ihr gemeinsam den Speiseplan ansehen und ein neues Gericht auswählen, das er probieren möchte."]],"teil1_03.mp3":[["de-DE-KatjaNeural","Hinweis der Mensa: Am Mittwoch wird ein vegetarisches Gericht mit Linsen angeboten. Allergene sind auf dem Speiseplan gekennzeichnet. Bei Fragen zu einzelnen Zutaten können sich Eltern direkt an das Küchenteam wenden."]],"teil1_04.mp3":[["de-DE-AmalaNeural","Ich finde es gut, dass die Schule jetzt Leitungswasser kostenlos bereitstellt. Früher haben viele Kinder süße Getränke gekauft. Seitdem die Trinkstation aufgestellt wurde, benutzen sie häufiger ihre eigenen Flaschen."]],"teil1_05.mp3":[["de-DE-KatjaNeural","Durchsage: Die Befragung zum Schulessen wird um eine Woche verlängert. Fragebögen können bis zum 18. Juni online ausgefüllt werden. Die Ergebnisse werden im nächsten Elternbrief zusammengefasst."]],"teil2_01.mp3":[["de-DE-KatjaNeural","Moderator: Das Mittagessen in Schulen beeinflusst Gesundheit und Konzentration. Frau Dr. Seifert, Sie beraten Schulträger zur Verpflegung. Was zeichnet ein gutes Schulessen aus?\nSeifert: Es sollte ausgewogen, abwechslungsreich und für die Kinder bezahlbar sein. Dazu gehören Gemüse, Obst, Vollkornprodukte und geeignete Eiweißquellen. Wichtig ist auch, dass die Portionen zum Alter passen.\nModerator: Wie kann man Kinder an neue Speisen gewöhnen?\nSeifert: Durch wiederholtes Probieren ohne Druck. Kinder brauchen manchmal mehrere Begegnungen mit einem Lebensmittel, bevor sie es akzeptieren. Es hilft, wenn sie bei der Auswahl beteiligt werden oder sehen, wie Gerichte zubereitet werden.\nModerator: Welche Rolle spielen Allergien und Unverträglichkeiten?\nSeifert: Sie müssen zuverlässig berücksichtigt werden. Schulen brauchen aktuelle Angaben und klare Abläufe, damit kein Kind versehentlich ein ungeeignetes Gericht erhält. Gleichzeitig sollten Alternativen angeboten werden, damit betroffene Kinder nicht ausgeschlossen sind.\nModerator: Wie wichtig ist die Atmosphäre in der Mensa?\nSeifert: Sehr wichtig. Wenn Kinder in Ruhe essen können und ausreichend Zeit haben, nehmen sie Mahlzeiten bewusster wahr. Lärm und Zeitdruck führen oft dazu, dass Essen hastig heruntergeschlungen wird.\nModerator: Was können Eltern beitragen?\nSeifert: Sie können Rückmeldungen geben und mit ihren Kindern über ausgewogene Ernährung sprechen. Schule und Familie sollten dabei zusammenarbeiten, statt sich gegenseitig Vorwürfe zu machen."]],"teil3_01.mp3":[["de-DE-KatjaNeural","Moderatorin: Sollten Schulen ausschließlich vegetarisches Mittagessen anbieten? Herr Roth, Sie sind Elternvertreter."],["de-DE-AmalaNeural","Roth: Ich halte eine verpflichtende Einschränkung für schwierig. Familien haben unterschiedliche Essgewohnheiten, und Kinder sollten lernen, verschiedene Lebensmittel ausgewogen zu kombinieren. Wichtig ist, dass die Qualität stimmt und vegetarische Gerichte attraktiv zubereitet werden."],["de-DE-KatjaNeural","Moderatorin: Frau Müller, Sie leiten eine Initiative für nachhaltige Schulverpflegung."],["de-DE-ConradNeural","Müller: Ein stärker vegetarisches Angebot kann Umweltbelastungen reduzieren. Es muss nicht bedeuten, dass es gar keine Wahl mehr gibt. Schulen könnten mehrere fleischfreie Tage einführen und regionale Zutaten verwenden."],["de-DE-AmalaNeural","Roth: Solche Tage finde ich in Ordnung, wenn Eltern informiert werden und die Gerichte ausreichend Nährstoffe enthalten."],["de-DE-ConradNeural","Müller: Genau. Außerdem sollten Kinder an der Menüplanung beteiligt werden. Wenn sie Gerichte mitentwickeln, probieren sie Neues eher aus."],["de-DE-KatjaNeural","Moderatorin: Beide Seiten unterstützen eine hochwertige Ernährung, unterscheiden sich aber bei der Frage, wie verbindlich vegetarische Angebote sein sollen."]],"teil4_01.mp3":[["de-DE-ConradNeural","Guten Tag. In meinem Vortrag geht es um Schulessen und Gesundheit. Kinder benötigen Energie und Nährstoffe, um sich zu entwickeln, zu lernen und sich zu bewegen. Eine ausgewogene Mahlzeit kann dazu beitragen, dass sie am Nachmittag konzentriert bleiben. Dabei kommt es nicht auf einzelne perfekte Lebensmittel an, sondern auf eine abwechslungsreiche Ernährung über längere Zeit.\nEin gutes Schulessen sollte Gemüse, Obst, Vollkornprodukte und geeignete Eiweißquellen enthalten. Wasser sollte leicht verfügbar sein. Süße Getränke sind keine notwendige Ergänzung. Portionen müssen dem Alter und dem individuellen Bedarf entsprechen.\nAuch die Qualität der Zutaten spielt eine Rolle. Regionale und saisonale Produkte können Transportwege verkürzen und die Verbindung zur Landwirtschaft sichtbar machen. Das bedeutet nicht, dass jedes Produkt aus der unmittelbaren Umgebung stammen muss. Entscheidend sind Qualität, Verfügbarkeit und eine sinnvolle Planung.\nSchulen müssen Allergien und Unverträglichkeiten ernst nehmen. Dafür braucht es aktuelle Informationen, klare Kennzeichnungen und sichere Abläufe in der Küche. Betroffene Kinder sollen passende Alternativen erhalten und gemeinsam mit ihren Mitschülern essen können.\nSchließlich ist die Essenssituation wichtig. Ausreichend Zeit, eine angenehme Atmosphäre und Beteiligung der Kinder fördern die Akzeptanz. Schulen können Speisepläne erklären, Rückmeldungen sammeln und gemeinsam mit Eltern nach Verbesserungen suchen. Gesundes Schulessen verbindet Ernährung, Bildung und soziale Teilhabe."]]}
-async def make_track(name,utterances):
-    parts=[]
-    for i,(voice,spoken_text) in enumerate(utterances):
-        part=AUDIO/f".{name}.{i:02d}.mp3"
-        error=None
-        for attempt in range(1,6):
-            try:
-                print(f"{name}: {i+1}/{len(utterances)} {voice} Versuch {attempt}/5",flush=True)
-                await edge_tts.Communicate(spoken_text,voice,rate="-4%").save(str(part))
-                if not part.exists() or part.stat().st_size<1000:
-                    raise RuntimeError("Audio fehlt oder ist zu klein")
-                error=None
-                break
-            except Exception as exc:
-                error=exc
-                part.unlink(missing_ok=True)
-                print(f"Fehler: {exc}",flush=True)
-                if attempt<5: await asyncio.sleep(2*attempt)
-        if error: raise RuntimeError(f"Track fehlgeschlagen: {name}") from error
-        parts.append(part)
-        await asyncio.sleep(1)
-        if i<len(utterances)-1:
-            silence=AUDIO/f".silence_{name}_{i}.mp3"
-            subprocess.run(["ffmpeg","-y","-f","lavfi","-i","anullsrc=r=24000:cl=mono","-t","0.65","-codec:a","libmp3lame","-b:a","64k",str(silence)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
-            parts.append(silence)
-    listing=AUDIO/f".{name}.txt"
-    listing.write_text("".join(f"file '{p.resolve()}'\n" for p in parts),encoding="utf-8")
-    target=AUDIO/name
-    subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(listing),"-codec:a","libmp3lame","-b:a","128k",str(target)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
-    for p in parts+[listing]: p.unlink(missing_ok=True)
-    if not target.exists() or target.stat().st_size<1024: raise RuntimeError(f"MP3 invalide: {name}")
-    print(f"OK {name}: {target.stat().st_size} octets",flush=True)
-
+ROOT=Path("output"); AUDIO=ROOT/"audio"; AUDIO.mkdir(parents=True,exist_ok=True)
+tracks={
+"teil1_01.mp3":[("de-DE-KatjaNeural","Das Grünflächenamt bietet am Samstag eine Führung zu klimaangepassten Stadtbäumen an. Treffpunkt ist um elf Uhr am Brunnen im Stadtpark. Die Teilnahme ist kostenlos. Eine Anmeldung ist möglich, aber nicht zwingend erforderlich.")],
+"teil1_02.mp3":[("de-DE-ConradNeural","Bei der nächsten Pflanzaktion werden junge Bäume entlang des neuen Radwegs eingesetzt. Freiwillige sind auch ohne Erfahrung willkommen. Bitte bringen Sie, wenn möglich, eigene Arbeitshandschuhe mit. Werkzeuge und Pflanzen stellt die Stadt bereit.")],
+"teil1_03.mp3":[("de-DE-AmalaNeural","Hausgemeinschaften können beim Umweltbüro eine Regentonne beantragen, sofern eine geeignete Dachfläche und ein sicherer Aufstellort vorhanden sind. Das Angebot richtet sich an Eigentümer und gemeinsam organisierte Hausgemeinschaften.")],
+"teil1_04.mp3":[("de-DE-KatjaNeural","Wer eine beschädigte Baumscheibe oder einen kranken Straßenbaum entdeckt, kann dies über das Online-Formular des Grünflächenamtes melden. Wichtig sind die genaue Lage und möglichst ein Foto.")],
+"teil1_05.mp3":[("de-DE-ConradNeural","Die Stadt sucht Schulen, die sich an einem Projekt für mehr Schatten auf Schulhöfen beteiligen möchten. Interessierte Einrichtungen können sich bis zum dreißigsten September beim Klimaschutzbüro melden.")],
+"teil2_01.mp3":[
+("de-DE-KatjaNeural","Stadtbäume gelten als wichtige Hilfe gegen sommerliche Hitze. Trotzdem leiden viele von ihnen unter dem Klimawandel. Woran liegt das?"),
+("de-DE-AmalaNeural","Ein wesentlicher Grund sind versiegelte Flächen. Asphalt und Beton speichern Wärme, während Regenwasser oft schnell abfließt. Dadurch trocknen Böden aus. Bäume brauchen jedoch Wasser und Platz für ihre Wurzeln."),
+("de-DE-KatjaNeural","Sollte man deshalb einfach möglichst viele Bäume pflanzen?"),
+("de-DE-AmalaNeural","Mehr Bäume sind wichtig, aber die Auswahl muss zum Standort passen. Wir brauchen Arten, die mit höheren Temperaturen und längeren Trockenperioden zurechtkommen. Vielfalt ist ebenfalls entscheidend: Ein gemischter Bestand ist weniger gefährdet, wenn eine Krankheit auftritt."),
+("de-DE-KatjaNeural","Wie lässt sich die Bewässerung verbessern?"),
+("de-DE-AmalaNeural","Regenwasser sollte stärker genutzt und gespeichert werden. Außerdem muss man gezielt gießen. Eine Bodenabdeckung kann helfen, Feuchtigkeit länger zu halten. Bei Bauprojekten muss die Wasserplanung von Anfang an berücksichtigt werden."),
+("de-DE-KatjaNeural","Welche Aufgaben können Bürgerinnen und Bürger übernehmen?"),
+("de-DE-AmalaNeural","Viele Städte ermöglichen Baumpatenschaften. Anwohner können junge Bäume nach Absprache gießen und Schäden melden. Das ist eine wertvolle Ergänzung. Fachliche Kontrollen und notwendige Pflegearbeiten bleiben aber Aufgabe ausgebildeter Beschäftigter."),
+("de-DE-KatjaNeural","Was muss sich in der Stadtplanung ändern?"),
+("de-DE-AmalaNeural","Bäume dürfen nicht erst am Ende eines Bauprojekts eingeplant werden. Sie brauchen Wurzelraum, geeignete Böden und Schutz vor Baustellenverkehr. Straßenbau, Leitungsplanung und Grünflächenpflege müssen früh zusammenarbeiten.")
+],
+"teil3_01.mp3":[
+("de-DE-KatjaNeural","Wie können Städte ihre Bäume besser vor Hitze schützen? Darüber sprechen Frau Neumann von einer Bürgerinitiative und Herr Krüger, ein Stadtplaner."),
+("de-DE-AmalaNeural","Neumann: In unserem Viertel haben wir ein Gießprojekt gestartet. Freiwillige übernehmen Patenschaften für junge Bäume und tragen ihre Einsätze in einen Kalender ein. Das funktioniert gut. Wir möchten außerdem Schulen stärker in Pflanzaktionen einbeziehen."),
+("de-DE-ConradNeural","Krüger: Bürgerengagement ist hilfreich, aber bei Neubauten müssen wir vor allem den Wurzelraum sichern. Unter Straßen liegen zahlreiche Leitungen. Deshalb müssen Versorgungsbetriebe und Grünflächenamt früh miteinander sprechen."),
+("de-DE-AmalaNeural","Neumann: Wir wünschen uns mehr Informationen. Wenn Anwohner wissen, welche Bäume besonders viel Wasser benötigen oder bereits geschädigt sind, können sie gezielter helfen. Eine verständliche Übersicht wäre nützlich."),
+("de-DE-ConradNeural","Krüger: Eine solche Übersicht ist sinnvoll. Wir erfassen zunehmend den Zustand der Bäume. Allerdings kann freiwillige Hilfe fachliche Pflege nicht ersetzen. Bei Krankheiten oder Standsicherheitsproblemen sind Fachleute gefragt."),
+("de-DE-KatjaNeural","Vielen Dank. Gute Baumpflege braucht Beteiligung, vorausschauende Planung und fachliche Verantwortung.")
+],
+"teil4_01.mp3":[
+("de-DE-ConradNeural","Guten Tag. Heute spreche ich über die Bedeutung von Stadtbäumen in Zeiten des Klimawandels. Hitzewellen werden in vielen Städten häufiger. Besonders betroffen sind dicht bebaute Viertel mit wenig Grün. Bäume spenden Schatten und kühlen ihre Umgebung durch Verdunstung."),
+("de-DE-ConradNeural","Diese Wirkung entsteht jedoch nicht automatisch. Ein Baum braucht einen geeigneten Standort. Besonders wichtig ist ausreichend durchwurzelbarer Boden. Die Wurzeln müssen Wasser aufnehmen und sich entwickeln können. Kleine Baumscheiben zwischen Betonflächen reichen dafür oft nicht aus."),
+("de-DE-ConradNeural","Bei der Auswahl neuer Arten sollten Kommunen auch langfristige Klimaprognosen beachten. Manche traditionelle Baumarten reagieren empfindlich auf Trockenheit oder Schädlinge. Eine größere Vielfalt kann das Risiko verringern, dass ein großer Teil des Bestandes gleichzeitig geschädigt wird."),
+("de-DE-ConradNeural","Auch die Pflege muss sich verändern. In trockenen Perioden brauchen junge Bäume eine abgestimmte Bewässerung. Regenwasser sollte möglichst vor Ort gespeichert werden. Eine geeignete Bodenabdeckung kann die Verdunstung reduzieren. Wasser muss sparsam eingesetzt werden."),
+("de-DE-ConradNeural","Stadtbäume konkurrieren im Untergrund manchmal mit Strom-, Wasser- und Datenleitungen. Deshalb müssen Grünflächenamt, Straßenbau und Versorgungsunternehmen eng zusammenarbeiten. Werden Bäume erst nach der technischen Planung berücksichtigt, fehlt ihnen häufig der notwendige Platz."),
+("de-DE-ConradNeural","Die Bevölkerung kann ebenfalls beitragen. Baumpatenschaften, Pflanzaktionen und Meldungen über Schäden stärken die Verbindung zwischen Bewohnern und öffentlichem Grün. Schulen können solche Projekte mit Unterricht verbinden. Die fachliche Kontrolle bleibt dennoch unverzichtbar."),
+("de-DE-ConradNeural","Zusammenfassend lässt sich sagen: Stadtbäume sind eine wirksame, aber keine allein ausreichende Antwort auf zunehmende Hitze. Sie benötigen passende Standorte, vielfältige Arten, Wasser und langfristige Pflege. Wenn Verwaltung, Fachleute und Bevölkerung gemeinsam handeln, können Städte widerstandsfähiger und lebenswerter werden. Vielen Dank für Ihre Aufmerksamkeit.")
+]}
+async def synthesize(voice,text,path):
+    await edge_tts.Communicate(text,voice).save(str(path))
 async def main():
-    for name,utterances in tracks.items(): await make_track(name,utterances)
-
-asyncio.run(main())
-expected=["teil1_01.mp3","teil1_02.mp3","teil1_03.mp3","teil1_04.mp3","teil1_05.mp3","teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"]
-archive=ROOT/"exam-028.zip"
-with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as z:
-    for name in expected: z.write(AUDIO/name,arcname=name)
-with zipfile.ZipFile(archive) as z:
-    if sorted(z.namelist())!=sorted(expected): raise RuntimeError("Contenu ZIP incorrect")
-    if any(x.file_size<1024 for x in z.infolist()): raise RuntimeError("Piste vide ou trop petite")
-print(f"Archive validée: {archive} ({archive.stat().st_size} octets)",flush=True)
+    for filename,segments in tracks.items():
+        pieces=[]
+        for i,(voice,text) in enumerate(segments):
+            p=AUDIO/f"{filename[:-4]}_{i:02d}.mp3"
+            await synthesize(voice,text,p); pieces.append(p)
+        target=AUDIO/filename
+        if len(pieces)==1: pieces[0].replace(target)
+        else:
+            manifest=ROOT/f"{filename[:-4]}_concat.txt"
+            manifest.write_text("".join("file '"+str(p.resolve())+"'\\n" for p in pieces),encoding="utf-8")
+            subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(manifest),"-c","copy",str(target)],check=True)
+            for p in pieces:p.unlink()
+            manifest.unlink()
+    archive=ROOT/"exam-028.zip"
+    with zipfile.ZipFile(archive,"w",zipfile.ZIP_DEFLATED) as z:
+        for p in sorted(AUDIO.glob("*.mp3")): z.write(p,p.name)
+    expected={f"teil1_0{i}.mp3" for i in range(1,6)}|{"teil2_01.mp3","teil3_01.mp3","teil4_01.mp3"}
+    with zipfile.ZipFile(archive) as z:
+        actual={n for n in z.namelist() if n.endswith(".mp3")}
+        assert actual==expected,(actual,expected)
+        assert all(z.getinfo(n).file_size>10000 for n in expected)
+    print(f"Created {archive} ({archive.stat().st_size} bytes), 8 validated tracks")
+if __name__=="__main__": asyncio.run(main())
