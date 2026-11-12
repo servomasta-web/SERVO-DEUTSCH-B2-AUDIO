@@ -30,12 +30,10 @@ Le générateur unique `rebuild_all_30_from_app.py` extrait directement les cinq
 Place les deux dépôts côte à côte, puis exécute depuis ce dépôt :
 
 ```bash
-python -m pip install --upgrade edge-tts
-pkg install ffmpeg
-python rebuild_all_30_from_app.py --app-root ../SERVO-DEUTSCH-B2-7.2.0 --all
+bash rebuild_all_30_termux.sh ../SERVO-DEUTSCH-B2-7.2.0
 ```
 
-Si le dossier de l'application porte un autre nom, indique son chemin exact après `--app-root`.
+Le script installe les dépendances manquantes, lance la reconstruction des 30 examens et vérifie les archives. Si le dossier de l'application porte un autre nom, remplace le chemin indiqué.
 
 Le générateur produit :
 - `output/exam-001.zip` à `output/exam-030.zip`
