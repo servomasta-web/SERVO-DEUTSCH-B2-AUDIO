@@ -64,7 +64,7 @@ async def make_track(name,utterances):
             subprocess.run(["ffmpeg","-y","-f","lavfi","-i","anullsrc=r=24000:cl=mono","-t","0.65","-codec:a","libmp3lame","-b:a","64k",str(silence)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
             parts.append(silence)
     listing=AUDIO/f".{name}.txt"
-    listing.write_text("".join(f"file '{p.resolve()}'\\n" for p in parts),encoding="utf-8")
+    listing.write_text("".join(f"file '{p.resolve()}'\n" for p in parts),encoding="utf-8")
     target=AUDIO/name
     subprocess.run(["ffmpeg","-y","-f","concat","-safe","0","-i",str(listing),"-codec:a","libmp3lame","-b:a","128k",str(target)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
     for p in parts+[listing]: p.unlink(missing_ok=True)
