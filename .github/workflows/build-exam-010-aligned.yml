@@ -34,9 +34,9 @@ jobs:
           mkdir -p output audio/exam-010
           python build_exam_010_aligned.py
           test "$(find audio/exam-010 -maxdepth 1 -type f -name '*.mp3' | wc -l)" -eq 8
-          test "$(unzip -Z1 output/exam-010.zip | grep -c '\\.mp3$')" -eq 8
+          test "$(unzip -Z1 output/exam-010.zip | grep -c '\.mp3$')" -eq 8
           for f in audio/exam-010/*.mp3; do
-            ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\\.[0-9]+)?$'
+            ffprobe -v error -show_entries format=duration -of csv=p=0 "$f" | grep -Eq '^[0-9]+(\.[0-9]+)?$'
           done
       - name: Commit the eight validated MP3 files
         run: |
